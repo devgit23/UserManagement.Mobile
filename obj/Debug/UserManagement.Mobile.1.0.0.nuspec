@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>UserManagement.Mobile</id>
+    <version>1.0.0</version>
+    <authors>UserManagement.Mobile</authors>
+    <description>Package Description</description>
+    <repository type="git" />
+    <dependencies>
+      <group targetFramework="net10.0-android36.0">
+        <dependency id="UserManagement.Mobile.Core" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="UserManagement.Shared" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration.Json" version="10.0.11" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Logging.Debug" version="10.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Maui.Controls" version="10.0.20" exclude="Build,Analyzers" />
+        <dependency id="Refit.HttpClientFactory" version="8.0.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net10.0-ios26.5">
+        <dependency id="UserManagement.Mobile.Core" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="UserManagement.Shared" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration.Json" version="10.0.11" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Logging.Debug" version="10.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Maui.Controls" version="10.0.20" exclude="Build,Analyzers" />
+        <dependency id="Refit.HttpClientFactory" version="8.0.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net10.0-maccatalyst26.5">
+        <dependency id="UserManagement.Mobile.Core" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="UserManagement.Shared" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration.Json" version="10.0.11" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Logging.Debug" version="10.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Maui.Controls" version="10.0.20" exclude="Build,Analyzers" />
+        <dependency id="Refit.HttpClientFactory" version="8.0.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net10.0-windows10.0.19041">
+        <dependency id="UserManagement.Mobile.Core" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="UserManagement.Shared" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration.Json" version="10.0.11" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Logging.Debug" version="10.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Maui.Controls" version="10.0.20" exclude="Build,Analyzers" />
+        <dependency id="Refit.HttpClientFactory" version="8.0.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-android\UserManagement.Mobile.runtimeconfig.json" target="lib\net10.0-android36.0\UserManagement.Mobile.runtimeconfig.json" />
+    <file src="D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-android\UserManagement.Mobile.dll" target="lib\net10.0-android36.0\UserManagement.Mobile.dll" />
+    <file src="D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-android\UserManagement.Mobile.xml" target="lib\net10.0-android36.0\UserManagement.Mobile.xml" />
+    <file src="D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-ios\iossimulator-x64\UserManagement.Mobile.runtimeconfig.json" target="lib\net10.0-ios26.5\UserManagement.Mobile.runtimeconfig.json" />
+    <file src="D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-ios\iossimulator-x64\UserManagement.Mobile.dll" target="lib\net10.0-ios26.5\UserManagement.Mobile.dll" />
+    <file src="D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\UserManagement.Mobile.runtimeconfig.json" target="lib\net10.0-maccatalyst26.5\UserManagement.Mobile.runtimeconfig.json" />
+    <file src="D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\UserManagement.Mobile.dll" target="lib\net10.0-maccatalyst26.5\UserManagement.Mobile.dll" />
+    <file src="D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\UserManagement.Mobile.runtimeconfig.json" target="lib\net10.0-windows10.0.19041\UserManagement.Mobile.runtimeconfig.json" />
+    <file src="D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\UserManagement.Mobile.dll" target="lib\net10.0-windows10.0.19041\UserManagement.Mobile.dll" />
+    <file src="D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\resources.pri" target="lib\net10.0-windows10.0.19041\resources.pri" />
+  </files>
+</package>

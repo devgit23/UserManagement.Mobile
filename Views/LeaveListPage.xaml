@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:UserManagement.Mobile.Core.ViewModels;assembly=UserManagement.Mobile.Core"
+             xmlns:workforce="clr-namespace:UserManagement.Common.Workforce;assembly=UserManagement.Common"
+             x:Class="UserManagement.Mobile.Views.LeaveListPage"
+             x:DataType="vm:LeaveListViewModel"
+             Title="{Binding Title}">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+
+        <!-- Leave Balance Cards (horizontal scroll) -->
+        <CollectionView Grid.Row="0" ItemsSource="{Binding Balances}"
+                        ItemsLayout="HorizontalList" HeightRequest="90" Margin="0,8">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="workforce:LeaveBalanceModel">
+                    <Border Margin="6,0" Padding="14,10"
+                            StrokeShape="RoundRectangle 12"
+                            Stroke="Transparent" StrokeThickness="0"
+                            BackgroundColor="{StaticResource InfoLight}"
+                            MinimumWidthRequest="130">
+                        <HorizontalStackLayout Spacing="10">
+                            <Border WidthRequest="36" HeightRequest="36"
+                                    StrokeShape="RoundRectangle 18"
+                                    Stroke="Transparent" StrokeThickness="0"
+                                    BackgroundColor="{StaticResource Info}"
+                                    Padding="0">
+                                <Label Text="&#xF0E17;"
+                                       FontFamily="MaterialDesignIcons" FontSize="16"
+                                       TextColor="White"
+                                       HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                            <VerticalStackLayout Spacing="2" VerticalOptions="Center">
+                                <Label Text="{Binding LeaveCode}" FontSize="12"
+                                       FontFamily="OpenSansSemibold"
+                                       TextColor="{StaticResource InfoDark}" />
+                                <Label Text="{Binding BalanceDays, StringFormat='{0:N1} days'}"
+                                       FontSize="16" FontFamily="OpenSansSemibold"
+                                       TextColor="{StaticResource Tertiary}" />
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Leave Requests List -->
+        <RefreshView Grid.Row="1" IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}">
+            <CollectionView ItemsSource="{Binding Requests}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="workforce:LeaveRequestModel">
+                        <Border Style="{StaticResource CardBorderCompact}" Margin="12,4">
+                            <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                                <!-- Leave icon circle -->
+                                <Border Grid.Column="0" WidthRequest="44" HeightRequest="44"
+                                        StrokeShape="RoundRectangle 22"
+                                        Stroke="Transparent" StrokeThickness="0"
+                                        BackgroundColor="{StaticResource PrimaryLight}"
+                                        Padding="0">
+                                    <Label Text="&#xF0E17;"
+                                           FontFamily="MaterialDesignIcons" FontSize="20"
+                                           TextColor="{StaticResource Primary}"
+                                           HorizontalOptions="Center" VerticalOptions="Center" />
+                                </Border>
+
+                                <!-- Details -->
+                                <VerticalStackLayout Grid.Column="1" Spacing="3" VerticalOptions="Center">
+                                    <Label Text="{Binding LeaveCode}" Style="{StaticResource CardTitle}" />
+                                    <Label Text="{Binding RequestedDays, StringFormat='{0:N1} days requested'}"
+                                           Style="{StaticResource CardSubtext}" />
+                                    <Label Text="{Binding Reason}" FontSize="12"
+                                           TextColor="{StaticResource Gray400}"
+                                           LineBreakMode="TailTruncation" MaxLines="1" />
+                                </VerticalStackLayout>
+
+                                <!-- Status badge -->
+                                <Border Grid.Column="2"
+                                        BackgroundColor="{Binding Status, Converter={StaticResource LeaveStatusToColorConverter}}"
+                                        StrokeShape="RoundRectangle 10"
+                                        Stroke="Transparent" StrokeThickness="0"
+                                        Padding="10,4" VerticalOptions="Center">
+                                    <Label Text="{Binding Status}" FontSize="11"
+                                           TextColor="{Binding Status, Converter={StaticResource LeaveStatusToColorConverter}, ConverterParameter=fg}" />
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout Spacing="8" Margin="0,40">
+                        <Label Text="&#xF0E17;" FontFamily="MaterialDesignIcons"
+                               FontSize="40" TextColor="{StaticResource Gray300}"
+                               HorizontalOptions="Center" />
+                        <Label Text="No leave requests" Style="{StaticResource EmptyStateLabel}" />
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
+            </CollectionView>
+        </RefreshView>
+
+        <!-- FAB New Request Button -->
+        <Button Grid.Row="2"
+                Text="&#xF0415;  New Request"
+                Style="{StaticResource FabButton}"
+                Command="{Binding NavigateToNewRequestCommand}"
+                Margin="16,8" />
+
+        <!-- Error -->
+        <Border Grid.Row="1" Style="{StaticResource BadgeDanger}" Padding="14,10"
+                VerticalOptions="End" Margin="16,0,16,8"
+                IsVisible="{Binding ErrorMessage, Converter={StaticResource IsNotNullConverter}}">
+            <HorizontalStackLayout Spacing="8" HorizontalOptions="Center">
+                <Label Text="&#xF05D6;" FontFamily="MaterialDesignIcons"
+                       FontSize="18" TextColor="{StaticResource Danger}" VerticalOptions="Center" />
+                <Label Text="{Binding ErrorMessage}" TextColor="{StaticResource Danger}"
+                       FontSize="13" VerticalOptions="Center" />
+            </HorizontalStackLayout>
+        </Border>
+    </Grid>
+</ContentPage>

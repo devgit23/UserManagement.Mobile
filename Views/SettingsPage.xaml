@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:UserManagement.Mobile.Core.ViewModels;assembly=UserManagement.Mobile.Core"
+             x:Class="UserManagement.Mobile.Views.SettingsPage"
+             x:DataType="vm:SettingsViewModel"
+             Title="{Binding Title}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="16">
+
+            <!-- Profile Quick-Link Card -->
+            <Border Style="{StaticResource CardBorder}">
+                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                    <Border Grid.Column="0" Style="{StaticResource AvatarBorder}">
+                        <Label Text="&#xF0009;"
+                               FontFamily="MaterialDesignIcons" FontSize="22"
+                               TextColor="{StaticResource Primary}"
+                               HorizontalOptions="Center" VerticalOptions="Center" />
+                    </Border>
+                    <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                        <Label Text="My Profile" Style="{StaticResource CardTitle}" />
+                        <Label Text="View your profile details" Style="{StaticResource CardSubtext}" />
+                    </VerticalStackLayout>
+                    <Label Grid.Column="2" Text="&#xF0142;"
+                           FontFamily="MaterialDesignIcons" FontSize="20"
+                           TextColor="{StaticResource Gray300}" VerticalOptions="Center" />
+                </Grid>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnProfileTapped" />
+                </Border.GestureRecognizers>
+            </Border>
+
+            <!-- Employee Directory Link Card -->
+            <Border Style="{StaticResource CardBorder}">
+                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                    <Border Grid.Column="0" WidthRequest="44" HeightRequest="44"
+                            StrokeShape="RoundRectangle 22"
+                            Stroke="Transparent" StrokeThickness="0"
+                            BackgroundColor="{StaticResource SuccessLight}" Padding="0">
+                        <Label Text="&#xF0849;"
+                               FontFamily="MaterialDesignIcons" FontSize="22"
+                               TextColor="{StaticResource Success}"
+                               HorizontalOptions="Center" VerticalOptions="Center" />
+                    </Border>
+                    <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                        <Label Text="Employee Directory" Style="{StaticResource CardTitle}" />
+                        <Label Text="Browse company directory" Style="{StaticResource CardSubtext}" />
+                    </VerticalStackLayout>
+                    <Label Grid.Column="2" Text="&#xF0142;"
+                           FontFamily="MaterialDesignIcons" FontSize="20"
+                           TextColor="{StaticResource Gray300}" VerticalOptions="Center" />
+                </Grid>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnDirectoryTapped" />
+                </Border.GestureRecognizers>
+            </Border>
+
+            <!-- Data & Sync Section -->
+            <Border Style="{StaticResource CardBorder}">
+                <VerticalStackLayout Spacing="12">
+                    <HorizontalStackLayout Spacing="8">
+                        <Label Text="&#xF04E6;"
+                               FontFamily="MaterialDesignIcons" FontSize="18"
+                               TextColor="{StaticResource Primary}" VerticalOptions="Center" />
+                        <Label Text="Data &amp; Sync" Style="{StaticResource SectionHeader}" Margin="0" />
+                    </HorizontalStackLayout>
+                    <BoxView Style="{StaticResource Divider}" Margin="0" />
+
+                    <!-- Connection Status -->
+                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="10">
+                        <Label Grid.Column="0" Text="&#xF05A9;"
+                               FontFamily="MaterialDesignIcons" FontSize="18"
+                               TextColor="{StaticResource Gray400}" VerticalOptions="Center" />
+                        <Label Grid.Column="1" Text="Connection" FontSize="14"
+                               VerticalOptions="Center" />
+                        <Border Grid.Column="2"
+                                BackgroundColor="{StaticResource SuccessLight}"
+                                StrokeShape="RoundRectangle 10"
+                                Stroke="Transparent" StrokeThickness="0"
+                                Padding="10,4">
+                            <Label Text="{Binding IsOnline, Converter={StaticResource BoolToStringConverter}}"
+                                   FontSize="12" FontFamily="OpenSansSemibold"
+                                   TextColor="{StaticResource Success}" />
+                        </Border>
+                    </Grid>
+
+                    <!-- Last Synced -->
+                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="10">
+                        <Label Grid.Column="0" Text="&#xF0150;"
+                               FontFamily="MaterialDesignIcons" FontSize="18"
+                               TextColor="{StaticResource Gray400}" VerticalOptions="Center" />
+                        <Label Grid.Column="1" Text="Last Synced" FontSize="14"
+                               VerticalOptions="Center" />
+                        <Label Grid.Column="2" Text="{Binding LastSynced}" FontSize="13"
+                               TextColor="{StaticResource Gray500}" VerticalOptions="Center" />
+                    </Grid>
+
+                    <!-- Pending Uploads -->
+                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="10">
+                        <Label Grid.Column="0" Text="&#xF0167;"
+                               FontFamily="MaterialDesignIcons" FontSize="18"
+                               TextColor="{StaticResource Gray400}" VerticalOptions="Center" />
+                        <Label Grid.Column="1" Text="Pending Uploads" FontSize="14"
+                               VerticalOptions="Center" />
+                        <Border Grid.Column="2"
+                                BackgroundColor="{StaticResource WarningLight}"
+                                StrokeShape="RoundRectangle 10"
+                                Stroke="Transparent" StrokeThickness="0"
+                                Padding="10,4">
+                            <Label Text="{Binding PendingUploads}" FontSize="12"
+                                   FontFamily="OpenSansSemibold"
+                                   TextColor="{StaticResource Warning}" />
+                        </Border>
+                    </Grid>
+
+                    <!-- Sync Now Button -->
+                    <Button Text="&#xF04E6;  Sync Now"
+                            Style="{StaticResource SecondaryButton}"
+                            Command="{Binding SyncNowCommand}"
+                            IsEnabled="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}" />
+
+                    <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- About Section -->
+            <Border Style="{StaticResource CardBorder}">
+                <VerticalStackLayout Spacing="10">
+                    <HorizontalStackLayout Spacing="8">
+                        <Label Text="&#xF02FC;"
+                               FontFamily="MaterialDesignIcons" FontSize="18"
+                               TextColor="{StaticResource Primary}" VerticalOptions="Center" />
+                        <Label Text="About" Style="{StaticResource SectionHeader}" Margin="0" />
+                    </HorizontalStackLayout>
+                    <BoxView Style="{StaticResource Divider}" Margin="0" />
+                    <Label Text="HR Connect v1.0" FontSize="14"
+                           TextColor="{StaticResource Gray500}" />
+                    <Label Text="UserManagement Mobile App" FontSize="12"
+                           TextColor="{StaticResource Gray400}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Logout Button -->
+            <Button Text="&#xF0343;  Logout"
+                    Style="{StaticResource DangerButton}"
+                    Command="{Binding LogoutCommand}" />
+
+            <!-- Error -->
+            <Border Style="{StaticResource BadgeDanger}" Padding="14,10"
+                    IsVisible="{Binding ErrorMessage, Converter={StaticResource IsNotNullConverter}}">
+                <HorizontalStackLayout Spacing="8" HorizontalOptions="Center">
+                    <Label Text="&#xF05D6;" FontFamily="MaterialDesignIcons"
+                           FontSize="18" TextColor="{StaticResource Danger}" VerticalOptions="Center" />
+                    <Label Text="{Binding ErrorMessage}" TextColor="{StaticResource Danger}"
+                           FontSize="13" VerticalOptions="Center" />
+                </HorizontalStackLayout>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

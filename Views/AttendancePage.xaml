@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:UserManagement.Mobile.Core.ViewModels;assembly=UserManagement.Mobile.Core"
+             xmlns:attendance="clr-namespace:UserManagement.Common.Attendance;assembly=UserManagement.Common"
+             x:Class="UserManagement.Mobile.Views.AttendancePage"
+             x:DataType="vm:AttendanceViewModel"
+             Title="{Binding Title}">
+
+    <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}">
+        <ScrollView>
+            <VerticalStackLayout Padding="16" Spacing="16">
+
+                <!-- Hero Clock Card -->
+                <Border Style="{StaticResource CardBorder}" Padding="24">
+                    <VerticalStackLayout Spacing="16" HorizontalOptions="Center">
+                        <!-- Timer icon circle -->
+                        <Border WidthRequest="72" HeightRequest="72"
+                                StrokeShape="RoundRectangle 36"
+                                Stroke="Transparent" StrokeThickness="0"
+                                BackgroundColor="{AppThemeBinding
+                                    Light={StaticResource SuccessLight},
+                                    Dark=#1A107C10}"
+                                HorizontalOptions="Center" Padding="0">
+                            <Label Text="&#xF13AB;"
+                                   FontFamily="MaterialDesignIcons" FontSize="34"
+                                   TextColor="{StaticResource Success}"
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+
+                        <!-- Duration -->
+                        <Label Text="{Binding ClockDuration}"
+                               FontSize="48" FontFamily="OpenSansSemibold"
+                               HorizontalOptions="Center"
+                               TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+
+                        <Label Text="Currently clocked in"
+                               Style="{StaticResource CardSubtext}"
+                               HorizontalOptions="Center"
+                               IsVisible="{Binding IsClockedIn}" />
+
+                        <Label Text="Tap below to start your day"
+                               Style="{StaticResource CardSubtext}"
+                               HorizontalOptions="Center"
+                               IsVisible="{Binding IsClockedIn, Converter={StaticResource InvertedBoolConverter}}" />
+
+                        <!-- Clock In Button -->
+                        <Button Text="&#xF0155;  Clock In"
+                                FontFamily="OpenSansSemibold"
+                                Command="{Binding ClockInCommand}"
+                                IsVisible="{Binding IsClockedIn, Converter={StaticResource InvertedBoolConverter}}"
+                                BackgroundColor="{StaticResource Success}"
+                                TextColor="White"
+                                FontSize="16" HeightRequest="56"
+                                CornerRadius="28" WidthRequest="200">
+                            <Button.Shadow>
+                                <Shadow Brush="{StaticResource Success}" Offset="0,3" Radius="8" Opacity="0.3" />
+                            </Button.Shadow>
+                        </Button>
+
+                        <!-- Clock Out Button -->
+                        <Button Text="&#xF0151;  Clock Out"
+                                FontFamily="OpenSansSemibold"
+                                Command="{Binding ClockOutCommand}"
+                                IsVisible="{Binding IsClockedIn}"
+                                BackgroundColor="{StaticResource Danger}"
+                                TextColor="White"
+                                FontSize="16" HeightRequest="56"
+                                CornerRadius="28" WidthRequest="200">
+                            <Button.Shadow>
+                                <Shadow Brush="{StaticResource Danger}" Offset="0,3" Radius="8" Opacity="0.3" />
+                            </Button.Shadow>
+                        </Button>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Offline Banner -->
+                <Border Style="{StaticResource OfflineBanner}"
+                        IsVisible="{Binding IsOnline, Converter={StaticResource InvertedBoolConverter}}">
+                    <HorizontalStackLayout Spacing="10">
+                        <Label Text="&#xF05AA;"
+                               FontFamily="MaterialDesignIcons" FontSize="18"
+                               TextColor="{StaticResource WarningDark}"
+                               VerticalOptions="Center" />
+                        <Label Text="Offline - actions will sync when connected"
+                               TextColor="{StaticResource WarningDark}" FontSize="13"
+                               VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Border>
+
+                <!-- Recent Logs Header -->
+                <HorizontalStackLayout Spacing="8">
+                    <Label Text="&#xF02DA;"
+                           FontFamily="MaterialDesignIcons" FontSize="18"
+                           TextColor="{StaticResource Primary}"
+                           VerticalOptions="Center" />
+                    <Label Text="Recent Logs" Style="{StaticResource SectionHeader}" />
+                </HorizontalStackLayout>
+
+                <!-- Recent Logs List -->
+                <CollectionView ItemsSource="{Binding RecentLogs}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="attendance:AttendanceLogModel">
+                            <Border Style="{StaticResource CardBorderCompact}" Margin="0,4">
+                                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                                    <!-- Status icon circle -->
+                                    <Border Grid.Column="0" WidthRequest="40" HeightRequest="40"
+                                            StrokeShape="RoundRectangle 20"
+                                            Stroke="Transparent" StrokeThickness="0"
+                                            BackgroundColor="{Binding Status, Converter={StaticResource AttendanceStatusToColorConverter}}"
+                                            Padding="0">
+                                        <Label Text="&#xF0150;"
+                                               FontFamily="MaterialDesignIcons" FontSize="18"
+                                               TextColor="{Binding Status, Converter={StaticResource AttendanceStatusToColorConverter}, ConverterParameter=fg}"
+                                               HorizontalOptions="Center" VerticalOptions="Center" />
+                                    </Border>
+
+                                    <!-- Date and time -->
+                                    <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                                        <Label Text="{Binding WorkDate, StringFormat='{0:ddd, dd MMM yyyy}'}"
+                                               Style="{StaticResource CardTitle}" />
+                                        <Label Text="{Binding ClockInAt, StringFormat='In: {0:hh\\:mm tt}'}"
+                                               Style="{StaticResource CardSubtext}" />
+                                    </VerticalStackLayout>
+
+                                    <!-- Status badge -->
+                                    <Border Grid.Column="2"
+                                            BackgroundColor="{Binding Status, Converter={StaticResource AttendanceStatusToColorConverter}}"
+                                            StrokeShape="RoundRectangle 10"
+                                            Stroke="Transparent" StrokeThickness="0"
+                                            Padding="10,4" VerticalOptions="Center">
+                                        <Label Text="{Binding Status}" FontSize="11"
+                                               TextColor="{Binding Status, Converter={StaticResource AttendanceStatusToColorConverter}, ConverterParameter=fg}" />
+                                    </Border>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <VerticalStackLayout Spacing="8" Margin="0,30">
+                            <Label Text="&#xF0150;" FontFamily="MaterialDesignIcons"
+                                   FontSize="40" TextColor="{StaticResource Gray300}"
+                                   HorizontalOptions="Center" />
+                            <Label Text="No attendance logs found"
+                                   Style="{StaticResource EmptyStateLabel}" />
+                        </VerticalStackLayout>
+                    </CollectionView.EmptyView>
+                </CollectionView>
+
+                <!-- Error -->
+                <Border Style="{StaticResource BadgeDanger}" Padding="14,10"
+                        IsVisible="{Binding ErrorMessage, Converter={StaticResource IsNotNullConverter}}">
+                    <HorizontalStackLayout Spacing="8" HorizontalOptions="Center">
+                        <Label Text="&#xF05D6;" FontFamily="MaterialDesignIcons"
+                               FontSize="18" TextColor="{StaticResource Danger}" VerticalOptions="Center" />
+                        <Label Text="{Binding ErrorMessage}" TextColor="{StaticResource Danger}"
+                               FontSize="13" VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </RefreshView>
+</ContentPage>

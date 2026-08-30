@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:UserManagement.Mobile.Core.ViewModels;assembly=UserManagement.Mobile.Core"
+             xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+             x:Class="UserManagement.Mobile.Views.DashboardPage"
+             x:DataType="vm:DashboardViewModel"
+             Title="{Binding Title}">
+
+    <RefreshView IsRefreshing="{Binding IsRefreshing}"
+                 Command="{Binding RefreshCommand}">
+        <ScrollView>
+            <VerticalStackLayout Padding="16" Spacing="16">
+
+                <!-- Welcome Section -->
+                <VerticalStackLayout Spacing="4">
+                    <Label Text="{Binding WelcomeMessage}"
+                           Style="{StaticResource PageTitle}" />
+                    <Label Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='{0:dddd, dd MMMM yyyy}'}"
+                           Style="{StaticResource PageSubtitle}" />
+                </VerticalStackLayout>
+
+                <!-- Offline Banner -->
+                <Border Style="{StaticResource OfflineBanner}"
+                        IsVisible="{Binding IsOnline, Converter={StaticResource InvertedBoolConverter}}">
+                    <HorizontalStackLayout Spacing="10">
+                        <Label Text="&#xF05AA;"
+                               FontFamily="MaterialDesignIcons" FontSize="18"
+                               TextColor="{StaticResource WarningDark}"
+                               VerticalOptions="Center" />
+                        <Label Text="You are offline. Showing cached data."
+                               TextColor="{StaticResource WarningDark}"
+                               FontSize="13" VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Border>
+
+                <!-- Quick Action Buttons -->
+                <HorizontalStackLayout Spacing="16" HorizontalOptions="Center">
+                    <!-- Attendance shortcut -->
+                    <VerticalStackLayout Spacing="6" HorizontalOptions="Center">
+                        <Border WidthRequest="56" HeightRequest="56"
+                                StrokeShape="RoundRectangle 28"
+                                Stroke="Transparent" StrokeThickness="0"
+                                BackgroundColor="{StaticResource SuccessLight}"
+                                HorizontalOptions="Center" Padding="0">
+                            <Label Text="&#xF0150;"
+                                   FontFamily="MaterialDesignIcons" FontSize="24"
+                                   TextColor="{StaticResource Success}"
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <Label Text="Attendance" FontSize="11"
+                               TextColor="{StaticResource Gray500}"
+                               HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+
+                    <!-- Apply Leave shortcut -->
+                    <VerticalStackLayout Spacing="6" HorizontalOptions="Center">
+                        <Border WidthRequest="56" HeightRequest="56"
+                                StrokeShape="RoundRectangle 28"
+                                Stroke="Transparent" StrokeThickness="0"
+                                BackgroundColor="{StaticResource InfoLight}"
+                                HorizontalOptions="Center" Padding="0">
+                            <Label Text="&#xF0E17;"
+                                   FontFamily="MaterialDesignIcons" FontSize="24"
+                                   TextColor="{StaticResource Info}"
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <Label Text="Leave" FontSize="11"
+                               TextColor="{StaticResource Gray500}"
+                               HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+
+                    <!-- Directory shortcut -->
+                    <VerticalStackLayout Spacing="6" HorizontalOptions="Center">
+                        <Border WidthRequest="56" HeightRequest="56"
+                                StrokeShape="RoundRectangle 28"
+                                Stroke="Transparent" StrokeThickness="0"
+                                BackgroundColor="{StaticResource PrimaryLight}"
+                                HorizontalOptions="Center" Padding="0">
+                            <Label Text="&#xF0849;"
+                                   FontFamily="MaterialDesignIcons" FontSize="24"
+                                   TextColor="{StaticResource Primary}"
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <Label Text="Directory" FontSize="11"
+                               TextColor="{StaticResource Gray500}"
+                               HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+
+                <!-- Stats Grid -->
+                <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto"
+                      ColumnSpacing="12" RowSpacing="12">
+
+                    <!-- Present Today -->
+                    <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource CardBorder}">
+                        <VerticalStackLayout Spacing="8">
+                            <Border WidthRequest="40" HeightRequest="40"
+                                    StrokeShape="RoundRectangle 20"
+                                    Stroke="Transparent" StrokeThickness="0"
+                                    BackgroundColor="{StaticResource SuccessLight}"
+                                    HorizontalOptions="Start" Padding="0">
+                                <Label Text="&#xF05E0;"
+                                       FontFamily="MaterialDesignIcons" FontSize="20"
+                                       TextColor="{StaticResource Success}"
+                                       HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                            <Label Text="{Binding PresentToday}" Style="{StaticResource StatNumber}"
+                                   TextColor="{StaticResource Success}" />
+                            <Label Text="Present Today" Style="{StaticResource StatLabel}" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <!-- On Leave -->
+                    <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource CardBorder}">
+                        <VerticalStackLayout Spacing="8">
+                            <Border WidthRequest="40" HeightRequest="40"
+                                    StrokeShape="RoundRectangle 20"
+                                    Stroke="Transparent" StrokeThickness="0"
+                                    BackgroundColor="{StaticResource WarningLight}"
+                                    HorizontalOptions="Start" Padding="0">
+                                <Label Text="&#xF0E17;"
+                                       FontFamily="MaterialDesignIcons" FontSize="20"
+                                       TextColor="{StaticResource Warning}"
+                                       HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                            <Label Text="{Binding OnLeaveToday}" Style="{StaticResource StatNumber}"
+                                   TextColor="{StaticResource Warning}" />
+                            <Label Text="On Leave" Style="{StaticResource StatLabel}" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <!-- Total Employees -->
+                    <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource CardBorder}">
+                        <VerticalStackLayout Spacing="8">
+                            <Border WidthRequest="40" HeightRequest="40"
+                                    StrokeShape="RoundRectangle 20"
+                                    Stroke="Transparent" StrokeThickness="0"
+                                    BackgroundColor="{StaticResource InfoLight}"
+                                    HorizontalOptions="Start" Padding="0">
+                                <Label Text="&#xF0849;"
+                                       FontFamily="MaterialDesignIcons" FontSize="20"
+                                       TextColor="{StaticResource Info}"
+                                       HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                            <Label Text="{Binding TotalEmployees}" Style="{StaticResource StatNumber}"
+                                   TextColor="{StaticResource Info}" />
+                            <Label Text="Total Employees" Style="{StaticResource StatLabel}" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <!-- Pending Leave -->
+                    <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource CardBorder}">
+                        <VerticalStackLayout Spacing="8">
+                            <Border WidthRequest="40" HeightRequest="40"
+                                    StrokeShape="RoundRectangle 20"
+                                    Stroke="Transparent" StrokeThickness="0"
+                                    BackgroundColor="{StaticResource DangerLight}"
+                                    HorizontalOptions="Start" Padding="0">
+                                <Label Text="&#xF0966;"
+                                       FontFamily="MaterialDesignIcons" FontSize="20"
+                                       TextColor="{StaticResource Danger}"
+                                       HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                            <Label Text="{Binding PendingLeaveRequests}" Style="{StaticResource StatNumber}"
+                                   TextColor="{StaticResource Danger}" />
+                            <Label Text="Pending Leaves" Style="{StaticResource StatLabel}" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <!-- Unread Notifications -->
+                    <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                            Style="{StaticResource CardBorder}"
+                            IsVisible="{Binding ShowNotifications}">
+                        <HorizontalStackLayout Spacing="14">
+                            <Border WidthRequest="40" HeightRequest="40"
+                                    StrokeShape="RoundRectangle 20"
+                                    Stroke="Transparent" StrokeThickness="0"
+                                    BackgroundColor="{StaticResource PrimaryLight}"
+                                    Padding="0">
+                                <Label Text="&#xF009C;"
+                                       FontFamily="MaterialDesignIcons" FontSize="20"
+                                       TextColor="{StaticResource Primary}"
+                                       HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                            <VerticalStackLayout VerticalOptions="Center" Spacing="2">
+                                <Label Text="{Binding UnreadNotifications}" Style="{StaticResource StatNumber}"
+                                       TextColor="{StaticResource Primary}" />
+                                <Label Text="Unread Notifications" Style="{StaticResource StatLabel}" />
+                            </VerticalStackLayout>
+                            <Label Text="&#xF0142;" FontFamily="MaterialDesignIcons"
+                                   FontSize="20" TextColor="{StaticResource Gray300}"
+                                   VerticalOptions="Center" HorizontalOptions="End" />
+                        </HorizontalStackLayout>
+                    </Border>
+                </Grid>
+
+                <ActivityIndicator IsRunning="{Binding IsBusy}"
+                                   IsVisible="{Binding IsBusy}" />
+
+                <!-- Error -->
+                <Border Style="{StaticResource BadgeDanger}" Padding="14,10"
+                        IsVisible="{Binding ErrorMessage, Converter={StaticResource IsNotNullConverter}}">
+                    <HorizontalStackLayout Spacing="8" HorizontalOptions="Center">
+                        <Label Text="&#xF05D6;" FontFamily="MaterialDesignIcons"
+                               FontSize="18" TextColor="{StaticResource Danger}"
+                               VerticalOptions="Center" />
+                        <Label Text="{Binding ErrorMessage}"
+                               TextColor="{StaticResource Danger}" FontSize="13"
+                               VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </RefreshView>
+</ContentPage>

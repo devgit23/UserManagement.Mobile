@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:UserManagement.Mobile.Core.ViewModels;assembly=UserManagement.Mobile.Core"
+             x:Class="UserManagement.Mobile.Views.LeaveRequestPage"
+             x:DataType="vm:LeaveRequestViewModel"
+             Title="{Binding Title}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="16">
+
+            <!-- Form Card -->
+            <Border Style="{StaticResource CardBorder}">
+                <VerticalStackLayout Spacing="16">
+
+                    <!-- Leave Type -->
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Leave Type" Style="{StaticResource FieldLabel}" />
+                        <Border Style="{StaticResource InputBorder}">
+                            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                                <Label Grid.Column="0" Text="&#xF0E17;"
+                                       FontFamily="MaterialDesignIcons" FontSize="20"
+                                       TextColor="{StaticResource Gray400}"
+                                       VerticalOptions="Center" />
+                                <Picker Grid.Column="1"
+                                        ItemsSource="{Binding LeaveTypes}"
+                                        ItemDisplayBinding="{Binding Name}"
+                                        SelectedItem="{Binding SelectedLeaveType}" />
+                            </Grid>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- Dates - side by side -->
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                        <VerticalStackLayout Grid.Column="0" Spacing="6">
+                            <Label Text="Start Date" Style="{StaticResource FieldLabel}" />
+                            <Border Style="{StaticResource InputBorder}">
+                                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="8">
+                                    <Label Grid.Column="0" Text="&#xF0679;"
+                                           FontFamily="MaterialDesignIcons" FontSize="18"
+                                           TextColor="{StaticResource Gray400}"
+                                           VerticalOptions="Center" />
+                                    <DatePicker Grid.Column="1" Date="{Binding StartDate}" />
+                                </Grid>
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Column="1" Spacing="6">
+                            <Label Text="End Date" Style="{StaticResource FieldLabel}" />
+                            <Border Style="{StaticResource InputBorder}">
+                                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="8">
+                                    <Label Grid.Column="0" Text="&#xF0679;"
+                                           FontFamily="MaterialDesignIcons" FontSize="18"
+                                           TextColor="{StaticResource Gray400}"
+                                           VerticalOptions="Center" />
+                                    <DatePicker Grid.Column="1" Date="{Binding EndDate}" />
+                                </Grid>
+                            </Border>
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <!-- Sessions - side by side -->
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                        <VerticalStackLayout Grid.Column="0" Spacing="6">
+                            <Label Text="Start Session" Style="{StaticResource FieldLabel}" />
+                            <Border Style="{StaticResource InputBorder}">
+                                <Picker Title="Session"
+                                        ItemsSource="{StaticResource SessionTypes}"
+                                        SelectedItem="{Binding StartSession}" />
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Column="1" Spacing="6">
+                            <Label Text="End Session" Style="{StaticResource FieldLabel}" />
+                            <Border Style="{StaticResource InputBorder}">
+                                <Picker Title="Session"
+                                        ItemsSource="{StaticResource SessionTypes}"
+                                        SelectedItem="{Binding EndSession}" />
+                            </Border>
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <!-- Reason -->
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Reason" Style="{StaticResource FieldLabel}" />
+                        <Border Style="{StaticResource InputBorder}" Padding="12,8">
+                            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10" RowDefinitions="Auto">
+                                <Label Grid.Column="0" Text="&#xF09ED;"
+                                       FontFamily="MaterialDesignIcons" FontSize="20"
+                                       TextColor="{StaticResource Gray400}"
+                                       VerticalOptions="Start" Margin="0,8,0,0" />
+                                <Editor Grid.Column="1"
+                                        Text="{Binding Reason}"
+                                        Placeholder="Enter reason for leave..."
+                                        HeightRequest="100" />
+                            </Grid>
+                        </Border>
+                    </VerticalStackLayout>
+
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Submit Button -->
+            <Button Text="&#xF012C;  Submit Request"
+                    Style="{StaticResource PrimaryButton}"
+                    Command="{Binding SubmitCommand}"
+                    IsEnabled="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}" />
+
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+
+            <!-- Error -->
+            <Border Style="{StaticResource BadgeDanger}" Padding="14,10"
+                    IsVisible="{Binding ErrorMessage, Converter={StaticResource IsNotNullConverter}}">
+                <HorizontalStackLayout Spacing="8" HorizontalOptions="Center">
+                    <Label Text="&#xF05D6;" FontFamily="MaterialDesignIcons"
+                           FontSize="18" TextColor="{StaticResource Danger}" VerticalOptions="Center" />
+                    <Label Text="{Binding ErrorMessage}" TextColor="{StaticResource Danger}"
+                           FontSize="13" VerticalOptions="Center" />
+                </HorizontalStackLayout>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,36 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:UserManagement.Mobile"
+             xmlns:converters="clr-namespace:UserManagement.Mobile.Converters"
+             x:Class="UserManagement.Mobile.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- Converters -->
+            <converters:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+            <converters:IsNotNullConverter x:Key="IsNotNullConverter" />
+            <converters:BoolToStringConverter x:Key="BoolToStringConverter"
+                TrueString="Online" FalseString="Offline" />
+            <converters:BoolToColorConverter x:Key="BoolToColorConverter" />
+            <converters:DateTimeFormatConverter x:Key="DateTimeFormatConverter" />
+            <converters:SyncStatusToIconConverter x:Key="SyncStatusToIconConverter" />
+            <converters:LeaveStatusToColorConverter x:Key="LeaveStatusToColorConverter" />
+            <converters:NotificationTypeToIconConverter x:Key="NotificationTypeToIconConverter" />
+            <converters:NotificationTypeToColorConverter x:Key="NotificationTypeToColorConverter" />
+            <converters:AttendanceStatusToColorConverter x:Key="AttendanceStatusToColorConverter" />
+            <local:FirstCharConverter x:Key="FirstCharConverter" />
+
+            <!-- Leave session types -->
+            <x:Array x:Key="SessionTypes" Type="{x:Type x:String}">
+                <x:String>FullDay</x:String>
+                <x:String>FirstHalf</x:String>
+                <x:String>SecondHalf</x:String>
+            </x:Array>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

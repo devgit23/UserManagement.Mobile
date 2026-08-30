@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:UserManagement.Mobile.Core.ViewModels;assembly=UserManagement.Mobile.Core"
+             xmlns:workforce="clr-namespace:UserManagement.Common.Workforce;assembly=UserManagement.Common"
+             x:Class="UserManagement.Mobile.Views.NotificationsPage"
+             x:DataType="vm:NotificationsViewModel"
+             Title="{Binding Title}">
+
+    <Grid RowDefinitions="Auto,*">
+
+        <!-- Header with unread count + Mark All Read -->
+        <Border Grid.Row="0"
+                BackgroundColor="{AppThemeBinding Light={StaticResource CardSurface}, Dark={StaticResource CardSurfaceDark}}"
+                StrokeThickness="0"
+                StrokeShape="Rectangle"
+                Padding="16,10">
+            <Grid ColumnDefinitions="Auto,*,Auto">
+                <!-- Unread count badge -->
+                <Border Grid.Column="0"
+                        BackgroundColor="{StaticResource Primary}"
+                        StrokeShape="RoundRectangle 10"
+                        Stroke="Transparent" StrokeThickness="0"
+                        Padding="10,4" VerticalOptions="Center">
+                    <Label Text="{Binding UnreadCount, StringFormat='{0} unread'}"
+                           FontSize="12" TextColor="White"
+                           FontFamily="OpenSansSemibold" />
+                </Border>
+
+                <!-- Mark All Read button -->
+                <Button Grid.Column="2"
+                        Text="&#xF012D;  Mark All Read"
+                        Style="{StaticResource GhostButton}"
+                        Command="{Binding MarkAllAsReadCommand}" />
+            </Grid>
+        </Border>
+
+        <RefreshView Grid.Row="1" IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}">
+            <CollectionView ItemsSource="{Binding Notifications}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="workforce:WorkforceNotificationModel">
+                        <Border Style="{StaticResource CardBorderCompact}" Margin="12,4">
+                            <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                                <!-- Type-colored icon circle -->
+                                <Border Grid.Column="0" WidthRequest="44" HeightRequest="44"
+                                        StrokeShape="RoundRectangle 22"
+                                        Stroke="Transparent" StrokeThickness="0"
+                                        BackgroundColor="{StaticResource InfoLight}"
+                                        Padding="0">
+                                    <Label Text="&#xF02FD;"
+                                           FontFamily="MaterialDesignIcons" FontSize="20"
+                                           TextColor="{StaticResource Info}"
+                                           HorizontalOptions="Center" VerticalOptions="Center" />
+                                </Border>
+
+                                <!-- Content -->
+                                <VerticalStackLayout Grid.Column="1" Spacing="3" VerticalOptions="Center">
+                                    <Label Text="{Binding Title}" Style="{StaticResource CardTitle}" />
+                                    <Label Text="{Binding Message}" FontSize="12"
+                                           TextColor="{StaticResource Gray500}"
+                                           LineBreakMode="TailTruncation" MaxLines="2" />
+                                    <Label Text="{Binding CreatedAt, StringFormat='{0:g}'}"
+                                           FontSize="11" TextColor="{StaticResource Gray400}" />
+                                </VerticalStackLayout>
+
+                                <!-- Unread dot -->
+                                <Ellipse Grid.Column="2" WidthRequest="10" HeightRequest="10"
+                                         Fill="{StaticResource Primary}"
+                                         VerticalOptions="Start" Margin="0,4,0,0"
+                                         IsVisible="{Binding IsRead, Converter={StaticResource InvertedBoolConverter}}" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout Spacing="8" Margin="0,40">
+                        <Label Text="&#xF009C;" FontFamily="MaterialDesignIcons"
+                               FontSize="40" TextColor="{StaticResource Gray300}"
+                               HorizontalOptions="Center" />
+                        <Label Text="No notifications" Style="{StaticResource EmptyStateLabel}" />
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
+            </CollectionView>
+        </RefreshView>
+
+        <!-- Error -->
+        <Border Grid.Row="1" Style="{StaticResource BadgeDanger}" Padding="14,10"
+                VerticalOptions="End" Margin="16,0,16,8"
+                IsVisible="{Binding ErrorMessage, Converter={StaticResource IsNotNullConverter}}">
+            <HorizontalStackLayout Spacing="8" HorizontalOptions="Center">
+                <Label Text="&#xF05D6;" FontFamily="MaterialDesignIcons"
+                       FontSize="18" TextColor="{StaticResource Danger}" VerticalOptions="Center" />
+                <Label Text="{Binding ErrorMessage}" TextColor="{StaticResource Danger}"
+                       FontSize="13" VerticalOptions="Center" />
+            </HorizontalStackLayout>
+        </Border>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:UserManagement.Mobile.Core.ViewModels;assembly=UserManagement.Mobile.Core"
+             x:Class="UserManagement.Mobile.Views.LoginPage"
+             x:DataType="vm:LoginViewModel"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{AppThemeBinding Light={StaticResource Surface}, Dark={StaticResource SurfaceDark}}">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="0">
+
+            <!-- Colored Header Section -->
+            <Border BackgroundColor="{StaticResource Primary}"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 0,0,32,32"
+                    Padding="0,60,0,40">
+                <VerticalStackLayout Spacing="12" HorizontalOptions="Center">
+                    <!-- Shield icon circle -->
+                    <Border WidthRequest="80" HeightRequest="80"
+                            StrokeShape="RoundRectangle 40"
+                            Stroke="Transparent" StrokeThickness="0"
+                            BackgroundColor="#FFFFFF30"
+                            HorizontalOptions="Center"
+                            Padding="0">
+                        <Label Text="&#xF0CC5;"
+                               FontFamily="MaterialDesignIcons"
+                               FontSize="36" TextColor="White"
+                               HorizontalOptions="Center" VerticalOptions="Center" />
+                    </Border>
+
+                    <Label Text="HR Connect"
+                           FontSize="28" FontFamily="OpenSansSemibold"
+                           TextColor="White"
+                           HorizontalOptions="Center" />
+                    <Label Text="Employee Self-Service Portal"
+                           FontSize="14" TextColor="#FFFFFFCC"
+                           HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Login Form -->
+            <VerticalStackLayout Padding="24,32" Spacing="20">
+
+                <!-- Standard login fields -->
+                <VerticalStackLayout Spacing="16"
+                    IsVisible="{Binding RequiresTwoFactor, Converter={StaticResource InvertedBoolConverter}}">
+
+                    <!-- Username field -->
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Username or Email" Style="{StaticResource FieldLabel}" />
+                        <Border Style="{StaticResource InputBorder}">
+                            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                                <Label Grid.Column="0" Text="&#xF0013;"
+                                       FontFamily="MaterialDesignIcons" FontSize="20"
+                                       TextColor="{StaticResource Gray400}"
+                                       VerticalOptions="Center" />
+                                <Entry Grid.Column="1"
+                                       Placeholder="Enter your username"
+                                       Text="{Binding UserNameOrEmail}"
+                                       Keyboard="Email" ReturnType="Next" />
+                            </Grid>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- Password field -->
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Password" Style="{StaticResource FieldLabel}" />
+                        <Border Style="{StaticResource InputBorder}">
+                            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                                <Label Grid.Column="0" Text="&#xF0341;"
+                                       FontFamily="MaterialDesignIcons" FontSize="20"
+                                       TextColor="{StaticResource Gray400}"
+                                       VerticalOptions="Center" />
+                                <Entry Grid.Column="1"
+                                       Placeholder="Enter your password"
+                                       Text="{Binding Password}"
+                                       IsPassword="True" ReturnType="Done" />
+                            </Grid>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <Button Text="Sign In"
+                            Style="{StaticResource PrimaryButton}"
+                            Command="{Binding LoginCommand}"
+                            IsEnabled="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}" />
+                </VerticalStackLayout>
+
+                <!-- 2FA Section -->
+                <VerticalStackLayout Spacing="16" IsVisible="{Binding RequiresTwoFactor}">
+                    <Border Style="{StaticResource CardBorder}"
+                            BackgroundColor="{StaticResource InfoLight}">
+                        <VerticalStackLayout Spacing="12" HorizontalOptions="Center">
+                            <Border WidthRequest="56" HeightRequest="56"
+                                    StrokeShape="RoundRectangle 28"
+                                    Stroke="Transparent" StrokeThickness="0"
+                                    BackgroundColor="{StaticResource Info}"
+                                    HorizontalOptions="Center" Padding="0">
+                                <Label Text="&#xF0565;"
+                                       FontFamily="MaterialDesignIcons" FontSize="26"
+                                       TextColor="White"
+                                       HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+
+                            <Label Text="Two-Factor Authentication"
+                                   FontSize="18" FontFamily="OpenSansSemibold"
+                                   HorizontalOptions="Center"
+                                   TextColor="{StaticResource InfoDark}" />
+                            <Label Text="Enter the code from your authenticator app"
+                                   FontSize="13" HorizontalOptions="Center"
+                                   TextColor="{StaticResource Gray500}"
+                                   HorizontalTextAlignment="Center" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Style="{StaticResource InputBorder}">
+                        <Entry Placeholder="000000"
+                               Text="{Binding TwoFactorCode}"
+                               Keyboard="Numeric" MaxLength="6"
+                               HorizontalTextAlignment="Center"
+                               FontSize="24" FontFamily="OpenSansSemibold"
+                               ReturnType="Done" />
+                    </Border>
+
+                    <Button Text="Verify Code"
+                            Style="{StaticResource PrimaryButton}"
+                            Command="{Binding VerifyTwoFactorCommand}"
+                            IsEnabled="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}" />
+                </VerticalStackLayout>
+
+                <!-- Error message -->
+                <Border Style="{StaticResource BadgeDanger}"
+                        Padding="14,10"
+                        IsVisible="{Binding ErrorMessage, Converter={StaticResource IsNotNullConverter}}">
+                    <HorizontalStackLayout Spacing="8" HorizontalOptions="Center">
+                        <Label Text="&#xF05D6;"
+                               FontFamily="MaterialDesignIcons" FontSize="18"
+                               TextColor="{StaticResource Danger}"
+                               VerticalOptions="Center" />
+                        <Label Text="{Binding ErrorMessage}"
+                               TextColor="{StaticResource Danger}"
+                               FontSize="13" VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Border>
+
+                <!-- Loading indicator -->
+                <ActivityIndicator IsRunning="{Binding IsBusy}"
+                                   IsVisible="{Binding IsBusy}"
+                                   HorizontalOptions="Center" />
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

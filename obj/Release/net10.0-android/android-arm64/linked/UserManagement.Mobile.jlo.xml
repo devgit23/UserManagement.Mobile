@@ -1,0 +1,15 @@
+<api>
+  <jcw-types>
+    <type name="MainActivity" package="crc649911a318b147a1f0" application_java_class="android.app.Application" mono_runtime_initialization="mono.MonoPackageManager.LoadApplication (context);" extends_type="crc6488302ad6e9e4df1a.MauiAppCompatActivity" partial_assembly_qualified_name="UserManagement.Mobile.MainActivity, UserManagement.Mobile">
+      <constructors>
+        <constructor name="MainActivity" method="n_.ctor:()V:" jni_signature="()V" managed_parameters="" retval="void" is_dynamically_registered="True" />
+        <constructor name="MainActivity" method="n_.ctor:(I)V:" jni_signature="(I)V" managed_parameters="System.Int32, System.Private.CoreLib" params="int p0" retval="void" is_dynamically_registered="True" super_call="p0" activate_call="p0" />
+      </constructors>
+    </type>
+    <type name="MainApplication" package="crc649911a318b147a1f0" application_java_class="android.app.Application" mono_runtime_initialization="mono.MonoPackageManager.LoadApplication (context);" extends_type="crc6488302ad6e9e4df1a.MauiApplication" is_application="True" partial_assembly_qualified_name="UserManagement.Mobile.MainApplication, UserManagement.Mobile" application_constructor="MainApplication" />
+  </jcw-types>
+  <acw-types partial-assembly-name="UserManagement.Mobile" module-name="UserManagement.Mobile.dll">
+    <type assembly-qualified-name="UserManagement.Mobile.MainActivity, UserManagement.Mobile, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" compat-jni-name="usermanagement.mobile.MainActivity" java-key="crc649911a318b147a1f0.MainActivity" managed-key="UserManagement.Mobile.MainActivity" partial-assembly-qualified-name="UserManagement.Mobile.MainActivity, UserManagement.Mobile" />
+    <type assembly-qualified-name="UserManagement.Mobile.MainApplication, UserManagement.Mobile, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" compat-jni-name="usermanagement.mobile.MainApplication" java-key="crc649911a318b147a1f0.MainApplication" managed-key="UserManagement.Mobile.MainApplication" partial-assembly-qualified-name="UserManagement.Mobile.MainApplication, UserManagement.Mobile" />
+  </acw-types>
+</api>

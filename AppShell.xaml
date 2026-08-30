@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="UserManagement.Mobile.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:UserManagement.Mobile.Views"
+    Title="HR Connect"
+    FlyoutBehavior="Disabled">
+
+    <!-- Login route (no tabs) -->
+    <ShellContent Route="Login"
+                  ContentTemplate="{DataTemplate views:LoginPage}"
+                  Shell.TabBarIsVisible="False"
+                  Shell.NavBarIsVisible="False" />
+
+    <!-- Main tab bar (shown after login) -->
+    <TabBar Route="Main">
+        <ShellContent Route="Dashboard"
+                      Title="Home"
+                      ContentTemplate="{DataTemplate views:DashboardPage}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="MaterialDesignIcons"
+                                 Glyph="&#xF00E3;"
+                                 Size="24" />
+            </ShellContent.Icon>
+        </ShellContent>
+
+        <ShellContent Route="Attendance"
+                      Title="Attendance"
+                      ContentTemplate="{DataTemplate views:AttendancePage}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="MaterialDesignIcons"
+                                 Glyph="&#xF0150;"
+                                 Size="24" />
+            </ShellContent.Icon>
+        </ShellContent>
+
+        <ShellContent Route="Leave"
+                      Title="Leave"
+                      ContentTemplate="{DataTemplate views:LeaveListPage}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="MaterialDesignIcons"
+                                 Glyph="&#xF0E17;"
+                                 Size="24" />
+            </ShellContent.Icon>
+        </ShellContent>
+
+        <ShellContent Route="Notifications"
+                      Title="Alerts"
+                      ContentTemplate="{DataTemplate views:NotificationsPage}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="MaterialDesignIcons"
+                                 Glyph="&#xF009C;"
+                                 Size="24" />
+            </ShellContent.Icon>
+        </ShellContent>
+
+        <ShellContent Route="More"
+                      Title="More"
+                      ContentTemplate="{DataTemplate views:SettingsPage}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="MaterialDesignIcons"
+                                 Glyph="&#xF01D8;"
+                                 Size="24" />
+            </ShellContent.Icon>
+        </ShellContent>
+    </TabBar>
+
+</Shell>

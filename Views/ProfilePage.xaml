@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:UserManagement.Mobile.Core.ViewModels;assembly=UserManagement.Mobile.Core"
+             x:Class="UserManagement.Mobile.Views.ProfilePage"
+             x:DataType="vm:ProfileViewModel"
+             Title="{Binding Title}">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="0">
+
+            <!-- Blue Header Banner -->
+            <Border BackgroundColor="{StaticResource Primary}"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 0,0,28,28"
+                    Padding="24,40,24,30">
+                <VerticalStackLayout Spacing="12" HorizontalOptions="Center">
+                    <!-- Large Avatar -->
+                    <Border WidthRequest="96" HeightRequest="96"
+                            StrokeShape="RoundRectangle 48"
+                            Stroke="#FFFFFF40" StrokeThickness="3"
+                            BackgroundColor="#FFFFFF30"
+                            HorizontalOptions="Center" Padding="0">
+                        <Label Text="{Binding DisplayName, Converter={StaticResource FirstCharConverter}}"
+                               FontSize="36" FontFamily="OpenSansSemibold"
+                               HorizontalOptions="Center" VerticalOptions="Center"
+                               TextColor="White" />
+                    </Border>
+
+                    <Label Text="{Binding DisplayName}"
+                           FontSize="22" FontFamily="OpenSansSemibold"
+                           TextColor="White" HorizontalOptions="Center" />
+                    <Label Text="{Binding Email}"
+                           FontSize="13" TextColor="#FFFFFFCC"
+                           HorizontalOptions="Center" />
+
+                    <!-- Designation badge -->
+                    <Border StrokeShape="RoundRectangle 12"
+                            Stroke="Transparent" StrokeThickness="0"
+                            BackgroundColor="#FFFFFF25"
+                            Padding="14,6" HorizontalOptions="Center">
+                        <Label Text="{Binding Designation}"
+                               FontSize="12" TextColor="White"
+                               FontFamily="OpenSansSemibold" />
+                    </Border>
+                </VerticalStackLayout>
+            </Border>
+
+            <VerticalStackLayout Padding="16" Spacing="16" Margin="0,-8,0,0">
+
+                <!-- Work Information Section -->
+                <Border Style="{StaticResource CardBorder}">
+                    <VerticalStackLayout Spacing="12">
+                        <HorizontalStackLayout Spacing="8">
+                            <Label Text="&#xF0814;"
+                                   FontFamily="MaterialDesignIcons" FontSize="18"
+                                   TextColor="{StaticResource Primary}" VerticalOptions="Center" />
+                            <Label Text="Work Information" Style="{StaticResource SectionHeader}" Margin="0" />
+                        </HorizontalStackLayout>
+                        <BoxView Style="{StaticResource Divider}" Margin="0" />
+
+                        <!-- Employee Code -->
+                        <HorizontalStackLayout Spacing="10">
+                            <Label Text="&#xF0DAB;"
+                                   FontFamily="MaterialDesignIcons" FontSize="18"
+                                   TextColor="{StaticResource Gray400}" VerticalOptions="Center" />
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Employee Code" Style="{StaticResource FieldLabel}" Margin="0" />
+                                <Label Text="{Binding EmployeeCode}" FontSize="14" />
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+
+                        <!-- Department -->
+                        <HorizontalStackLayout Spacing="10">
+                            <Label Text="&#xF0990;"
+                                   FontFamily="MaterialDesignIcons" FontSize="18"
+                                   TextColor="{StaticResource Gray400}" VerticalOptions="Center" />
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Department" Style="{StaticResource FieldLabel}" Margin="0" />
+                                <Label Text="{Binding Department}" FontSize="14" />
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+
+                        <!-- Designation -->
+                        <HorizontalStackLayout Spacing="10">
+                            <Label Text="&#xF0814;"
+                                   FontFamily="MaterialDesignIcons" FontSize="18"
+                                   TextColor="{StaticResource Gray400}" VerticalOptions="Center" />
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Designation" Style="{StaticResource FieldLabel}" Margin="0" />
+                                <Label Text="{Binding Designation}" FontSize="14" />
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Contact Information Section -->
+                <Border Style="{StaticResource CardBorder}">
+                    <VerticalStackLayout Spacing="12">
+                        <HorizontalStackLayout Spacing="8">
+                            <Label Text="&#xF0DF2;"
+                                   FontFamily="MaterialDesignIcons" FontSize="18"
+                                   TextColor="{StaticResource Primary}" VerticalOptions="Center" />
+                            <Label Text="Contact Information" Style="{StaticResource SectionHeader}" Margin="0" />
+                        </HorizontalStackLayout>
+                        <BoxView Style="{StaticResource Divider}" Margin="0" />
+
+                        <!-- Phone -->
+                        <HorizontalStackLayout Spacing="10">
+                            <Label Text="&#xF0DF2;"
+                                   FontFamily="MaterialDesignIcons" FontSize="18"
+                                   TextColor="{StaticResource Gray400}" VerticalOptions="Center" />
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Contact Number" Style="{StaticResource FieldLabel}" Margin="0" />
+                                <Label Text="{Binding ContactNumber}" FontSize="14" />
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+
+                        <!-- Email -->
+                        <HorizontalStackLayout Spacing="10">
+                            <Label Text="&#xF01F0;"
+                                   FontFamily="MaterialDesignIcons" FontSize="18"
+                                   TextColor="{StaticResource Gray400}" VerticalOptions="Center" />
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Email" Style="{StaticResource FieldLabel}" Margin="0" />
+                                <Label Text="{Binding Email}" FontSize="14" />
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Employment Section -->
+                <Border Style="{StaticResource CardBorder}">
+                    <VerticalStackLayout Spacing="12">
+                        <HorizontalStackLayout Spacing="8">
+                            <Label Text="&#xF09D3;"
+                                   FontFamily="MaterialDesignIcons" FontSize="18"
+                                   TextColor="{StaticResource Primary}" VerticalOptions="Center" />
+                            <Label Text="Employment" Style="{StaticResource SectionHeader}" Margin="0" />
+                        </HorizontalStackLayout>
+                        <BoxView Style="{StaticResource Divider}" Margin="0" />
+
+                        <HorizontalStackLayout Spacing="10">
+                            <Label Text="&#xF00EE;"
+                                   FontFamily="MaterialDesignIcons" FontSize="18"
+                                   TextColor="{StaticResource Gray400}" VerticalOptions="Center" />
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Date of Joining" Style="{StaticResource FieldLabel}" Margin="0" />
+                                <Label Text="{Binding DateOfJoining}" FontSize="14" />
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Border>
+
+                <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+
+                <!-- Error -->
+                <Border Style="{StaticResource BadgeDanger}" Padding="14,10"
+                        IsVisible="{Binding ErrorMessage, Converter={StaticResource IsNotNullConverter}}">
+                    <HorizontalStackLayout Spacing="8" HorizontalOptions="Center">
+                        <Label Text="&#xF05D6;" FontFamily="MaterialDesignIcons"
+                               FontSize="18" TextColor="{StaticResource Danger}" VerticalOptions="Center" />
+                        <Label Text="{Binding ErrorMessage}" TextColor="{StaticResource Danger}"
+                               FontSize="13" VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Border>
+
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
