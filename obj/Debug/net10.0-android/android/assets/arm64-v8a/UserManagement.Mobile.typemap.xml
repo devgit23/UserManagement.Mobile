@@ -1,0 +1,10 @@
+<api type="debug" assembly-name="UserManagement.Mobile" mvid="eb5b6241ae7b423f8ea6fd859001fa8d">
+  <java-to-managed>
+    <entry java-name="crc649911a318b147a1f0/MainActivity" managed-name="UserManagement.Mobile.MainActivity, UserManagement.Mobile" managed-type-token-id="33554441" />
+    <entry java-name="crc649911a318b147a1f0/MainApplication" managed-name="UserManagement.Mobile.MainApplication, UserManagement.Mobile" managed-type-token-id="33554442" />
+  </java-to-managed>
+  <managed-to-java>
+    <entry java-name="crc649911a318b147a1f0/MainActivity" managed-name="UserManagement.Mobile.MainActivity, UserManagement.Mobile" managed-type-token-id="33554441" />
+    <entry java-name="crc649911a318b147a1f0/MainApplication" managed-name="UserManagement.Mobile.MainApplication, UserManagement.Mobile" managed-type-token-id="33554442" />
+  </managed-to-java>
+</api>

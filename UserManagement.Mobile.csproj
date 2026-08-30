@@ -55,6 +55,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Compile Remove="UserManagement.Mobile.Core\**" />
+		<Content Remove="UserManagement.Mobile.Core\**" />
+		<EmbeddedResource Remove="UserManagement.Mobile.Core\**" />
+		<None Remove="UserManagement.Mobile.Core\**" />
+		<MauiCss Remove="UserManagement.Mobile.Core\**" />
+		<MauiXaml Remove="UserManagement.Mobile.Core\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.11" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
@@ -64,8 +73,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\UserManagement.Mobile.Core\UserManagement.Mobile.Core.csproj" />
-		<ProjectReference Include="..\UserManagement.Shared\UserManagement.Shared.csproj" />
+		<ProjectReference Include="UserManagement.Mobile.Core\UserManagement.Mobile.Core.csproj" />
 	</ItemGroup>
 
 </Project>

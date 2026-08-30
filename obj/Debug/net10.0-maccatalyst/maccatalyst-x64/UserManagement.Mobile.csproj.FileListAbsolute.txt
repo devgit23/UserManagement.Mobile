@@ -5,11 +5,15 @@ D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.Extensions.Configuration.dll
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.Extensions.Configuration.Abstractions.dll
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.Extensions.Configuration.Binder.dll
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.Extensions.Configuration.FileExtensions.dll
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.Extensions.Configuration.Json.dll
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.Extensions.DependencyInjection.dll
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.Extensions.Diagnostics.dll
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.Extensions.Diagnostics.Abstractions.dll
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.Extensions.FileProviders.Abstractions.dll
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.Extensions.FileProviders.Physical.dll
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.Extensions.FileSystemGlobbing.dll
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.Extensions.Hosting.Abstractions.dll
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.Extensions.Http.dll
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.Extensions.Logging.dll
@@ -271,8 +275,8 @@ D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\UserManagement.Mobile.Core.dll
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\UserManagement.Shared.dll
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\UserManagement.Mobile.Core.pdb
-D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\UserManagement.Shared.pdb
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\UserManagement.Common.pdb
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\UserManagement.Shared.pdb
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\UserManagement.Mobile.csproj.AssemblyReference.cache
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\partialappmanifest\_PartialAppManifests.items
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\unpack\Microsoft.Maui.Essentials\BundleResource\xml\microsoft_maui_essentials_fileprovider_file_paths.xml
@@ -299,6 +303,7 @@ D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-maccatalyst
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\mauiimage.outputs
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\resizetizer\f\MauiInfo.plist
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\mauifont.stamp
+D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\resizetizer\f\materialdesignicons-webfont.ttf
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\resizetizer\f\OpenSans-Regular.ttf
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\resizetizer\f\OpenSans-Semibold.ttf
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\actool\_PartialAppManifest.items
@@ -316,6 +321,7 @@ D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-maccatalyst
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\UserManagement.Mobile.AssemblyInfoInputs.cache
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\UserManagement.Mobile.AssemblyInfo.cs
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\UserManagement.Mobile.csproj.CoreCompileInputs.cache
+D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\UserManagement.Mobile.sourcelink.json
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\XamlC.stamp
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\UserMana.1575FC93.Up2Date
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\UserManagement.Mobile.dll
@@ -323,8 +329,3 @@ D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-maccatalyst
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\UserManagement.Mobile.pdb
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\UserManagement.Mobile.genruntimeconfig.cache
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\ref\UserManagement.Mobile.dll
-D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.Extensions.Configuration.FileExtensions.dll
-D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.Extensions.Configuration.Json.dll
-D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.Extensions.FileProviders.Physical.dll
-D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.Extensions.FileSystemGlobbing.dll
-D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\resizetizer\f\materialdesignicons-webfont.ttf

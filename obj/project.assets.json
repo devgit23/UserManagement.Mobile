@@ -2771,6 +2771,16 @@
           }
         }
       },
+      "UserManagement.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        }
+      },
       "UserManagement.Mobile.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -2792,7 +2802,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "Refit": "8.0.0"
+          "Refit": "8.0.0",
+          "UserManagement.Common": "1.0.0"
         },
         "compile": {
           "bin/placeholder/UserManagement.Shared.dll": {}
@@ -5572,6 +5583,16 @@
           }
         }
       },
+      "UserManagement.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        }
+      },
       "UserManagement.Mobile.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -5593,7 +5614,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "Refit": "8.0.0"
+          "Refit": "8.0.0",
+          "UserManagement.Common": "1.0.0"
         },
         "compile": {
           "bin/placeholder/UserManagement.Shared.dll": {}
@@ -8373,6 +8395,16 @@
           }
         }
       },
+      "UserManagement.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        }
+      },
       "UserManagement.Mobile.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -8394,7 +8426,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "Refit": "8.0.0"
+          "Refit": "8.0.0",
+          "UserManagement.Common": "1.0.0"
         },
         "compile": {
           "bin/placeholder/UserManagement.Shared.dll": {}
@@ -11174,6 +11207,16 @@
           }
         }
       },
+      "UserManagement.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        }
+      },
       "UserManagement.Mobile.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -11195,7 +11238,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "Refit": "8.0.0"
+          "Refit": "8.0.0",
+          "UserManagement.Common": "1.0.0"
         },
         "compile": {
           "bin/placeholder/UserManagement.Shared.dll": {}
@@ -13975,6 +14019,16 @@
           }
         }
       },
+      "UserManagement.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        }
+      },
       "UserManagement.Mobile.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -13996,7 +14050,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "Refit": "8.0.0"
+          "Refit": "8.0.0",
+          "UserManagement.Common": "1.0.0"
         },
         "compile": {
           "bin/placeholder/UserManagement.Shared.dll": {}
@@ -16776,6 +16831,16 @@
           }
         }
       },
+      "UserManagement.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        }
+      },
       "UserManagement.Mobile.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -16797,7 +16862,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "Refit": "8.0.0"
+          "Refit": "8.0.0",
+          "UserManagement.Common": "1.0.0"
         },
         "compile": {
           "bin/placeholder/UserManagement.Shared.dll": {}
@@ -17548,6 +17614,16 @@
           }
         }
       },
+      "UserManagement.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        }
+      },
       "UserManagement.Mobile.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -17569,7 +17645,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "Refit": "8.0.0"
+          "Refit": "8.0.0",
+          "UserManagement.Common": "1.0.0"
         },
         "compile": {
           "bin/placeholder/UserManagement.Shared.dll": {}
@@ -18320,6 +18397,16 @@
           }
         }
       },
+      "UserManagement.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        }
+      },
       "UserManagement.Mobile.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -18341,7 +18428,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "Refit": "8.0.0"
+          "Refit": "8.0.0",
+          "UserManagement.Common": "1.0.0"
         },
         "compile": {
           "bin/placeholder/UserManagement.Shared.dll": {}
@@ -19092,6 +19180,16 @@
           }
         }
       },
+      "UserManagement.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        }
+      },
       "UserManagement.Mobile.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -19113,7 +19211,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "Refit": "8.0.0"
+          "Refit": "8.0.0",
+          "UserManagement.Common": "1.0.0"
         },
         "compile": {
           "bin/placeholder/UserManagement.Shared.dll": {}
@@ -19864,6 +19963,16 @@
           }
         }
       },
+      "UserManagement.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        }
+      },
       "UserManagement.Mobile.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -19885,7 +19994,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "Refit": "8.0.0"
+          "Refit": "8.0.0",
+          "UserManagement.Common": "1.0.0"
         },
         "compile": {
           "bin/placeholder/UserManagement.Shared.dll": {}
@@ -20636,6 +20746,16 @@
           }
         }
       },
+      "UserManagement.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        }
+      },
       "UserManagement.Mobile.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -20657,7 +20777,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "Refit": "8.0.0"
+          "Refit": "8.0.0",
+          "UserManagement.Common": "1.0.0"
         },
         "compile": {
           "bin/placeholder/UserManagement.Shared.dll": {}
@@ -21408,6 +21529,16 @@
           }
         }
       },
+      "UserManagement.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        }
+      },
       "UserManagement.Mobile.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -21429,7 +21560,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "Refit": "8.0.0"
+          "Refit": "8.0.0",
+          "UserManagement.Common": "1.0.0"
         },
         "compile": {
           "bin/placeholder/UserManagement.Shared.dll": {}
@@ -22278,6 +22410,16 @@
           "lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
+      "UserManagement.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        }
+      },
       "UserManagement.Mobile.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -22299,7 +22441,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "Refit": "8.0.0"
+          "Refit": "8.0.0",
+          "UserManagement.Common": "1.0.0"
         },
         "compile": {
           "bin/placeholder/UserManagement.Shared.dll": {}
@@ -23057,6 +23200,16 @@
           "lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
+      "UserManagement.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        }
+      },
       "UserManagement.Mobile.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -23078,7 +23231,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "Refit": "8.0.0"
+          "Refit": "8.0.0",
+          "UserManagement.Common": "1.0.0"
         },
         "compile": {
           "bin/placeholder/UserManagement.Shared.dll": {}
@@ -23836,6 +23990,16 @@
           "lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
+      "UserManagement.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        }
+      },
       "UserManagement.Mobile.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -23857,7 +24021,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "Refit": "8.0.0"
+          "Refit": "8.0.0",
+          "UserManagement.Common": "1.0.0"
         },
         "compile": {
           "bin/placeholder/UserManagement.Shared.dll": {}
@@ -24612,6 +24777,16 @@
           "lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
+      "UserManagement.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        }
+      },
       "UserManagement.Mobile.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -24633,7 +24808,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "Refit": "8.0.0"
+          "Refit": "8.0.0",
+          "UserManagement.Common": "1.0.0"
         },
         "compile": {
           "bin/placeholder/UserManagement.Shared.dll": {}
@@ -25391,6 +25567,16 @@
           "lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
+      "UserManagement.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        }
+      },
       "UserManagement.Mobile.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -25412,7 +25598,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "Refit": "8.0.0"
+          "Refit": "8.0.0",
+          "UserManagement.Common": "1.0.0"
         },
         "compile": {
           "bin/placeholder/UserManagement.Shared.dll": {}
@@ -26170,6 +26357,16 @@
           "lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
+      "UserManagement.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        }
+      },
       "UserManagement.Mobile.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -26191,7 +26388,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "Refit": "8.0.0"
+          "Refit": "8.0.0",
+          "UserManagement.Common": "1.0.0"
         },
         "compile": {
           "bin/placeholder/UserManagement.Shared.dll": {}
@@ -27291,6 +27489,16 @@
           "lib/net6.0-windows7.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
+      "UserManagement.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        }
+      },
       "UserManagement.Mobile.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -27312,7 +27520,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "Refit": "8.0.0"
+          "Refit": "8.0.0",
+          "UserManagement.Common": "1.0.0"
         },
         "compile": {
           "bin/placeholder/UserManagement.Shared.dll": {}
@@ -28259,6 +28468,16 @@
           "lib/net6.0-windows7.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
+      "UserManagement.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        }
+      },
       "UserManagement.Mobile.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -28280,7 +28499,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "Refit": "8.0.0"
+          "Refit": "8.0.0",
+          "UserManagement.Common": "1.0.0"
         },
         "compile": {
           "bin/placeholder/UserManagement.Shared.dll": {}
@@ -29227,6 +29447,16 @@
           "lib/net6.0-windows7.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
+      "UserManagement.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        }
+      },
       "UserManagement.Mobile.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -29248,7 +29478,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "Refit": "8.0.0"
+          "Refit": "8.0.0",
+          "UserManagement.Common": "1.0.0"
         },
         "compile": {
           "bin/placeholder/UserManagement.Shared.dll": {}
@@ -30192,6 +30423,16 @@
           "lib/net6.0-windows7.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
+      "UserManagement.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        }
+      },
       "UserManagement.Mobile.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -30213,7 +30454,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "Refit": "8.0.0"
+          "Refit": "8.0.0",
+          "UserManagement.Common": "1.0.0"
         },
         "compile": {
           "bin/placeholder/UserManagement.Shared.dll": {}
@@ -31160,6 +31402,16 @@
           "lib/net6.0-windows7.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
+      "UserManagement.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        }
+      },
       "UserManagement.Mobile.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -31181,7 +31433,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "Refit": "8.0.0"
+          "Refit": "8.0.0",
+          "UserManagement.Common": "1.0.0"
         },
         "compile": {
           "bin/placeholder/UserManagement.Shared.dll": {}
@@ -32138,6 +32391,16 @@
           "lib/net6.0-windows7.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
+      "UserManagement.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/UserManagement.Common.dll": {}
+        }
+      },
       "UserManagement.Mobile.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -32159,7 +32422,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "Refit": "8.0.0"
+          "Refit": "8.0.0",
+          "UserManagement.Common": "1.0.0"
         },
         "compile": {
           "bin/placeholder/UserManagement.Shared.dll": {}
@@ -37143,15 +37407,20 @@
         "xamarin.kotlinx.serialization.core.jvm.nuspec"
       ]
     },
+    "UserManagement.Common/1.0.0": {
+      "type": "project",
+      "path": "../UserManagement.Api/Common/UserManagement.Common.csproj",
+      "msbuildProject": "../UserManagement.Api/Common/UserManagement.Common.csproj"
+    },
     "UserManagement.Mobile.Core/1.0.0": {
       "type": "project",
-      "path": "../UserManagement.Mobile.Core/UserManagement.Mobile.Core.csproj",
-      "msbuildProject": "../UserManagement.Mobile.Core/UserManagement.Mobile.Core.csproj"
+      "path": "UserManagement.Mobile.Core/UserManagement.Mobile.Core.csproj",
+      "msbuildProject": "UserManagement.Mobile.Core/UserManagement.Mobile.Core.csproj"
     },
     "UserManagement.Shared/1.0.0": {
       "type": "project",
-      "path": "../UserManagement.Shared/UserManagement.Shared.csproj",
-      "msbuildProject": "../UserManagement.Shared/UserManagement.Shared.csproj"
+      "path": "../UserManagement.Blazor/UserManagement.Shared/UserManagement.Shared.csproj",
+      "msbuildProject": "../UserManagement.Blazor/UserManagement.Shared/UserManagement.Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -37161,8 +37430,7 @@
       "Microsoft.Maui.Controls >= 10.0.20",
       "Microsoft.NET.ILLink.Tasks >= 10.0.11",
       "Refit.HttpClientFactory >= 8.0.0",
-      "UserManagement.Mobile.Core >= 1.0.0",
-      "UserManagement.Shared >= 1.0.0"
+      "UserManagement.Mobile.Core >= 1.0.0"
     ],
     "net10.0-ios": [
       "Microsoft.Extensions.Configuration.Json >= 10.0.11",
@@ -37170,8 +37438,7 @@
       "Microsoft.Maui.Controls >= 10.0.20",
       "Microsoft.NET.ILLink.Tasks >= 10.0.11",
       "Refit.HttpClientFactory >= 8.0.0",
-      "UserManagement.Mobile.Core >= 1.0.0",
-      "UserManagement.Shared >= 1.0.0"
+      "UserManagement.Mobile.Core >= 1.0.0"
     ],
     "net10.0-maccatalyst": [
       "Microsoft.Extensions.Configuration.Json >= 10.0.11",
@@ -37179,16 +37446,14 @@
       "Microsoft.Maui.Controls >= 10.0.20",
       "Microsoft.NET.ILLink.Tasks >= 10.0.11",
       "Refit.HttpClientFactory >= 8.0.0",
-      "UserManagement.Mobile.Core >= 1.0.0",
-      "UserManagement.Shared >= 1.0.0"
+      "UserManagement.Mobile.Core >= 1.0.0"
     ],
     "net10.0-windows10.0.19041.0": [
       "Microsoft.Extensions.Configuration.Json >= 10.0.11",
       "Microsoft.Extensions.Logging.Debug >= 10.0.0",
       "Microsoft.Maui.Controls >= 10.0.20",
       "Refit.HttpClientFactory >= 8.0.0",
-      "UserManagement.Mobile.Core >= 1.0.0",
-      "UserManagement.Shared >= 1.0.0"
+      "UserManagement.Mobile.Core >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -37229,11 +37494,8 @@
           "framework": "net10.0-android36.0",
           "targetAlias": "net10.0-android",
           "projectReferences": {
-            "D:\\SourceCode\\UserManagement\\UserManagement.Mobile.Core\\UserManagement.Mobile.Core.csproj": {
-              "projectPath": "D:\\SourceCode\\UserManagement\\UserManagement.Mobile.Core\\UserManagement.Mobile.Core.csproj"
-            },
-            "D:\\SourceCode\\UserManagement\\UserManagement.Shared\\UserManagement.Shared.csproj": {
-              "projectPath": "D:\\SourceCode\\UserManagement\\UserManagement.Shared\\UserManagement.Shared.csproj"
+            "D:\\SourceCode\\UserManagement\\UserManagement.Mobile\\UserManagement.Mobile.Core\\UserManagement.Mobile.Core.csproj": {
+              "projectPath": "D:\\SourceCode\\UserManagement\\UserManagement.Mobile\\UserManagement.Mobile.Core\\UserManagement.Mobile.Core.csproj"
             }
           }
         },
@@ -37241,11 +37503,8 @@
           "framework": "net10.0-ios26.5",
           "targetAlias": "net10.0-ios",
           "projectReferences": {
-            "D:\\SourceCode\\UserManagement\\UserManagement.Mobile.Core\\UserManagement.Mobile.Core.csproj": {
-              "projectPath": "D:\\SourceCode\\UserManagement\\UserManagement.Mobile.Core\\UserManagement.Mobile.Core.csproj"
-            },
-            "D:\\SourceCode\\UserManagement\\UserManagement.Shared\\UserManagement.Shared.csproj": {
-              "projectPath": "D:\\SourceCode\\UserManagement\\UserManagement.Shared\\UserManagement.Shared.csproj"
+            "D:\\SourceCode\\UserManagement\\UserManagement.Mobile\\UserManagement.Mobile.Core\\UserManagement.Mobile.Core.csproj": {
+              "projectPath": "D:\\SourceCode\\UserManagement\\UserManagement.Mobile\\UserManagement.Mobile.Core\\UserManagement.Mobile.Core.csproj"
             }
           }
         },
@@ -37253,11 +37512,8 @@
           "framework": "net10.0-maccatalyst26.5",
           "targetAlias": "net10.0-maccatalyst",
           "projectReferences": {
-            "D:\\SourceCode\\UserManagement\\UserManagement.Mobile.Core\\UserManagement.Mobile.Core.csproj": {
-              "projectPath": "D:\\SourceCode\\UserManagement\\UserManagement.Mobile.Core\\UserManagement.Mobile.Core.csproj"
-            },
-            "D:\\SourceCode\\UserManagement\\UserManagement.Shared\\UserManagement.Shared.csproj": {
-              "projectPath": "D:\\SourceCode\\UserManagement\\UserManagement.Shared\\UserManagement.Shared.csproj"
+            "D:\\SourceCode\\UserManagement\\UserManagement.Mobile\\UserManagement.Mobile.Core\\UserManagement.Mobile.Core.csproj": {
+              "projectPath": "D:\\SourceCode\\UserManagement\\UserManagement.Mobile\\UserManagement.Mobile.Core\\UserManagement.Mobile.Core.csproj"
             }
           }
         },
@@ -37265,11 +37521,8 @@
           "framework": "net10.0-windows10.0.19041",
           "targetAlias": "net10.0-windows10.0.19041.0",
           "projectReferences": {
-            "D:\\SourceCode\\UserManagement\\UserManagement.Mobile.Core\\UserManagement.Mobile.Core.csproj": {
-              "projectPath": "D:\\SourceCode\\UserManagement\\UserManagement.Mobile.Core\\UserManagement.Mobile.Core.csproj"
-            },
-            "D:\\SourceCode\\UserManagement\\UserManagement.Shared\\UserManagement.Shared.csproj": {
-              "projectPath": "D:\\SourceCode\\UserManagement\\UserManagement.Shared\\UserManagement.Shared.csproj"
+            "D:\\SourceCode\\UserManagement\\UserManagement.Mobile\\UserManagement.Mobile.Core\\UserManagement.Mobile.Core.csproj": {
+              "projectPath": "D:\\SourceCode\\UserManagement\\UserManagement.Mobile\\UserManagement.Mobile.Core\\UserManagement.Mobile.Core.csproj"
             }
           }
         }

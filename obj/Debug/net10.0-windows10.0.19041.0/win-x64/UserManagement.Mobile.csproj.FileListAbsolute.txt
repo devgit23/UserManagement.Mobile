@@ -1,10 +1,13 @@
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\Platforms\Windows\App.xbf
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\AboutAssets.txt
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\appsettings.Development.json
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\appsettings.json
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\splashSplashScreen.scale-100.png
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\splashSplashScreen.scale-125.png
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\splashSplashScreen.scale-150.png
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\splashSplashScreen.scale-200.png
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\splashSplashScreen.scale-400.png
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\materialdesignicons-webfont.ttf
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\OpenSans-Regular.ttf
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\OpenSans-Semibold.ttf
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\dotnet_bot.scale-400.png
@@ -333,11 +336,15 @@ D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\Microsoft.Extensions.Configuration.dll
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\Microsoft.Extensions.Configuration.Abstractions.dll
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\Microsoft.Extensions.Configuration.Binder.dll
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\Microsoft.Extensions.Configuration.FileExtensions.dll
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\Microsoft.Extensions.Configuration.Json.dll
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\Microsoft.Extensions.DependencyInjection.dll
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\Microsoft.Extensions.Diagnostics.dll
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\Microsoft.Extensions.Diagnostics.Abstractions.dll
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\Microsoft.Extensions.FileProviders.Abstractions.dll
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\Microsoft.Extensions.FileProviders.Physical.dll
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\Microsoft.Extensions.FileSystemGlobbing.dll
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\Microsoft.Extensions.Hosting.Abstractions.dll
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\Microsoft.Extensions.Http.dll
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\Microsoft.Extensions.Logging.dll
@@ -431,8 +438,8 @@ D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\UserManagement.Mobile.Core.dll
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\UserManagement.Shared.dll
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\UserManagement.Mobile.Core.pdb
-D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\UserManagement.Shared.pdb
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\UserManagement.Common.pdb
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\UserManagement.Shared.pdb
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\Microsoft.UI.pri
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\Microsoft.UI.Xaml.Controls.pri
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-windows10.0.19041.0\win-x64\UserManagement.Mobile.csproj.AssemblyReference.cache
@@ -454,6 +461,7 @@ D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-windows10.0
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-windows10.0.19041.0\win-x64\resizetizer\sp\splashSplashScreen.scale-400.png
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-windows10.0.19041.0\win-x64\mauisplash.stamp
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-windows10.0.19041.0\win-x64\mauifont.stamp
+D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-windows10.0.19041.0\win-x64\resizetizer\f\materialdesignicons-webfont.ttf
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-windows10.0.19041.0\win-x64\resizetizer\f\OpenSans-Regular.ttf
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-windows10.0.19041.0\win-x64\resizetizer\f\OpenSans-Semibold.ttf
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-windows10.0.19041.0\win-x64\resizetizer\r\dotnet_bot.scale-400.png
@@ -512,6 +520,7 @@ D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-windows10.0
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-windows10.0.19041.0\win-x64\UserManagement.Mobile.AssemblyInfoInputs.cache
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-windows10.0.19041.0\win-x64\UserManagement.Mobile.AssemblyInfo.cs
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-windows10.0.19041.0\win-x64\UserManagement.Mobile.csproj.CoreCompileInputs.cache
+D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-windows10.0.19041.0\win-x64\UserManagement.Mobile.sourcelink.json
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-windows10.0.19041.0\win-x64\XamlC.stamp
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-windows10.0.19041.0\win-x64\UserMana.1575FC93.Up2Date
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-windows10.0.19041.0\win-x64\UserManagement.Mobile.dll
@@ -534,11 +543,3 @@ D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-windows10.0
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-windows10.0.19041.0\win-x64\qualifiers.txt
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-windows10.0.19041.0\win-x64\qualifiers.txt.intermediate
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-windows10.0.19041.0\win-x64\MultipleQualifiersPerDimensionFound.txt
-D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\appsettings.Development.json
-D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\appsettings.json
-D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\Microsoft.Extensions.Configuration.FileExtensions.dll
-D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\Microsoft.Extensions.Configuration.Json.dll
-D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\Microsoft.Extensions.FileProviders.Physical.dll
-D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\Microsoft.Extensions.FileSystemGlobbing.dll
-D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\materialdesignicons-webfont.ttf
-D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-windows10.0.19041.0\win-x64\resizetizer\f\materialdesignicons-webfont.ttf

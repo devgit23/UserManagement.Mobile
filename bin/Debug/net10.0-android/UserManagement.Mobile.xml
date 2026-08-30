@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UserManagement.Mobile</name>
+    </assembly>
+    <members>
+        <member name="T:UserManagement.Mobile.FirstCharConverter">
+            <summary>Simple converter that returns the first character of a string (for avatar initials).</summary>
+        </member>
+        <member name="T:UserManagement.Mobile.Converters.AttendanceStatusToColorConverter">
+            <summary>
+            Converts an attendance status string to a semantic color.
+            Parameter: "bg" (default) returns background color, "fg" returns text color.
+            </summary>
+        </member>
+        <member name="T:UserManagement.Mobile.Converters.LeaveStatusToColorConverter">
+            <summary>
+            Converts a leave status string to a background/foreground color for badge display.
+            Parameter: "bg" (default) returns background color, "fg" returns text color.
+            </summary>
+        </member>
+        <member name="T:UserManagement.Mobile.Converters.NotificationTypeToColorConverter">
+            <summary>
+            Converts a notification type string to a semantic color for the icon background.
+            </summary>
+        </member>
+        <member name="T:UserManagement.Mobile.Converters.NotificationTypeToIconConverter">
+            <summary>
+            Converts a notification type string to a Material Design Icon glyph.
+            </summary>
+        </member>
+        <member name="T:UserManagement.Mobile.Helpers.IconFont">
+            <summary>
+            Material Design Icons glyph constants for use in XAML and code.
+            Font family alias: "MaterialDesignIcons"
+            </summary>
+        </member>
+        <member name="T:UserManagement.Mobile.Resource">
+            <summary>
+            Android Resource Designer class.
+            Exposes the Android Resource designer assembly into the project Namespace.
+            </summary>
+        </member>
+    </members>
+</doc>
