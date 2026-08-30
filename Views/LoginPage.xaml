@@ -29,11 +29,11 @@
                                HorizontalOptions="Center" VerticalOptions="Center" />
                     </Border>
 
-                    <Label Text="HR Connect"
+                    <Label Text="eazyHR"
                            FontSize="28" FontFamily="OpenSansSemibold"
                            TextColor="White"
                            HorizontalOptions="Center" />
-                    <Label Text="Employee Self-Service Portal"
+                    <Label Text="Employee Self-Service App"
                            FontSize="14" TextColor="#FFFFFFCC"
                            HorizontalOptions="Center" />
                 </VerticalStackLayout>

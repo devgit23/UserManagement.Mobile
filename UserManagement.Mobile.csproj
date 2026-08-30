@@ -14,7 +14,7 @@
 		<MauiXamlInflator>SourceGen</MauiXamlInflator>
 
 		<!-- Display name -->
-		<ApplicationTitle>HR Connect</ApplicationTitle>
+		<ApplicationTitle>eazyHR</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>com.usermanagement.mobile</ApplicationId>

@@ -134,7 +134,7 @@
                         <Label Text="About" Style="{StaticResource SectionHeader}" Margin="0" />
                     </HorizontalStackLayout>
                     <BoxView Style="{StaticResource Divider}" Margin="0" />
-                    <Label Text="HR Connect v1.0" FontSize="14"
+                    <Label Text="eazyHR v1.0" FontSize="14"
                            TextColor="{StaticResource Gray500}" />
                     <Label Text="UserManagement Mobile App" FontSize="12"
                            TextColor="{StaticResource Gray400}" />
