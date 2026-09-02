@@ -26,6 +26,7 @@ public sealed class LocalDatabase
         await _connection.CreateTableAsync<LocalLeaveRequest>();
         await _connection.CreateTableAsync<LocalEmployee>();
         await _connection.CreateTableAsync<LocalNotification>();
+        await _connection.CreateTableAsync<LocalTimesheetEntry>();
         await _connection.CreateTableAsync<SyncQueueItem>();
     }
 
@@ -37,6 +38,7 @@ public sealed class LocalDatabase
         await Connection.DeleteAllAsync<LocalLeaveRequest>();
         await Connection.DeleteAllAsync<LocalEmployee>();
         await Connection.DeleteAllAsync<LocalNotification>();
+        await Connection.DeleteAllAsync<LocalTimesheetEntry>();
         await Connection.DeleteAllAsync<SyncQueueItem>();
     }
 }

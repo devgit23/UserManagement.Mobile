@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <_PostProcessingItem Include="HR Connect.app/Contents\MacOS\">
+    <_PostProcessingItem Include="eazyHR.app/Contents\MacOS\">
       <IsAppExtension>false</IsAppExtension>
       <BCSymbolMapName>.bcsymbolmap</BCSymbolMapName>
       <NoDSymUtil>true</NoDSymUtil>
       <dSYMSourcePathExists>false</dSYMSourcePathExists>
       <NoSymbolStrip>true</NoSymbolStrip>
-      <dSYMInfoPlistRelativePath>HR Connect.app.dSYM\Contents\Info.plist</dSYMInfoPlistRelativePath>
+      <dSYMInfoPlistRelativePath>eazyHR.app.dSYM\Contents\Info.plist</dSYMInfoPlistRelativePath>
       <SymbolFile></SymbolFile>
-      <DSymName>HR Connect.app.dSYM</DSymName>
+      <DSymName>eazyHR.app.dSYM</DSymName>
       <SourceProjectPath>D:\SourceCode\UserManagement\UserManagement.Mobile</SourceProjectPath>
       <IsXPCService></IsXPCService>
     </_PostProcessingItem>

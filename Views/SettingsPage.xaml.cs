@@ -28,4 +28,9 @@ public partial class SettingsPage : ContentPage
     {
         await Shell.Current.GoToAsync(nameof(EmployeeDirectoryPage));
     }
+
+    private async void OnTimesheetTapped(object? sender, TappedEventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(TimesheetPage));
+    }
 }

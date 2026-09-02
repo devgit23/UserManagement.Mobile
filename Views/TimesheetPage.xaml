@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:UserManagement.Mobile.Core.ViewModels;assembly=UserManagement.Mobile.Core"
+             xmlns:ts="clr-namespace:UserManagement.Common.Timesheet;assembly=UserManagement.Common"
+             x:Class="UserManagement.Mobile.Views.TimesheetPage"
+             x:DataType="vm:TimesheetViewModel"
+             Title="{Binding Title}">
+
+    <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}">
+        <ScrollView>
+            <VerticalStackLayout Padding="16" Spacing="16">
+
+                <!-- ══ Timer Card ══ -->
+                <Border Style="{StaticResource CardBorder}" Padding="20"
+                        IsVisible="{Binding IsTimerRunning}">
+                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                        <!-- Pulsing dot -->
+                        <Border Grid.Column="0" WidthRequest="12" HeightRequest="12"
+                                StrokeShape="RoundRectangle 6"
+                                Stroke="Transparent" StrokeThickness="0"
+                                BackgroundColor="{StaticResource Danger}"
+                                VerticalOptions="Center" />
+
+                        <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                            <Label Text="{Binding TimerProjectName}"
+                                   Style="{StaticResource CardTitle}" />
+                            <Label Text="{Binding TimerDuration}"
+                                   FontSize="22" FontFamily="OpenSansSemibold"
+                                   TextColor="{StaticResource Primary}" />
+                        </VerticalStackLayout>
+
+                        <Button Grid.Column="2"
+                                Text="&#xF0667;"
+                                FontFamily="MaterialDesignIcons" FontSize="24"
+                                Command="{Binding StopTimerCommand}"
+                                BackgroundColor="{StaticResource Danger}"
+                                TextColor="White"
+                                WidthRequest="48" HeightRequest="48"
+                                CornerRadius="24" Padding="0" />
+                    </Grid>
+                </Border>
+
+                <!-- ══ Quick Stats ══ -->
+                <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                    <Border Grid.Column="0" Style="{StaticResource CardBorderCompact}" Padding="12">
+                        <VerticalStackLayout Spacing="2" HorizontalOptions="Center">
+                            <Label Text="{Binding TodayHours, StringFormat='{0:0.#}h'}"
+                                   FontSize="20" FontFamily="OpenSansSemibold"
+                                   HorizontalOptions="Center"
+                                   TextColor="{StaticResource Primary}" />
+                            <Label Text="Today" Style="{StaticResource CardSubtext}"
+                                   HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                    </Border>
+                    <Border Grid.Column="1" Style="{StaticResource CardBorderCompact}" Padding="12">
+                        <VerticalStackLayout Spacing="2" HorizontalOptions="Center">
+                            <Label Text="{Binding WeekHours, StringFormat='{0:0.#}h'}"
+                                   FontSize="20" FontFamily="OpenSansSemibold"
+                                   HorizontalOptions="Center"
+                                   TextColor="{StaticResource Primary}" />
+                            <Label Text="This Week" Style="{StaticResource CardSubtext}"
+                                   HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                    </Border>
+                    <Border Grid.Column="2" Style="{StaticResource CardBorderCompact}" Padding="12">
+                        <VerticalStackLayout Spacing="2" HorizontalOptions="Center">
+                            <Label Text="{Binding UtilizationPercent, StringFormat='{0:0}%'}"
+                                   FontSize="20" FontFamily="OpenSansSemibold"
+                                   HorizontalOptions="Center"
+                                   TextColor="{StaticResource Success}" />
+                            <Label Text="Utilization" Style="{StaticResource CardSubtext}"
+                                   HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+
+                <!-- ══ Week Navigation ══ -->
+                <Border Style="{StaticResource CardBorder}" Padding="12">
+                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8">
+                        <Button Grid.Column="0"
+                                Text="&#xF0141;"
+                                FontFamily="MaterialDesignIcons" FontSize="20"
+                                Command="{Binding NavigateWeekCommand}"
+                                CommandParameter="prev"
+                                BackgroundColor="Transparent"
+                                TextColor="{StaticResource Primary}"
+                                WidthRequest="40" HeightRequest="40"
+                                CornerRadius="20" Padding="0" />
+
+                        <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center" Spacing="2">
+                            <Label Text="{Binding WeekLabel}"
+                                   FontSize="15" FontFamily="OpenSansSemibold"
+                                   HorizontalOptions="Center" />
+                            <HorizontalStackLayout HorizontalOptions="Center" Spacing="6">
+                                <Border BackgroundColor="{Binding WeekStatus, Converter={StaticResource TimesheetStatusToColorConverter}}"
+                                        StrokeShape="RoundRectangle 8"
+                                        Stroke="Transparent" StrokeThickness="0"
+                                        Padding="8,3">
+                                    <Label Text="{Binding WeekStatus}" FontSize="11"
+                                           TextColor="{Binding WeekStatus, Converter={StaticResource TimesheetStatusToColorConverter}, ConverterParameter=fg}" />
+                                </Border>
+                                <Label Text="{Binding TotalHours, StringFormat='{0:0.#}h'}"
+                                       FontSize="12" VerticalOptions="Center"
+                                       TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+
+                        <Button Grid.Column="2"
+                                Text="&#xF0142;"
+                                FontFamily="MaterialDesignIcons" FontSize="20"
+                                Command="{Binding NavigateWeekCommand}"
+                                CommandParameter="next"
+                                BackgroundColor="Transparent"
+                                TextColor="{StaticResource Primary}"
+                                WidthRequest="40" HeightRequest="40"
+                                CornerRadius="20" Padding="0" />
+                    </Grid>
+                </Border>
+
+                <!-- ══ Weekly Grid ══ -->
+                <CollectionView ItemsSource="{Binding Rows}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="ts:TimesheetGridRow">
+                            <Border Style="{StaticResource CardBorderCompact}" Margin="0,4" Padding="12">
+                                <VerticalStackLayout Spacing="8">
+                                    <!-- Project/Task Header -->
+                                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8">
+                                        <Border Grid.Column="0" WidthRequest="8" HeightRequest="32"
+                                                StrokeShape="RoundRectangle 4"
+                                                Stroke="Transparent" StrokeThickness="0"
+                                                BackgroundColor="{Binding ProjectColorHex}"
+                                                VerticalOptions="Center" />
+                                        <VerticalStackLayout Grid.Column="1" Spacing="1" VerticalOptions="Center">
+                                            <Label Text="{Binding ProjectName}"
+                                                   Style="{StaticResource CardTitle}" />
+                                            <Label Text="{Binding TaskName}"
+                                                   Style="{StaticResource CardSubtext}"
+                                                   IsVisible="{Binding TaskName, Converter={StaticResource IsNotNullConverter}}" />
+                                        </VerticalStackLayout>
+                                        <Label Grid.Column="2"
+                                               Text="{Binding RowTotal, StringFormat='{0:0.#}h'}"
+                                               FontFamily="OpenSansSemibold" FontSize="14"
+                                               TextColor="{StaticResource Primary}"
+                                               VerticalOptions="Center" />
+                                    </Grid>
+
+                                    <!-- Day cells - horizontal row of 7 days -->
+                                    <Grid ColumnDefinitions="*,*,*,*,*,*,*" ColumnSpacing="4">
+                                        <!-- Mon -->
+                                        <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center" Spacing="2">
+                                            <Label Text="M" FontSize="10" HorizontalOptions="Center"
+                                                   TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}" />
+                                            <Border StrokeShape="RoundRectangle 6" Stroke="{StaticResource Gray200}"
+                                                    StrokeThickness="1" Padding="4,6" MinimumWidthRequest="36"
+                                                    BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray900}}">
+                                                <Label Text="{Binding Days[0].TotalDecimalHours, StringFormat='{0:0.#}'}"
+                                                       FontSize="13" HorizontalOptions="Center"
+                                                       FontFamily="OpenSansSemibold" />
+                                            </Border>
+                                        </VerticalStackLayout>
+                                        <!-- Tue -->
+                                        <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center" Spacing="2">
+                                            <Label Text="T" FontSize="10" HorizontalOptions="Center"
+                                                   TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}" />
+                                            <Border StrokeShape="RoundRectangle 6" Stroke="{StaticResource Gray200}"
+                                                    StrokeThickness="1" Padding="4,6" MinimumWidthRequest="36"
+                                                    BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray900}}">
+                                                <Label Text="{Binding Days[1].TotalDecimalHours, StringFormat='{0:0.#}'}"
+                                                       FontSize="13" HorizontalOptions="Center"
+                                                       FontFamily="OpenSansSemibold" />
+                                            </Border>
+                                        </VerticalStackLayout>
+                                        <!-- Wed -->
+                                        <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center" Spacing="2">
+                                            <Label Text="W" FontSize="10" HorizontalOptions="Center"
+                                                   TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}" />
+                                            <Border StrokeShape="RoundRectangle 6" Stroke="{StaticResource Gray200}"
+                                                    StrokeThickness="1" Padding="4,6" MinimumWidthRequest="36"
+                                                    BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray900}}">
+                                                <Label Text="{Binding Days[2].TotalDecimalHours, StringFormat='{0:0.#}'}"
+                                                       FontSize="13" HorizontalOptions="Center"
+                                                       FontFamily="OpenSansSemibold" />
+                                            </Border>
+                                        </VerticalStackLayout>
+                                        <!-- Thu -->
+                                        <VerticalStackLayout Grid.Column="3" HorizontalOptions="Center" Spacing="2">
+                                            <Label Text="T" FontSize="10" HorizontalOptions="Center"
+                                                   TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}" />
+                                            <Border StrokeShape="RoundRectangle 6" Stroke="{StaticResource Gray200}"
+                                                    StrokeThickness="1" Padding="4,6" MinimumWidthRequest="36"
+                                                    BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray900}}">
+                                                <Label Text="{Binding Days[3].TotalDecimalHours, StringFormat='{0:0.#}'}"
+                                                       FontSize="13" HorizontalOptions="Center"
+                                                       FontFamily="OpenSansSemibold" />
+                                            </Border>
+                                        </VerticalStackLayout>
+                                        <!-- Fri -->
+                                        <VerticalStackLayout Grid.Column="4" HorizontalOptions="Center" Spacing="2">
+                                            <Label Text="F" FontSize="10" HorizontalOptions="Center"
+                                                   TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}" />
+                                            <Border StrokeShape="RoundRectangle 6" Stroke="{StaticResource Gray200}"
+                                                    StrokeThickness="1" Padding="4,6" MinimumWidthRequest="36"
+                                                    BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray900}}">
+                                                <Label Text="{Binding Days[4].TotalDecimalHours, StringFormat='{0:0.#}'}"
+                                                       FontSize="13" HorizontalOptions="Center"
+                                                       FontFamily="OpenSansSemibold" />
+                                            </Border>
+                                        </VerticalStackLayout>
+                                        <!-- Sat -->
+                                        <VerticalStackLayout Grid.Column="5" HorizontalOptions="Center" Spacing="2">
+                                            <Label Text="S" FontSize="10" HorizontalOptions="Center"
+                                                   TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}" />
+                                            <Border StrokeShape="RoundRectangle 6" Stroke="{StaticResource Gray200}"
+                                                    StrokeThickness="1" Padding="4,6" MinimumWidthRequest="36"
+                                                    BackgroundColor="{AppThemeBinding Light=#F9FAFB, Dark={StaticResource Gray900}}">
+                                                <Label Text="{Binding Days[5].TotalDecimalHours, StringFormat='{0:0.#}'}"
+                                                       FontSize="13" HorizontalOptions="Center"
+                                                       FontFamily="OpenSansSemibold"
+                                                       TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}" />
+                                            </Border>
+                                        </VerticalStackLayout>
+                                        <!-- Sun -->
+                                        <VerticalStackLayout Grid.Column="6" HorizontalOptions="Center" Spacing="2">
+                                            <Label Text="S" FontSize="10" HorizontalOptions="Center"
+                                                   TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}" />
+                                            <Border StrokeShape="RoundRectangle 6" Stroke="{StaticResource Gray200}"
+                                                    StrokeThickness="1" Padding="4,6" MinimumWidthRequest="36"
+                                                    BackgroundColor="{AppThemeBinding Light=#F9FAFB, Dark={StaticResource Gray900}}">
+                                                <Label Text="{Binding Days[6].TotalDecimalHours, StringFormat='{0:0.#}'}"
+                                                       FontSize="13" HorizontalOptions="Center"
+                                                       FontFamily="OpenSansSemibold"
+                                                       TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}" />
+                                            </Border>
+                                        </VerticalStackLayout>
+                                    </Grid>
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <VerticalStackLayout Spacing="8" Margin="0,30">
+                            <Label Text="&#xF16E2;" FontFamily="MaterialDesignIcons"
+                                   FontSize="40" TextColor="{StaticResource Gray300}"
+                                   HorizontalOptions="Center" />
+                            <Label Text="No timesheet entries this week"
+                                   Style="{StaticResource EmptyStateLabel}" />
+                            <Label Text="Start a timer or add entries to begin tracking"
+                                   Style="{StaticResource CardSubtext}"
+                                   HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                    </CollectionView.EmptyView>
+                </CollectionView>
+
+                <!-- ══ Action Buttons ══ -->
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="10"
+                      IsVisible="{Binding IsEditable}">
+                    <!-- Start Timer (pick project) -->
+                    <Button Grid.Column="0"
+                            Text="&#xF040D;  Start Timer"
+                            FontFamily="OpenSansSemibold"
+                            BackgroundColor="{StaticResource Success}"
+                            TextColor="White" FontSize="14"
+                            HeightRequest="48" CornerRadius="24"
+                            Clicked="OnStartTimerClicked"
+                            IsVisible="{Binding IsTimerRunning, Converter={StaticResource InvertedBoolConverter}}" />
+
+                    <!-- Submit Week -->
+                    <Button Grid.Column="1"
+                            Text="&#xF1164;  Submit Week"
+                            FontFamily="OpenSansSemibold"
+                            Command="{Binding SubmitWeekCommand}"
+                            BackgroundColor="{StaticResource Primary}"
+                            TextColor="White" FontSize="14"
+                            HeightRequest="48" CornerRadius="24" />
+                </Grid>
+
+                <!-- Recall Button (when submitted) -->
+                <Button Text="&#xF0322;  Recall Submission"
+                        FontFamily="OpenSansSemibold"
+                        Command="{Binding RecallWeekCommand}"
+                        BackgroundColor="{StaticResource Warning}"
+                        TextColor="White" FontSize="14"
+                        HeightRequest="48" CornerRadius="24"
+                        HorizontalOptions="Fill"
+                        IsVisible="False"
+                        x:Name="RecallButton" />
+
+                <!-- ══ Offline Banner ══ -->
+                <Border Style="{StaticResource OfflineBanner}"
+                        IsVisible="{Binding IsOnline, Converter={StaticResource InvertedBoolConverter}}">
+                    <HorizontalStackLayout Spacing="10">
+                        <Label Text="&#xF05AA;"
+                               FontFamily="MaterialDesignIcons" FontSize="18"
+                               TextColor="{StaticResource WarningDark}"
+                               VerticalOptions="Center" />
+                        <Label Text="Offline - changes will sync when connected"
+                               TextColor="{StaticResource WarningDark}" FontSize="13"
+                               VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Border>
+
+                <!-- ══ Error ══ -->
+                <Border Style="{StaticResource BadgeDanger}" Padding="14,10"
+                        IsVisible="{Binding ErrorMessage, Converter={StaticResource IsNotNullConverter}}">
+                    <HorizontalStackLayout Spacing="8" HorizontalOptions="Center">
+                        <Label Text="&#xF05D6;" FontFamily="MaterialDesignIcons"
+                               FontSize="18" TextColor="{StaticResource Danger}" VerticalOptions="Center" />
+                        <Label Text="{Binding ErrorMessage}" TextColor="{StaticResource Danger}"
+                               FontSize="13" VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </RefreshView>
+</ContentPage>

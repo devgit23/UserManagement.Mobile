@@ -73,6 +73,7 @@ public static class MauiProgram
         RegisterRefitClient<IEmployeesApi>(builder.Services, baseAddress);
         RegisterRefitClient<INotificationsApi>(builder.Services, baseAddress);
         RegisterRefitClient<IUsersApi>(builder.Services, baseAddress);
+        RegisterRefitClient<ITimesheetApi>(builder.Services, baseAddress);
 
         // --- Local database ---
         builder.Services.AddSingleton(sp =>
@@ -85,6 +86,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<ILocalLeaveRepository, LocalLeaveRepository>();
         builder.Services.AddSingleton<ILocalAttendanceRepository, LocalAttendanceRepository>();
         builder.Services.AddSingleton<ILocalEmployeeRepository, LocalEmployeeRepository>();
+        builder.Services.AddSingleton<ILocalTimesheetRepository, LocalTimesheetRepository>();
 
         // --- Sync engine ---
         builder.Services.AddSingleton<ISyncEngine, SyncEngine>();
@@ -104,6 +106,7 @@ public static class MauiProgram
         builder.Services.AddTransient<ProfileViewModel>();
         builder.Services.AddTransient<NotificationsViewModel>();
         builder.Services.AddTransient<SettingsViewModel>();
+        builder.Services.AddTransient<TimesheetViewModel>();
 
         // --- Pages ---
         builder.Services.AddTransient<LoginPage>();
@@ -115,6 +118,7 @@ public static class MauiProgram
         builder.Services.AddTransient<ProfilePage>();
         builder.Services.AddTransient<NotificationsPage>();
         builder.Services.AddTransient<SettingsPage>();
+        builder.Services.AddTransient<TimesheetPage>();
 
         var app = builder.Build();
 

@@ -88,6 +88,17 @@ public static class IconFont
     public const string CalendarRange = "\U000F0679";
     public const string FormatListBulleted = "\U000F0279";
 
+    // --- Timesheet ---
+    public const string ClipboardClock = "\U000F16E2";
+    public const string PlayCircleOutline = "\U000F040D";
+    public const string StopCircleOutline = "\U000F0667";
+    public const string SendOutline = "\U000F1164";
+    public const string UndoVariant = "\U000F0322";
+    public const string ChevronLeft = "\U000F0141";
+    public const string CalendarToday = "\U000F0A95";
+    public const string CurrencyUsd = "\U000F01C1";
+    public const string ChartBar = "\U000F0128";
+
     // --- Misc ---
     public const string EmoticonSadOutline = "\U000F0C69";
     public const string FolderOpenOutline = "\U000F0770";

@@ -172,3 +172,13 @@ build_metadata.AdditionalFiles.Inflator = SourceGen
 build_metadata.AdditionalFiles.NoWarn = 
 build_metadata.AdditionalFiles.EnableDiagnostics = 
 build_metadata.AdditionalFiles.LineInfo = 
+
+[D:/SourceCode/UserManagement/UserManagement.Mobile/Views/TimesheetPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = UserManagement.Mobile.Views.TimesheetPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\TimesheetPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\TimesheetPage.xaml
+build_metadata.AdditionalFiles.Inflator = SourceGen
+build_metadata.AdditionalFiles.NoWarn = 
+build_metadata.AdditionalFiles.EnableDiagnostics = 
+build_metadata.AdditionalFiles.LineInfo = 

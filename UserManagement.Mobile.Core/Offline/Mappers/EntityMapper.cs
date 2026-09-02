@@ -1,5 +1,6 @@
 using UserManagement.Common.Attendance;
 using UserManagement.Common.EmployeeProfiles;
+using UserManagement.Common.Timesheet;
 using UserManagement.Common.Workforce;
 using UserManagement.Mobile.Core.Offline.Database.Entities;
 
@@ -40,6 +41,32 @@ public static class EntityMapper
         Reason = model.Reason,
         Status = model.Status.ToString(),
         RequestedOn = model.RequestedOn,
+        LastModifiedUtc = DateTimeOffset.UtcNow
+    };
+
+    // Timesheet Entry
+    public static LocalTimesheetEntry ToLocal(TimesheetEntryModel model) => new()
+    {
+        Id = model.Id.ToString(),
+        UserId = model.UserId.ToString(),
+        ProjectId = model.ProjectId.ToString(),
+        TaskId = model.TaskId?.ToString(),
+        ProjectName = model.ProjectName,
+        ProjectCode = model.ProjectCode,
+        ProjectColorHex = model.ProjectColorHex,
+        TaskName = model.TaskName,
+        TaskCode = model.TaskCode,
+        WorkDate = model.WorkDate.ToString("yyyy-MM-dd"),
+        Hours = model.Hours,
+        Minutes = model.Minutes,
+        Description = model.Description,
+        IsBillable = model.IsBillable,
+        IsOvertime = model.IsOvertime,
+        TimerStartedAt = model.TimerStartedAt?.ToString("O"),
+        TimerStoppedAt = model.TimerStoppedAt?.ToString("O"),
+        EntryMethod = model.EntryMethod.ToString(),
+        CreatedAt = model.CreatedAt,
+        UpdatedAt = model.UpdatedAt,
         LastModifiedUtc = DateTimeOffset.UtcNow
     };
 

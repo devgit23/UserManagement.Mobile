@@ -56,6 +56,31 @@
                 </Border.GestureRecognizers>
             </Border>
 
+            <!-- Timesheet Link Card -->
+            <Border Style="{StaticResource CardBorder}">
+                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                    <Border Grid.Column="0" WidthRequest="44" HeightRequest="44"
+                            StrokeShape="RoundRectangle 22"
+                            Stroke="Transparent" StrokeThickness="0"
+                            BackgroundColor="{AppThemeBinding Light=#DEECF9, Dark=#1A0078D4}" Padding="0">
+                        <Label Text="&#xF16E2;"
+                               FontFamily="MaterialDesignIcons" FontSize="22"
+                               TextColor="{StaticResource Primary}"
+                               HorizontalOptions="Center" VerticalOptions="Center" />
+                    </Border>
+                    <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                        <Label Text="Timesheet" Style="{StaticResource CardTitle}" />
+                        <Label Text="Track time and manage timesheets" Style="{StaticResource CardSubtext}" />
+                    </VerticalStackLayout>
+                    <Label Grid.Column="2" Text="&#xF0142;"
+                           FontFamily="MaterialDesignIcons" FontSize="20"
+                           TextColor="{StaticResource Gray300}" VerticalOptions="Center" />
+                </Grid>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnTimesheetTapped" />
+                </Border.GestureRecognizers>
+            </Border>
+
             <!-- Data & Sync Section -->
             <Border Style="{StaticResource CardBorder}">
                 <VerticalStackLayout Spacing="12">
