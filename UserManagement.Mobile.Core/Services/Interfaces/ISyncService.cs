@@ -6,6 +6,7 @@ public interface ISyncService
     DateTimeOffset? LastSyncedAt { get; }
     int PendingUploadCount { get; }
 
+    void Initialize();
     Task SyncAsync(CancellationToken ct = default);
     Task StartPeriodicSyncAsync(TimeSpan interval, CancellationToken ct = default);
     void StopPeriodicSync();

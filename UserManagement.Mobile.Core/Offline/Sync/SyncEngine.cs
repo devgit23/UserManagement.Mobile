@@ -20,6 +20,7 @@ public sealed class SyncEngine(
     IAttendanceApi attendanceApi,
     ITimesheetApi timesheetApi) : ISyncEngine
 {
+    private const int MaxRetries = 5;
     private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web);
 
     public async Task PushAsync(CancellationToken ct = default)
@@ -33,6 +34,14 @@ public sealed class SyncEngine(
         {
             if (ct.IsCancellationRequested) break;
 
+            // Skip and remove permanently failed items
+            if (item.RetryCount >= MaxRetries)
+            {
+                await UpdateEntitySyncStatusAsync(item.EntityType, item.EntityId, SyncStatus.Failed);
+                await conn.DeleteAsync(item);
+                continue;
+            }
+
             try
             {
                 await ProcessQueueItemAsync(item, ct);
@@ -43,11 +52,15 @@ public sealed class SyncEngine(
             {
                 item.RetryCount++;
                 item.LastError = ex.Message;
-                await conn.UpdateAsync(item);
 
-                if (item.RetryCount >= 5)
+                if (item.RetryCount >= MaxRetries)
                 {
                     await UpdateEntitySyncStatusAsync(item.EntityType, item.EntityId, SyncStatus.Failed);
+                    await conn.DeleteAsync(item);
+                }
+                else
+                {
+                    await conn.UpdateAsync(item);
                 }
             }
         }

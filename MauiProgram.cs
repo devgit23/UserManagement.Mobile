@@ -95,6 +95,7 @@ public static class MauiProgram
         // --- App services ---
         builder.Services.AddSingleton<ISessionService, SessionService>();
         builder.Services.AddSingleton<IAuthenticationService, AuthenticationService>();
+        builder.Services.AddSingleton<IDialogService, UserManagement.Mobile.Services.DialogService>();
 
         // --- ViewModels ---
         builder.Services.AddTransient<LoginViewModel>();
@@ -133,6 +134,10 @@ public static class MauiProgram
         var authHandler = app.Services.GetRequiredService<AuthenticatedHttpClientHandler>();
         var authService = app.Services.GetRequiredService<IAuthenticationService>();
         authHandler.SetAuthService(authService);
+
+        // Initialize sync service (subscribes to connectivity changes for auto-sync)
+        var syncService = app.Services.GetRequiredService<ISyncService>();
+        syncService.Initialize();
 
         return app;
     }

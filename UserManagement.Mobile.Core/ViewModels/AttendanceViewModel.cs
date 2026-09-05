@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.Text.Json;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Refit;
 using UserManagement.Common.Attendance;
 using UserManagement.Mobile.Core.Offline.Database;
 using UserManagement.Mobile.Core.Offline.Database.Entities;
@@ -18,6 +19,7 @@ public partial class AttendanceViewModel(
     ILocalAttendanceRepository localRepo,
     IConnectivityService connectivity,
     ISessionService sessionService,
+    IDialogService dialogService,
     LocalDatabase db) : ViewModelBase
 {
     [ObservableProperty]
@@ -147,6 +149,11 @@ public partial class AttendanceViewModel(
                         Remarks = log.Remarks
                     });
                 }
+
+                // Check local open log for clocked-in state
+                var openLocal = localLogs.FirstOrDefault(l => l.Status == "open");
+                IsClockedIn = openLocal is not null;
+                ClockInTime = openLocal?.ClockInAt;
             }
         }
         catch (Exception ex)
@@ -162,6 +169,9 @@ public partial class AttendanceViewModel(
     [RelayCommand]
     private async Task ClockInAsync()
     {
+        var remark = await PromptForRemarkAsync("Clock In");
+        if (remark is null) return; // user cancelled
+
         IsBusy = true;
         ClearError();
 
@@ -169,7 +179,8 @@ public partial class AttendanceViewModel(
         {
             var request = new AttendanceClockRequest
             {
-                ClientTimeUtc = DateTimeOffset.UtcNow
+                ClientTimeUtc = DateTimeOffset.UtcNow,
+                Remarks = string.IsNullOrWhiteSpace(remark) ? null : remark.Trim()
             };
 
             if (connectivity.IsConnected)
@@ -181,18 +192,43 @@ public partial class AttendanceViewModel(
             }
             else
             {
+                var entityId = Guid.NewGuid().ToString();
+                var nowUtc = DateTimeOffset.UtcNow;
+                var userId = sessionService.CurrentUser?.Id.ToString() ?? string.Empty;
+
+                // Create local entity so offline list shows the record
+                var localLog = new LocalAttendanceLog
+                {
+                    Id = entityId,
+                    UserId = userId,
+                    WorkDate = DateOnly.FromDateTime(nowUtc.LocalDateTime).ToString("yyyy-MM-dd"),
+                    ClockInAt = nowUtc,
+                    Status = "open",
+                    Remarks = request.Remarks,
+                    SyncStatus = SyncStatus.PendingUpload,
+                    LastModifiedUtc = nowUtc
+                };
+                await localRepo.UpsertAsync(localLog);
+
+                // Queue for server sync
                 var queueItem = new SyncQueueItem
                 {
                     EntityType = "AttendanceLog",
-                    EntityId = Guid.NewGuid().ToString(),
+                    EntityId = entityId,
                     OperationType = "ClockIn",
                     SerializedPayload = JsonSerializer.Serialize(request),
-                    CreatedUtc = DateTimeOffset.UtcNow
+                    CreatedUtc = nowUtc
                 };
                 await db.GetConnection().InsertAsync(queueItem);
+
                 IsClockedIn = true;
-                ClockInTime = DateTimeOffset.UtcNow;
+                ClockInTime = nowUtc;
             }
+        }
+        catch (ApiException apiEx)
+        {
+            SetError($"Clock in failed: {ExtractServerMessage(apiEx)}");
+            await LoadDataAsync();
         }
         catch (Exception ex)
         {
@@ -207,6 +243,9 @@ public partial class AttendanceViewModel(
     [RelayCommand]
     private async Task ClockOutAsync()
     {
+        var remark = await PromptForRemarkAsync("Clock Out");
+        if (remark is null) return; // user cancelled
+
         IsBusy = true;
         ClearError();
 
@@ -214,7 +253,8 @@ public partial class AttendanceViewModel(
         {
             var request = new AttendanceClockRequest
             {
-                ClientTimeUtc = DateTimeOffset.UtcNow
+                ClientTimeUtc = DateTimeOffset.UtcNow,
+                Remarks = string.IsNullOrWhiteSpace(remark) ? null : remark.Trim()
             };
 
             if (connectivity.IsConnected)
@@ -226,18 +266,47 @@ public partial class AttendanceViewModel(
             }
             else
             {
+                var entityId = Guid.NewGuid().ToString();
+                var nowUtc = DateTimeOffset.UtcNow;
+
+                // Update the local open log to reflect clock-out
+                var userId = sessionService.CurrentUser?.Id.ToString() ?? string.Empty;
+                var openLog = await localRepo.GetTodayOpenLogAsync(userId);
+                if (openLog is not null)
+                {
+                    openLog.ClockOutAt = nowUtc;
+                    openLog.Status = "completed";
+                    openLog.SyncStatus = SyncStatus.PendingUpload;
+                    openLog.LastModifiedUtc = nowUtc;
+                    if (!string.IsNullOrWhiteSpace(request.Remarks))
+                    {
+                        openLog.Remarks = string.IsNullOrWhiteSpace(openLog.Remarks)
+                            ? request.Remarks.Trim()
+                            : $"{openLog.Remarks} | Clock-out remark: {request.Remarks.Trim()}";
+                    }
+                    await localRepo.UpsertAsync(openLog);
+                    entityId = openLog.Id;
+                }
+
+                // Queue for server sync
                 var queueItem = new SyncQueueItem
                 {
                     EntityType = "AttendanceLog",
-                    EntityId = Guid.NewGuid().ToString(),
+                    EntityId = entityId,
                     OperationType = "ClockOut",
                     SerializedPayload = JsonSerializer.Serialize(request),
-                    CreatedUtc = DateTimeOffset.UtcNow
+                    CreatedUtc = nowUtc
                 };
                 await db.GetConnection().InsertAsync(queueItem);
+
                 IsClockedIn = false;
                 ClockInTime = null;
             }
+        }
+        catch (ApiException apiEx)
+        {
+            SetError($"Clock out failed: {ExtractServerMessage(apiEx)}");
+            await LoadDataAsync();
         }
         catch (Exception ex)
         {
@@ -247,5 +316,34 @@ public partial class AttendanceViewModel(
         {
             IsBusy = false;
         }
+    }
+
+    private static string ExtractServerMessage(ApiException apiEx)
+    {
+        if (!string.IsNullOrWhiteSpace(apiEx.Content))
+        {
+            try
+            {
+                using var doc = JsonDocument.Parse(apiEx.Content);
+                if (doc.RootElement.TryGetProperty("message", out var msgProp))
+                {
+                    return msgProp.GetString() ?? apiEx.Message;
+                }
+            }
+            catch (JsonException) { }
+        }
+
+        return apiEx.Message;
+    }
+
+    private async Task<string?> PromptForRemarkAsync(string action)
+    {
+        return await dialogService.PromptAsync(
+            action,
+            "Add a remark (optional):",
+            accept: action,
+            cancel: "Cancel",
+            placeholder: "e.g., Working from home today",
+            maxLength: 500);
     }
 }

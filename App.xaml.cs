@@ -1,12 +1,16 @@
 using System.Globalization;
+using UserManagement.Mobile.Core.Services.Interfaces;
 
 namespace UserManagement.Mobile;
 
 public partial class App : Application
 {
-    public App()
+    private readonly IServiceProvider _services;
+
+    public App(IServiceProvider services)
     {
         InitializeComponent();
+        _services = services;
     }
 
     protected override Window CreateWindow(IActivationState? activationState)
@@ -21,7 +25,25 @@ public partial class App : Application
         window.MinimumHeight = 600;
 #endif
 
+        window.Resumed += OnWindowResumed;
+
         return window;
+    }
+
+    private async void OnWindowResumed(object? sender, EventArgs e)
+    {
+        try
+        {
+            var session = _services.GetRequiredService<ISessionService>();
+            if (!session.IsAuthenticated) return;
+
+            var syncService = _services.GetRequiredService<ISyncService>();
+            await syncService.SyncAsync();
+        }
+        catch
+        {
+            // Best-effort sync on resume; failures are non-critical
+        }
     }
 }
 

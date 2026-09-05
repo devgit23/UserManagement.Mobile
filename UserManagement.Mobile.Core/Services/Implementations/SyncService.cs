@@ -5,7 +5,8 @@ namespace UserManagement.Mobile.Core.Services.Implementations;
 
 public sealed class SyncService(
     ISyncEngine syncEngine,
-    IConnectivityService connectivity) : ISyncService, IDisposable
+    IConnectivityService connectivity,
+    ISessionService sessionService) : ISyncService, IDisposable
 {
     private CancellationTokenSource? _periodicCts;
     private bool _isSyncing;
@@ -15,6 +16,26 @@ public sealed class SyncService(
     public int PendingUploadCount { get; private set; }
 
     public event EventHandler? SyncStatusChanged;
+
+    public void Initialize()
+    {
+        connectivity.ConnectivityChanged += OnConnectivityChanged;
+    }
+
+    private async void OnConnectivityChanged(object? sender, bool isConnected)
+    {
+        if (isConnected && sessionService.IsAuthenticated)
+        {
+            try
+            {
+                await SyncAsync();
+            }
+            catch
+            {
+                // Best-effort auto-sync; failures are non-critical
+            }
+        }
+    }
 
     public async Task SyncAsync(CancellationToken ct = default)
     {
@@ -80,6 +101,7 @@ public sealed class SyncService(
 
     public void Dispose()
     {
+        connectivity.ConnectivityChanged -= OnConnectivityChanged;
         StopPeriodicSync();
     }
 }
