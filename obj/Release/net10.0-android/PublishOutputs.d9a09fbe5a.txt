@@ -1,4 +1,4 @@
-D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Release\net10.0-android\publish\com.usermanagement.mobile-Signed.aab
-D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Release\net10.0-android\publish\com.usermanagement.mobile.aab
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Release\net10.0-android\publish\com.usermanagement.mobile-Signed.apk
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Release\net10.0-android\publish\com.usermanagement.mobile.apk
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Release\net10.0-android\publish\com.usermanagement.mobile-Signed.aab
 D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Release\net10.0-android\publish\_Microsoft.Android.Resource.Designer.dll

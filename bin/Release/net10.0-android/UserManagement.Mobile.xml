@@ -29,6 +29,12 @@
             Converts a notification type string to a Material Design Icon glyph.
             </summary>
         </member>
+        <member name="T:UserManagement.Mobile.Converters.TimesheetStatusToColorConverter">
+            <summary>
+            Converts a TimesheetStatus enum or string to a background/foreground color for badge display.
+            Parameter: "bg" (default) returns background color, "fg" returns text color.
+            </summary>
+        </member>
         <member name="T:UserManagement.Mobile.Helpers.IconFont">
             <summary>
             Material Design Icons glyph constants for use in XAML and code.

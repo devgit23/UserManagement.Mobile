@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eazyHR Mobile App - Branding Mockup</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: #1a1a2e;
+        color: #fff;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 20px;
+    }
+    h1 {
+        font-size: 28px;
+        margin-bottom: 8px;
+        color: #e0e0e0;
+    }
+    .subtitle {
+        color: #888;
+        font-size: 14px;
+        margin-bottom: 50px;
+    }
+    .mockup-row {
+        display: flex;
+        gap: 80px;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    .mockup-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .mockup-label {
+        font-size: 13px;
+        color: #aaa;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+
+    /* ── Splash Screen Mockup (phone frame) ── */
+    .phone-frame {
+        width: 280px;
+        height: 560px;
+        background: #111;
+        border-radius: 36px;
+        border: 3px solid #333;
+        padding: 12px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        position: relative;
+    }
+    .phone-notch {
+        width: 100px;
+        height: 24px;
+        background: #111;
+        border-radius: 0 0 14px 14px;
+        position: absolute;
+        top: 3px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+    }
+    .phone-screen {
+        width: 100%;
+        height: 100%;
+        border-radius: 24px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+    .splash-screen {
+        background: #0F6CBD;
+    }
+    .splash-logo {
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        font-size: 96px;
+        color: #ffffff;
+        text-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    }
+    .splash-tagline {
+        color: rgba(255,255,255,0.7);
+        font-size: 14px;
+        margin-top: 8px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+    }
+
+    /* ── App Icon Mockup ── */
+    .icon-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+    }
+    .icon-size-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+    .icon-size-label {
+        font-size: 11px;
+        color: #666;
+    }
+    .app-icon {
+        background: #0F6CBD;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 20px rgba(15, 108, 189, 0.4);
+    }
+    .app-icon-xl {
+        width: 144px;
+        height: 144px;
+        border-radius: 32px;
+    }
+    .app-icon-lg {
+        width: 96px;
+        height: 96px;
+        border-radius: 22px;
+    }
+    .app-icon-md {
+        width: 64px;
+        height: 64px;
+        border-radius: 14px;
+    }
+    .app-icon-sm {
+        width: 48px;
+        height: 48px;
+        border-radius: 11px;
+    }
+    .app-icon-text {
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        color: #ffffff;
+    }
+    .app-icon-xl .app-icon-text { font-size: 64px; }
+    .app-icon-lg .app-icon-text { font-size: 42px; }
+    .app-icon-md .app-icon-text { font-size: 28px; }
+    .app-icon-sm .app-icon-text { font-size: 21px; }
+
+    /* Icon on home screen simulation */
+    .homescreen-sim {
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        border-radius: 20px;
+        padding: 30px 40px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    }
+    .hs-app {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+    }
+    .hs-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .hs-icon-eazy {
+        background: #0F6CBD;
+        box-shadow: 0 2px 10px rgba(15,108,189,0.4);
+    }
+    .hs-icon-placeholder {
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.06);
+    }
+    .hs-icon-text {
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        color: #fff;
+        font-size: 24px;
+    }
+    .hs-label {
+        font-size: 10px;
+        color: rgba(255,255,255,0.6);
+        text-align: center;
+    }
+    .hs-placeholder-inner {
+        width: 24px;
+        height: 24px;
+        border-radius: 6px;
+        background: rgba(255,255,255,0.06);
+    }
+
+    /* ── Comparison section ── */
+    .comparison {
+        margin-top: 60px;
+        display: flex;
+        gap: 60px;
+        align-items: center;
+    }
+    .comparison-item {
+        text-align: center;
+    }
+    .comparison-label {
+        font-size: 12px;
+        color: #666;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .old-icon {
+        width: 96px;
+        height: 96px;
+        border-radius: 22px;
+        background: #512BD4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 20px rgba(81,43,212,0.4);
+    }
+    .old-icon-text {
+        font-family: monospace;
+        font-size: 14px;
+        color: #fff;
+        opacity: 0.8;
+    }
+    .arrow {
+        font-size: 32px;
+        color: #444;
+    }
+    .new-icon {
+        width: 96px;
+        height: 96px;
+        border-radius: 22px;
+        background: #0F6CBD;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 20px rgba(15,108,189,0.4);
+    }
+    .new-icon-text {
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        font-size: 42px;
+        color: #fff;
+    }
+
+    /* Color palette */
+    .palette {
+        margin-top: 50px;
+        display: flex;
+        gap: 16px;
+    }
+    .swatch {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+    .swatch-color {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        border: 2px solid rgba(255,255,255,0.1);
+    }
+    .swatch-label {
+        font-size: 10px;
+        color: #666;
+        font-family: monospace;
+    }
+</style>
+</head>
+<body>
+
+<h1>eazyHR Mobile App Branding</h1>
+<p class="subtitle">Splash Screen, App Icon &amp; Home Screen Preview</p>
+
+<div class="mockup-row">
+
+    <!-- Splash Screen -->
+    <div class="mockup-item">
+        <div class="mockup-label">Splash Screen</div>
+        <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen splash-screen">
+                <div class="splash-logo">Ez</div>
+                <div class="splash-tagline">eazyHR</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- App Icons -->
+    <div class="mockup-item">
+        <div class="mockup-label">App Icon Sizes</div>
+        <div class="icon-grid">
+            <div class="icon-size-group">
+                <div class="app-icon app-icon-xl">
+                    <span class="app-icon-text">Ez</span>
+                </div>
+                <span class="icon-size-label">xxxhdpi (144px)</span>
+            </div>
+            <div style="display:flex; gap:24px; align-items:flex-end;">
+                <div class="icon-size-group">
+                    <div class="app-icon app-icon-lg">
+                        <span class="app-icon-text">Ez</span>
+                    </div>
+                    <span class="icon-size-label">xxhdpi (96px)</span>
+                </div>
+                <div class="icon-size-group">
+                    <div class="app-icon app-icon-md">
+                        <span class="app-icon-text">Ez</span>
+                    </div>
+                    <span class="icon-size-label">xhdpi (64px)</span>
+                </div>
+                <div class="icon-size-group">
+                    <div class="app-icon app-icon-sm">
+                        <span class="app-icon-text">Ez</span>
+                    </div>
+                    <span class="icon-size-label">hdpi (48px)</span>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 40px;">
+            <div class="mockup-label">On Home Screen</div>
+            <div class="homescreen-sim">
+                <div class="hs-app">
+                    <div class="hs-icon hs-icon-placeholder"><div class="hs-placeholder-inner"></div></div>
+                    <span class="hs-label">Phone</span>
+                </div>
+                <div class="hs-app">
+                    <div class="hs-icon hs-icon-placeholder"><div class="hs-placeholder-inner"></div></div>
+                    <span class="hs-label">Messages</span>
+                </div>
+                <div class="hs-app">
+                    <div class="hs-icon hs-icon-eazy"><span class="hs-icon-text">Ez</span></div>
+                    <span class="hs-label">eazyHR</span>
+                </div>
+                <div class="hs-app">
+                    <div class="hs-icon hs-icon-placeholder"><div class="hs-placeholder-inner"></div></div>
+                    <span class="hs-label">Camera</span>
+                </div>
+                <div class="hs-app">
+                    <div class="hs-icon hs-icon-placeholder"><div class="hs-placeholder-inner"></div></div>
+                    <span class="hs-label">Settings</span>
+                </div>
+                <div class="hs-app">
+                    <div class="hs-icon hs-icon-placeholder"><div class="hs-placeholder-inner"></div></div>
+                    <span class="hs-label">Calendar</span>
+                </div>
+                <div class="hs-app">
+                    <div class="hs-icon hs-icon-placeholder"><div class="hs-placeholder-inner"></div></div>
+                    <span class="hs-label">Mail</span>
+                </div>
+                <div class="hs-app">
+                    <div class="hs-icon hs-icon-placeholder"><div class="hs-placeholder-inner"></div></div>
+                    <span class="hs-label">Maps</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Before / After Comparison -->
+<div class="comparison">
+    <div class="comparison-item">
+        <div class="comparison-label">Before (Default MAUI)</div>
+        <div class="old-icon">
+            <span class="old-icon-text">.NET</span>
+        </div>
+    </div>
+    <div class="arrow">&rarr;</div>
+    <div class="comparison-item">
+        <div class="comparison-label">After (eazyHR)</div>
+        <div class="new-icon">
+            <span class="new-icon-text">Ez</span>
+        </div>
+    </div>
+</div>
+
+<!-- Color Palette -->
+<div style="margin-top: 50px; text-align:center;">
+    <div class="mockup-label" style="margin-bottom:16px;">Color Palette</div>
+    <div class="palette">
+        <div class="swatch">
+            <div class="swatch-color" style="background:#0F6CBD;"></div>
+            <span class="swatch-label">Primary<br>#0F6CBD</span>
+        </div>
+        <div class="swatch">
+            <div class="swatch-color" style="background:#0A4F8A;"></div>
+            <span class="swatch-label">Dark<br>#0A4F8A</span>
+        </div>
+        <div class="swatch">
+            <div class="swatch-color" style="background:#FFFFFF;"></div>
+            <span class="swatch-label">Foreground<br>#FFFFFF</span>
+        </div>
+        <div class="swatch">
+            <div class="swatch-color" style="background:#512BD4;"></div>
+            <span class="swatch-label" style="text-decoration:line-through; color:#555;">Old Purple<br>#512BD4</span>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
