@@ -1,4 +1,4 @@
-<api type="debug" assembly-name="UserManagement.Mobile" mvid="e159d498b63b4877b321fbbd7fe81f7f">
+<api type="debug" assembly-name="UserManagement.Mobile" mvid="e3b97bf787a847009a8d0a98f97475cb">
   <java-to-managed>
     <entry java-name="crc649911a318b147a1f0/MainActivity" managed-name="UserManagement.Mobile.MainActivity, UserManagement.Mobile" managed-type-token-id="33554441" />
     <entry java-name="crc649911a318b147a1f0/MainApplication" managed-name="UserManagement.Mobile.MainApplication, UserManagement.Mobile" managed-type-token-id="33554442" />

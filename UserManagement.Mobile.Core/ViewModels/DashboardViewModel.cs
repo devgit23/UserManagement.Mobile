@@ -1,5 +1,8 @@
+using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using UserManagement.Common.Attendance;
+using UserManagement.Common.Workforce;
 using UserManagement.Mobile.Core.Helpers;
 using UserManagement.Mobile.Core.Services.Interfaces;
 using UserManagement.Mobile.Core.ViewModels.Base;
@@ -11,6 +14,7 @@ public partial class DashboardViewModel(
     ISessionService sessionService,
     IWorkforceApi workforceApi,
     ILeaveApi leaveApi,
+    IAttendanceApi attendanceApi,
     INotificationsApi notificationsApi,
     ISyncService syncService,
     IConnectivityService connectivity) : ViewModelBase
@@ -35,6 +39,59 @@ public partial class DashboardViewModel(
 
     [ObservableProperty]
     private bool _showNotifications;
+
+    // Upcoming holidays
+    [ObservableProperty]
+    private bool _hasUpcomingHolidays;
+
+    public ObservableCollection<HolidayModel> UpcomingHolidays { get; } = [];
+
+    // Leave balances
+    [ObservableProperty]
+    private bool _hasLeaveBalances;
+
+    [ObservableProperty]
+    private string _totalAvailableLeave = "0";
+
+    [ObservableProperty]
+    private string _totalUsedLeave = "0";
+
+    [ObservableProperty]
+    private string _totalPendingLeave = "0";
+
+    [ObservableProperty]
+    private bool _hasPendingLeave;
+
+    public ObservableCollection<LeaveBalanceDisplayItem> LeaveBalances { get; } = [];
+
+    // Attendance summary
+    [ObservableProperty]
+    private bool _hasAttendanceStats;
+
+    [ObservableProperty]
+    private int _daysPresent;
+
+    [ObservableProperty]
+    private int _daysAbsent;
+
+    [ObservableProperty]
+    private string _onTimePercent = "0";
+
+    [ObservableProperty]
+    private string _avgHours = "0";
+
+    [ObservableProperty]
+    private string _attendancePeriod = string.Empty;
+
+    // Existing stats
+    [ObservableProperty]
+    private int _presentToday;
+
+    [ObservableProperty]
+    private int _onLeaveToday;
+
+    [ObservableProperty]
+    private int _totalEmployees;
 
     public override async Task InitializeAsync()
     {
@@ -78,27 +135,73 @@ public partial class DashboardViewModel(
         {
             var userId = sessionService.CurrentUser?.Id;
 
-            // Load pending leave requests count
-            if (ShowLeave && userId.HasValue)
+            // Fire all API calls in parallel
+            var leaveTask = (ShowLeave && userId.HasValue)
+                ? SafeAsync(() => leaveApi.GetDashboardAsync(userId.Value))
+                : Task.FromResult<LeaveDashboardModel?>(null);
+
+            var attendanceTask = ShowAttendance
+                ? SafeAsync(() => attendanceApi.GetStatsAsync("month"))
+                : Task.FromResult<AttendanceStatsResponse?>(null);
+
+            var notificationsTask = ShowNotifications
+                ? SafeListAsync(() => notificationsApi.GetNotificationsAsync(includeRead: false))
+                : Task.FromResult<IReadOnlyList<WorkforceNotificationModel>?>(null);
+
+            await Task.WhenAll(leaveTask, attendanceTask, notificationsTask);
+
+            // Leave dashboard (balances + holidays + pending count)
+            var leaveDashboard = await leaveTask;
+            if (leaveDashboard is not null)
             {
-                try
+                PendingLeaveRequests = leaveDashboard.Requests
+                    .Count(r => r.Status == LeaveRequestStatus.Submitted);
+
+                // Leave balances
+                LeaveBalances.Clear();
+                var colorPalette = new[] { "Primary", "Success", "Info", "Warning", "Danger" };
+                for (var i = 0; i < leaveDashboard.Balances.Count; i++)
                 {
-                    var requests = await leaveApi.GetRequestsAsync(userId: userId.Value);
-                    PendingLeaveRequests = requests?.Count(r => r.Status == Common.Workforce.LeaveRequestStatus.Submitted) ?? 0;
+                    LeaveBalances.Add(new LeaveBalanceDisplayItem(
+                        leaveDashboard.Balances[i],
+                        colorPalette[i % colorPalette.Length]));
                 }
-                catch { /* Non-critical */ }
+                HasLeaveBalances = LeaveBalances.Count > 0;
+                TotalAvailableLeave = leaveDashboard.Balances
+                    .Sum(b => Math.Max(0, b.BalanceDays)).ToString("0.#");
+                TotalUsedLeave = leaveDashboard.Balances
+                    .Sum(b => b.UsedDays).ToString("0.#");
+                var pending = leaveDashboard.Balances.Sum(b => b.PendingDays);
+                TotalPendingLeave = pending.ToString("0.#");
+                HasPendingLeave = pending > 0;
+
+                // Upcoming holidays
+                UpcomingHolidays.Clear();
+                var upcoming = leaveDashboard.UpcomingHolidays
+                    .OrderBy(h => h.Date)
+                    .Take(5);
+                foreach (var holiday in upcoming)
+                {
+                    UpcomingHolidays.Add(holiday);
+                }
+                HasUpcomingHolidays = UpcomingHolidays.Count > 0;
             }
 
-            // Load unread notifications count
-            if (ShowNotifications)
+            // Attendance stats
+            var stats = await attendanceTask;
+            if (stats?.Personal is { } personal)
             {
-                try
-                {
-                    var notifications = await notificationsApi.GetNotificationsAsync(includeRead: false);
-                    UnreadNotifications = notifications?.Count ?? 0;
-                }
-                catch { /* Non-critical */ }
+                DaysPresent = personal.DaysPresent;
+                DaysAbsent = Math.Max(0, personal.DaysCompleted - personal.DaysPresent);
+                OnTimePercent = personal.OnTimePercent.ToString("0.#");
+                AvgHours = personal.AvgEffectiveHours.ToString("0.#");
+                AttendancePeriod = $"{personal.From:dd MMM} - {personal.To:dd MMM yyyy}";
+                HasAttendanceStats = true;
             }
+
+            // Notifications
+            var notifications = await notificationsTask;
+            UnreadNotifications = notifications?.Count ?? 0;
         }
         catch (Exception ex)
         {
@@ -109,4 +212,56 @@ public partial class DashboardViewModel(
             IsBusy = false;
         }
     }
+
+    private static async Task<T?> SafeAsync<T>(Func<Task<T>> call) where T : class
+    {
+        try { return await call(); }
+        catch { return null; }
+    }
+
+    private static async Task<IReadOnlyList<T>?> SafeListAsync<T>(Func<Task<IReadOnlyList<T>>> call)
+    {
+        try { return await call(); }
+        catch { return null; }
+    }
+}
+
+/// <summary>Display wrapper for leave balances with pre-computed UI properties.</summary>
+public sealed class LeaveBalanceDisplayItem
+{
+    public LeaveBalanceDisplayItem(LeaveBalanceModel balance, string colorKey)
+    {
+        LeaveCode = balance.LeaveCode;
+        BalanceDays = Math.Max(0, balance.BalanceDays);
+        UsedDays = balance.UsedDays;
+        PendingDays = balance.PendingDays;
+        ColorKey = colorKey;
+
+        var totalPool = balance.OpeningBalanceDays + balance.CarriedForwardDays
+                        + balance.AdjustmentDays + balance.AccruedDays;
+        TotalEntitlement = totalPool > 0 ? totalPool : BalanceDays + UsedDays + PendingDays;
+        UsageProgress = TotalEntitlement > 0
+            ? Math.Min(1.0, (double)UsedDays / (double)TotalEntitlement)
+            : 0;
+
+        BalanceText = BalanceDays.ToString("0.#");
+        UsedText = UsedDays.ToString("0.#");
+        PendingText = PendingDays.ToString("0.#");
+        EntitlementText = TotalEntitlement.ToString("0.#");
+        HasPending = PendingDays > 0;
+    }
+
+    public string LeaveCode { get; }
+    public decimal BalanceDays { get; }
+    public decimal UsedDays { get; }
+    public decimal PendingDays { get; }
+    public decimal TotalEntitlement { get; }
+    public double UsageProgress { get; }
+    public string ColorKey { get; }
+
+    public string BalanceText { get; }
+    public string UsedText { get; }
+    public string PendingText { get; }
+    public string EntitlementText { get; }
+    public bool HasPending { get; }
 }
