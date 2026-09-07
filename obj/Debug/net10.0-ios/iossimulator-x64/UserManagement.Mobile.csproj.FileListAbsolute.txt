@@ -339,3 +339,6 @@ D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-ios\iossimu
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-ios\iossimulator-x64\UserManagement.Mobile.pdb
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-ios\iossimulator-x64\UserManagement.Mobile.genruntimeconfig.cache
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-ios\iossimulator-x64\ref\UserManagement.Mobile.dll
+D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-ios\iossimulator-x64\resizetizer\sp\splash_5740BA863A789EB3624F466C37C629A69BE8A43E4AFF03826652C58F6729C692.png
+D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-ios\iossimulator-x64\resizetizer\sp\splash_5740BA863A789EB3624F466C37C629A69BE8A43E4AFF03826652C58F6729C692@2x.png
+D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-ios\iossimulator-x64\resizetizer\sp\splash_5740BA863A789EB3624F466C37C629A69BE8A43E4AFF03826652C58F6729C692@3x.png
