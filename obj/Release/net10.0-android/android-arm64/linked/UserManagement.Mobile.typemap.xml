@@ -1,5 +1,5 @@
-<api type="release" assembly-name="UserManagement.Mobile" mvid="31f3c6ed328a4866ac831b379b741a23">
-  <module assembly-name="UserManagement.Mobile" mvid="31f3c6ed328a4866ac831b379b741a23" mvid-bytes="7cbzMYoyZkisgxs3m3QaIw==">
+<api type="release" assembly-name="UserManagement.Mobile" mvid="6302cb9156074a848aaf10f3c051b079">
+  <module assembly-name="UserManagement.Mobile" mvid="6302cb9156074a848aaf10f3c051b079" mvid-bytes="kcsCYwdWhEqKrxDzwFGweQ==">
     <types-scratch>
       <entry key="crc649911a318b147a1f0/MainActivity" java-name="crc649911a318b147a1f0/MainActivity" managed-type-name="UserManagement.Mobile.MainActivity" token="33554441" />
       <entry key="crc649911a318b147a1f0/MainApplication" java-name="crc649911a318b147a1f0/MainApplication" managed-type-name="UserManagement.Mobile.MainApplication" token="33554442" />

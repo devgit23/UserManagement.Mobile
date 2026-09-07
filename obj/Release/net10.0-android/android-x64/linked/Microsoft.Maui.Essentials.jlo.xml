@@ -114,6 +114,21 @@
         <method name="onReceive" method="n_onReceive:(Landroid/content/Context;Landroid/content/Intent;)V:GetOnReceive_Landroid_content_Context_Landroid_content_Intent_Handler" jni_signature="(Landroid/content/Context;Landroid/content/Intent;)V" params="android.content.Context p0, android.content.Intent p1" retval="void" super_call="p0, p1" activate_call="p0, p1" />
       </methods>
     </type>
+    <type name="SingleLocationListener" package="crc64f62664462a8937a9" application_java_class="android.app.Application" mono_runtime_initialization="mono.MonoPackageManager.LoadApplication (context);" extends_type="java.lang.Object" partial_assembly_qualified_name="Microsoft.Maui.Devices.Sensors.SingleLocationListener, Microsoft.Maui.Essentials">
+      <implemented_interfaces>
+        <interface name="android.location.LocationListener" />
+      </implemented_interfaces>
+      <constructors>
+        <constructor name="SingleLocationListener" method="n_.ctor:()V:" jni_signature="()V" managed_parameters="" retval="void" is_dynamically_registered="True" />
+      </constructors>
+      <methods>
+        <method name="onLocationChanged" method="n_onLocationChanged:(Landroid/location/Location;)V:GetOnLocationChanged_Landroid_location_Location_Handler:Android.Locations.ILocationListenerInvoker, Mono.Android, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" jni_signature="(Landroid/location/Location;)V" params="android.location.Location p0" retval="void" super_call="p0" activate_call="p0" />
+        <method name="onProviderDisabled" method="n_onProviderDisabled:(Ljava/lang/String;)V:GetOnProviderDisabled_Ljava_lang_String_Handler:Android.Locations.ILocationListenerInvoker, Mono.Android, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" jni_signature="(Ljava/lang/String;)V" params="java.lang.String p0" retval="void" super_call="p0" activate_call="p0" />
+        <method name="onProviderEnabled" method="n_onProviderEnabled:(Ljava/lang/String;)V:GetOnProviderEnabled_Ljava_lang_String_Handler:Android.Locations.ILocationListenerInvoker, Mono.Android, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" jni_signature="(Ljava/lang/String;)V" params="java.lang.String p0" retval="void" super_call="p0" activate_call="p0" />
+        <method name="onStatusChanged" method="n_onStatusChanged:(Ljava/lang/String;ILandroid/os/Bundle;)V:GetOnStatusChanged_Ljava_lang_String_ILandroid_os_Bundle_Handler:Android.Locations.ILocationListenerInvoker, Mono.Android, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" jni_signature="(Ljava/lang/String;ILandroid/os/Bundle;)V" params="java.lang.String p0, int p1, android.os.Bundle p2" retval="void" super_call="p0, p1, p2" activate_call="p0, p1, p2" />
+        <method name="onFlushComplete" method="n_onFlushComplete:(I)V:GetOnFlushComplete_IHandler:Android.Locations.ILocationListener, Mono.Android, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" jni_signature="(I)V" params="int p0" retval="void" super_call="p0" activate_call="p0" />
+      </methods>
+    </type>
   </jcw-types>
   <acw-types partial-assembly-name="Microsoft.Maui.Essentials" module-name="Microsoft.Maui.Essentials.dll">
     <type assembly-qualified-name="Microsoft.Maui.Authentication.WebAuthenticatorIntermediateActivity, Microsoft.Maui.Essentials, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null" compat-jni-name="microsoft.maui.authentication.WebAuthenticatorIntermediateActivity" java-key="crc6468b6408a11370c2f.WebAuthenticatorIntermediateActivity" managed-key="Microsoft.Maui.Authentication.WebAuthenticatorIntermediateActivity" partial-assembly-qualified-name="Microsoft.Maui.Authentication.WebAuthenticatorIntermediateActivity, Microsoft.Maui.Essentials" />
@@ -126,5 +141,6 @@
     <type assembly-qualified-name="Microsoft.Maui.Devices.DeviceDisplayImplementation+Listener, Microsoft.Maui.Essentials, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null" compat-jni-name="microsoft.maui.devices.DeviceDisplayImplementation_Listener" java-key="crc640a8d9a12ddbf2cf2.DeviceDisplayImplementation_Listener" managed-key="Microsoft.Maui.Devices.DeviceDisplayImplementation.Listener" partial-assembly-qualified-name="Microsoft.Maui.Devices.DeviceDisplayImplementation+Listener, Microsoft.Maui.Essentials" />
     <type assembly-qualified-name="Microsoft.Maui.Devices.BatteryBroadcastReceiver, Microsoft.Maui.Essentials, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null" compat-jni-name="microsoft.maui.devices.BatteryBroadcastReceiver" java-key="crc640a8d9a12ddbf2cf2.BatteryBroadcastReceiver" managed-key="Microsoft.Maui.Devices.BatteryBroadcastReceiver" partial-assembly-qualified-name="Microsoft.Maui.Devices.BatteryBroadcastReceiver, Microsoft.Maui.Essentials" />
     <type assembly-qualified-name="Microsoft.Maui.Devices.EnergySaverBroadcastReceiver, Microsoft.Maui.Essentials, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null" compat-jni-name="microsoft.maui.devices.EnergySaverBroadcastReceiver" java-key="crc640a8d9a12ddbf2cf2.EnergySaverBroadcastReceiver" managed-key="Microsoft.Maui.Devices.EnergySaverBroadcastReceiver" partial-assembly-qualified-name="Microsoft.Maui.Devices.EnergySaverBroadcastReceiver, Microsoft.Maui.Essentials" />
+    <type assembly-qualified-name="Microsoft.Maui.Devices.Sensors.SingleLocationListener, Microsoft.Maui.Essentials, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null" compat-jni-name="microsoft.maui.devices.sensors.SingleLocationListener" java-key="crc64f62664462a8937a9.SingleLocationListener" managed-key="Microsoft.Maui.Devices.Sensors.SingleLocationListener" partial-assembly-qualified-name="Microsoft.Maui.Devices.Sensors.SingleLocationListener, Microsoft.Maui.Essentials" />
   </acw-types>
 </api>

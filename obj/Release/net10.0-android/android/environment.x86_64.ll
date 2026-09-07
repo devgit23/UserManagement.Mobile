@@ -117,9 +117,9 @@ target triple = "x86_64-unknown-linux-android21"
 	i32 32, ; uint32_t number_of_dso_cache_entries
 	i32 990, ; uint32_t number_of_aot_cache_entries
 	i32 118, ; uint32_t number_of_shared_libraries
-	i32 u0x020002cf, ; uint32_t android_runtime_jnienv_class_token
-	i32 u0x06001c97, ; uint32_t jnienv_initialize_method_token
-	i32 u0x06001c96, ; uint32_t jnienv_registerjninatives_method_token
+	i32 u0x020002d8, ; uint32_t android_runtime_jnienv_class_token
+	i32 u0x06001d28, ; uint32_t jnienv_initialize_method_token
+	i32 u0x06001d27, ; uint32_t jnienv_registerjninatives_method_token
 	i32 0, ; uint32_t jni_remapping_replacement_type_count
 	i32 0, ; uint32_t jni_remapping_replacement_method_index_entry_count
 	i32 u0x00000000, ; uint32_t mono_components_mask

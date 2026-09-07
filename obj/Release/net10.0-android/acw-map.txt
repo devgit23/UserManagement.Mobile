@@ -79,6 +79,9 @@ android.database.Cursor;android.database.Cursor
 Android.Graphics.Drawables.IAnimatable, Mono.Android;android.graphics.drawable.Animatable
 Android.Graphics.Drawables.IAnimatable;android.graphics.drawable.Animatable
 android.graphics.drawable.Animatable;android.graphics.drawable.Animatable
+Android.Locations.ILocationListener, Mono.Android;android.location.LocationListener
+Android.Locations.ILocationListener;android.location.LocationListener
+android.location.LocationListener;android.location.LocationListener
 Android.OS.IBinder, Mono.Android;android.os.IBinder
 Android.OS.IBinder;android.os.IBinder
 android.os.IBinder;android.os.IBinder
@@ -430,6 +433,9 @@ mono.androidx.appcompat.widget.Toolbar_OnMenuItemClickListenerImplementor;mono.a
 AndroidX.AppCompat.Widget.Toolbar+NavigationOnClickEventDispatcher, Xamarin.AndroidX.AppCompat;androidx.appcompat.widget.Toolbar_NavigationOnClickEventDispatcher
 AndroidX.AppCompat.Widget.Toolbar.NavigationOnClickEventDispatcher;androidx.appcompat.widget.Toolbar_NavigationOnClickEventDispatcher
 androidx.appcompat.widget.Toolbar_NavigationOnClickEventDispatcher;androidx.appcompat.widget.Toolbar_NavigationOnClickEventDispatcher
+AndroidX.Core.App.ActivityCompat+IPermissionCompatDelegate, Xamarin.AndroidX.Core;androidx.core.app.ActivityCompat$PermissionCompatDelegate
+AndroidX.Core.App.ActivityCompat.IPermissionCompatDelegate;androidx.core.app.ActivityCompat$PermissionCompatDelegate
+androidx.core.app.ActivityCompat$PermissionCompatDelegate;androidx.core.app.ActivityCompat$PermissionCompatDelegate
 AndroidX.Core.App.SharedElementCallback+IOnSharedElementsReadyListener, Xamarin.AndroidX.Core;androidx.core.app.SharedElementCallback$OnSharedElementsReadyListener
 AndroidX.Core.App.SharedElementCallback.IOnSharedElementsReadyListener;androidx.core.app.SharedElementCallback$OnSharedElementsReadyListener
 androidx.core.app.SharedElementCallback$OnSharedElementsReadyListener;androidx.core.app.SharedElementCallback$OnSharedElementsReadyListener
@@ -1255,6 +1261,9 @@ microsoft.maui.devices.DeviceDisplayImplementation_Listener;crc640a8d9a12ddbf2cf
 Microsoft.Maui.Devices.EnergySaverBroadcastReceiver, Microsoft.Maui.Essentials;crc640a8d9a12ddbf2cf2.EnergySaverBroadcastReceiver
 Microsoft.Maui.Devices.EnergySaverBroadcastReceiver;crc640a8d9a12ddbf2cf2.EnergySaverBroadcastReceiver
 microsoft.maui.devices.EnergySaverBroadcastReceiver;crc640a8d9a12ddbf2cf2.EnergySaverBroadcastReceiver
+Microsoft.Maui.Devices.Sensors.SingleLocationListener, Microsoft.Maui.Essentials;crc64f62664462a8937a9.SingleLocationListener
+Microsoft.Maui.Devices.Sensors.SingleLocationListener;crc64f62664462a8937a9.SingleLocationListener
+microsoft.maui.devices.sensors.SingleLocationListener;crc64f62664462a8937a9.SingleLocationListener
 Microsoft.Maui.Graphics.LinearGradientShaderFactory, Microsoft.Maui;crc64b5e713d400f589b7.LinearGradientShaderFactory
 Microsoft.Maui.Graphics.LinearGradientShaderFactory;crc64b5e713d400f589b7.LinearGradientShaderFactory
 microsoft.maui.graphics.LinearGradientShaderFactory;crc64b5e713d400f589b7.LinearGradientShaderFactory

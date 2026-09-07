@@ -502,3 +502,4 @@ D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Release\net10.0-android\s
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Release\net10.0-android\resizetizer\f\materialdesignicons-webfont.ttf
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Release\net10.0-android\assets\materialdesignicons-webfont.ttf
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Release\net10.0-android\UserManagement.Mobile.sourcelink.json
+D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Release\net10.0-android\android\src\crc64f62664462a8937a9\SingleLocationListener.java

@@ -16,10 +16,12 @@ namespace UserManagement.Mobile.Core.ViewModels;
 
 public partial class AttendanceViewModel(
     IAttendanceApi attendanceApi,
+    IWorkforceApi workforceApi,
     ILocalAttendanceRepository localRepo,
     IConnectivityService connectivity,
     ISessionService sessionService,
     IDialogService dialogService,
+    IGeofenceMonitoringService geofenceService,
     LocalDatabase db) : ViewModelBase
 {
     [ObservableProperty]
@@ -34,6 +36,13 @@ public partial class AttendanceViewModel(
     [ObservableProperty]
     private bool _isOnline = true;
 
+    [ObservableProperty]
+    private bool _isGeofenceActive;
+
+    [ObservableProperty]
+    private string? _geofenceWarning;
+
+    private GeofenceConfig? _geofenceConfig;
     private CancellationTokenSource? _timerCts;
 
     public ObservableCollection<AttendanceLogModel> RecentLogs { get; } = [];
@@ -100,7 +109,30 @@ public partial class AttendanceViewModel(
     public override async Task InitializeAsync()
     {
         Title = "Attendance";
+
+        // Subscribe to geofence events
+        geofenceService.GeofenceExited += OnGeofenceExited;
+        geofenceService.GeofenceReEntered += OnGeofenceReEntered;
+        geofenceService.GraceExpired += OnGeofenceGraceExpired;
+        geofenceService.MonitoringError += OnGeofenceError;
+
+        // Fetch geofence config
+        if (connectivity.IsConnected)
+        {
+            try
+            {
+                _geofenceConfig = await workforceApi.GetGeofenceConfigAsync();
+            }
+            catch { /* non-critical */ }
+        }
+
         await LoadDataAsync();
+
+        // Start monitoring if already clocked in
+        if (IsClockedIn && _geofenceConfig is { IsFullyConfigured: true })
+        {
+            await StartGeofenceAsync();
+        }
     }
 
     protected override async Task OnRefreshAsync() => await LoadDataAsync();
@@ -189,6 +221,11 @@ public partial class AttendanceViewModel(
                 IsClockedIn = true;
                 ClockInTime = log.ClockInAt;
                 await LoadDataAsync();
+
+                if (_geofenceConfig is { IsFullyConfigured: true })
+                {
+                    await StartGeofenceAsync();
+                }
             }
             else
             {
@@ -260,6 +297,9 @@ public partial class AttendanceViewModel(
             if (connectivity.IsConnected)
             {
                 await attendanceApi.ClockOutAsync(request);
+                geofenceService.StopMonitoring();
+                IsGeofenceActive = false;
+                GeofenceWarning = null;
                 IsClockedIn = false;
                 ClockInTime = null;
                 await LoadDataAsync();
@@ -345,5 +385,102 @@ public partial class AttendanceViewModel(
             cancel: "Cancel",
             placeholder: "e.g., Working from home today",
             maxLength: 500);
+    }
+
+    // --- Geofence ---
+
+    private async Task StartGeofenceAsync()
+    {
+        if (_geofenceConfig is not { IsFullyConfigured: true })
+            return;
+
+        await geofenceService.StartMonitoringAsync(
+            _geofenceConfig.OfficeLatitude!.Value,
+            _geofenceConfig.OfficeLongitude!.Value,
+            _geofenceConfig.RadiusMeters,
+            _geofenceConfig.GracePeriodMinutes);
+
+        IsGeofenceActive = geofenceService.IsMonitoring;
+    }
+
+    private void OnGeofenceExited(object? sender, GeofenceEventArgs e)
+    {
+        GeofenceWarning = $"You are {e.Distance:N0}m from the office. Auto punch-out in {_geofenceConfig?.GracePeriodMinutes ?? 5} min.";
+    }
+
+    private void OnGeofenceReEntered(object? sender, EventArgs e)
+    {
+        GeofenceWarning = null;
+    }
+
+    private async void OnGeofenceGraceExpired(object? sender, EventArgs e)
+    {
+        GeofenceWarning = null;
+        IsGeofenceActive = false;
+
+        try
+        {
+            if (connectivity.IsConnected)
+            {
+                await attendanceApi.ClockOutAsync(new AttendanceClockRequest
+                {
+                    ClientTimeUtc = DateTimeOffset.UtcNow,
+                    Remarks = "Auto punch-out: left geofence area"
+                });
+            }
+            else
+            {
+                var nowUtc = DateTimeOffset.UtcNow;
+                var userId = sessionService.CurrentUser?.Id.ToString() ?? string.Empty;
+                var openLog = await localRepo.GetTodayOpenLogAsync(userId);
+                if (openLog is not null)
+                {
+                    openLog.ClockOutAt = nowUtc;
+                    openLog.Status = "completed";
+                    openLog.Remarks = string.IsNullOrWhiteSpace(openLog.Remarks)
+                        ? "Auto punch-out: left geofence area"
+                        : $"{openLog.Remarks} | Auto punch-out: left geofence area";
+                    openLog.SyncStatus = SyncStatus.PendingUpload;
+                    openLog.LastModifiedUtc = nowUtc;
+                    await localRepo.UpsertAsync(openLog);
+
+                    await db.GetConnection().InsertAsync(new SyncQueueItem
+                    {
+                        EntityType = "AttendanceLog",
+                        EntityId = openLog.Id,
+                        OperationType = "ClockOut",
+                        SerializedPayload = JsonSerializer.Serialize(new AttendanceClockRequest
+                        {
+                            ClientTimeUtc = nowUtc,
+                            Remarks = "Auto punch-out: left geofence area"
+                        }),
+                        CreatedUtc = nowUtc
+                    });
+                }
+            }
+
+            IsClockedIn = false;
+            ClockInTime = null;
+            await LoadDataAsync();
+        }
+        catch (Exception ex)
+        {
+            SetError($"Auto clock-out failed: {ex.Message}");
+        }
+    }
+
+    private void OnGeofenceError(object? sender, string message)
+    {
+        IsGeofenceActive = false;
+        GeofenceWarning = null;
+    }
+
+    public override Task OnDisappearingAsync()
+    {
+        geofenceService.GeofenceExited -= OnGeofenceExited;
+        geofenceService.GeofenceReEntered -= OnGeofenceReEntered;
+        geofenceService.GraceExpired -= OnGeofenceGraceExpired;
+        geofenceService.MonitoringError -= OnGeofenceError;
+        return Task.CompletedTask;
     }
 }

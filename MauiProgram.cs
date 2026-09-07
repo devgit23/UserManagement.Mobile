@@ -96,6 +96,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<ISessionService, SessionService>();
         builder.Services.AddSingleton<IAuthenticationService, AuthenticationService>();
         builder.Services.AddSingleton<IDialogService, UserManagement.Mobile.Services.DialogService>();
+        builder.Services.AddSingleton<IGeofenceMonitoringService, UserManagement.Mobile.Handlers.MauiGeofenceMonitoringService>();
 
         // --- ViewModels ---
         builder.Services.AddTransient<LoginViewModel>();

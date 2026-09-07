@@ -74,6 +74,40 @@
                     </VerticalStackLayout>
                 </Border>
 
+                <!-- Geofence Warning Banner -->
+                <Border BackgroundColor="#FFF3CD"
+                        StrokeShape="RoundRectangle 8"
+                        Stroke="#FFECB5" StrokeThickness="1"
+                        Padding="12,10"
+                        IsVisible="{Binding GeofenceWarning, Converter={StaticResource IsNotNullConverter}}">
+                    <HorizontalStackLayout Spacing="10">
+                        <Label Text="&#xF0026;"
+                               FontFamily="MaterialDesignIcons" FontSize="18"
+                               TextColor="#856404"
+                               VerticalOptions="Center" />
+                        <Label Text="{Binding GeofenceWarning}"
+                               TextColor="#856404" FontSize="13"
+                               VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Border>
+
+                <!-- Geofence Active Indicator -->
+                <Border BackgroundColor="#D1E7DD"
+                        StrokeShape="RoundRectangle 8"
+                        Stroke="#BADBCC" StrokeThickness="1"
+                        Padding="8,6"
+                        IsVisible="{Binding IsGeofenceActive}">
+                    <HorizontalStackLayout Spacing="8" HorizontalOptions="Center">
+                        <Label Text="&#xF05F5;"
+                               FontFamily="MaterialDesignIcons" FontSize="16"
+                               TextColor="#0F5132"
+                               VerticalOptions="Center" />
+                        <Label Text="Geofence monitoring active"
+                               TextColor="#0F5132" FontSize="12"
+                               VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Border>
+
                 <!-- Offline Banner -->
                 <Border Style="{StaticResource OfflineBanner}"
                         IsVisible="{Binding IsOnline, Converter={StaticResource InvertedBoolConverter}}">
