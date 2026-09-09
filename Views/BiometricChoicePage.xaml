@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:UserManagement.Mobile.Core.ViewModels;assembly=UserManagement.Mobile.Core"
+             x:Class="UserManagement.Mobile.Views.BiometricChoicePage"
+             x:DataType="vm:BiometricChoiceViewModel"
+             Title="{Binding Title}"
+             Shell.PresentationMode="ModalAnimated">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <!-- Header -->
+            <VerticalStackLayout Spacing="4" Margin="0,8,0,0">
+                <Label Text="Choose Verification Method"
+                       FontSize="22" FontFamily="OpenSansSemibold"
+                       TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+                <Label Text="Select how you want to mark your attendance"
+                       Style="{StaticResource CardSubtext}" />
+            </VerticalStackLayout>
+
+            <!-- Face Scan Card -->
+            <Border Padding="20" StrokeShape="RoundRectangle 16"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource CardSurface}, Dark={StaticResource CardSurfaceDark}}"
+                    Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}"
+                    StrokeThickness="1">
+                <Border.Shadow>
+                    <Shadow Brush="{StaticResource Gray400}" Offset="0,2" Radius="8" Opacity="0.1" />
+                </Border.Shadow>
+                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="16">
+                    <!-- Icon circle -->
+                    <Border Grid.Column="0" WidthRequest="56" HeightRequest="56"
+                            StrokeShape="RoundRectangle 28"
+                            Stroke="Transparent" StrokeThickness="0"
+                            BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryLight}, Dark=#1A0F6CBD}"
+                            Padding="0">
+                        <Label Text="&#xF0A71;"
+                               FontFamily="MaterialDesignIcons" FontSize="26"
+                               TextColor="{StaticResource Primary}"
+                               HorizontalOptions="Center" VerticalOptions="Center" />
+                    </Border>
+
+                    <VerticalStackLayout Grid.Column="1" Spacing="4" VerticalOptions="Center">
+                        <Label Text="Face Scan" FontSize="16" FontFamily="OpenSansSemibold"
+                               TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+                        <Label Text="Use your camera for face recognition"
+                               Style="{StaticResource CardSubtext}" FontSize="13" />
+                        <!-- Enrollment status -->
+                        <Label Text="Enrolled" FontSize="11" TextColor="{StaticResource Success}"
+                               IsVisible="{Binding FaceEnrolled}" />
+                        <Label FontSize="11" TextColor="{StaticResource Warning}"
+                               IsVisible="{Binding FaceEnrolled, Converter={StaticResource InvertedBoolConverter}}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Not enrolled — " />
+                                    <Span Text="Set up now" TextColor="{StaticResource Primary}"
+                                          TextDecorations="Underline" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </VerticalStackLayout>
+
+                    <Label Grid.Column="2" Text="&#xF0142;"
+                           FontFamily="MaterialDesignIcons" FontSize="20"
+                           TextColor="{StaticResource Gray300}" VerticalOptions="Center" />
+                </Grid>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SelectFaceCommand}" />
+                </Border.GestureRecognizers>
+            </Border>
+
+            <!-- Current Status -->
+            <Border Style="{StaticResource CardBorderCompact}" Padding="14,10">
+                <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                    <Label Text="&#xF02DA;" FontFamily="MaterialDesignIcons" FontSize="16"
+                           TextColor="{StaticResource Gray400}" VerticalOptions="Center" />
+                    <Label Text="{Binding StatusText}" FontSize="13"
+                           TextColor="{StaticResource Gray500}" VerticalOptions="Center" />
+                </HorizontalStackLayout>
+            </Border>
+
+            <!-- Loading -->
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+
+            <!-- Error -->
+            <Border Style="{StaticResource BadgeDanger}" Padding="14,10"
+                    IsVisible="{Binding ErrorMessage, Converter={StaticResource IsNotNullConverter}}">
+                <HorizontalStackLayout Spacing="8" HorizontalOptions="Center">
+                    <Label Text="&#xF05D6;" FontFamily="MaterialDesignIcons"
+                           FontSize="18" TextColor="{StaticResource Danger}" VerticalOptions="Center" />
+                    <Label Text="{Binding ErrorMessage}" TextColor="{StaticResource Danger}"
+                           FontSize="13" VerticalOptions="Center" />
+                </HorizontalStackLayout>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

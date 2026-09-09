@@ -17,4 +17,10 @@ public sealed class LocalAttendanceLog : LocalEntityBase
     public int EarlyExitMinutes { get; set; }
     public string Status { get; set; } = "open";
     public string? Remarks { get; set; }
+
+    /// <summary>Biometric verification method: "face", "fingerprint", or "manual".</summary>
+    public string? VerificationMethod { get; set; }
+
+    /// <summary>Biometric match confidence score (0.0 – 1.0).</summary>
+    public double? VerificationConfidence { get; set; }
 }

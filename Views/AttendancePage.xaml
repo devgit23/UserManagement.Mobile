@@ -74,6 +74,41 @@
                     </VerticalStackLayout>
                 </Border>
 
+                <!-- Biometric Attendance Card -->
+                <Border Style="{StaticResource CardBorder}" Padding="16"
+                        IsVisible="{Binding ShowBiometric}">
+                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
+                        <Border Grid.Column="0" WidthRequest="52" HeightRequest="52"
+                                StrokeShape="RoundRectangle 26"
+                                Stroke="Transparent" StrokeThickness="0"
+                                BackgroundColor="{AppThemeBinding
+                                    Light={StaticResource PrimaryLight},
+                                    Dark=#1A0078D4}"
+                                Padding="0">
+                            <Label Text="&#xF0A71;"
+                                   FontFamily="MaterialDesignIcons" FontSize="24"
+                                   TextColor="{StaticResource Primary}"
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Spacing="4" VerticalOptions="Center">
+                            <Label Text="Biometric Attendance"
+                                   FontFamily="OpenSansSemibold" FontSize="15"
+                                   TextColor="{AppThemeBinding
+                                       Light={StaticResource Gray900},
+                                       Dark={StaticResource White}}" />
+                            <Label Text="Use face or fingerprint to clock in/out"
+                                   FontSize="12" TextColor="{StaticResource Gray400}" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="2" Text="&#xF0142;"
+                               FontFamily="MaterialDesignIcons" FontSize="22"
+                               TextColor="{StaticResource Gray300}"
+                               VerticalOptions="Center" />
+                    </Grid>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToBiometricCommand}" />
+                    </Border.GestureRecognizers>
+                </Border>
+
                 <!-- Geofence Warning Banner -->
                 <Border BackgroundColor="#FFF3CD"
                         StrokeShape="RoundRectangle 8"

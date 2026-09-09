@@ -33,4 +33,14 @@ public partial class SettingsPage : ContentPage
     {
         await Shell.Current.GoToAsync(nameof(TimesheetPage));
     }
+
+    private async void OnBiometricSettingsTapped(object? sender, TappedEventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(BiometricSettingsPage));
+    }
+
+    private async void OnBiometricAdminTapped(object? sender, TappedEventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(AdminBiometricPage));
+    }
 }

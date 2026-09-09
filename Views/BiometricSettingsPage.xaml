@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:UserManagement.Mobile.Core.ViewModels;assembly=UserManagement.Mobile.Core"
+             x:Class="UserManagement.Mobile.Views.BiometricSettingsPage"
+             x:DataType="vm:BiometricSettingsViewModel"
+             Title="{Binding Title}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="16">
+
+            <!-- Face Recognition Section -->
+            <Border Style="{StaticResource CardBorder}">
+                <VerticalStackLayout Spacing="12">
+                    <HorizontalStackLayout Spacing="8">
+                        <Label Text="&#xF0A71;" FontFamily="MaterialDesignIcons" FontSize="20"
+                               TextColor="{StaticResource Primary}" VerticalOptions="Center" />
+                        <Label Text="Face Recognition" Style="{StaticResource SectionHeader}" Margin="0" />
+                    </HorizontalStackLayout>
+                    <BoxView Style="{StaticResource Divider}" Margin="0" />
+
+                    <!-- Enrolled state -->
+                    <VerticalStackLayout Spacing="8" IsVisible="{Binding FaceEnrolled}">
+                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                            <Label Text="Status" FontSize="14" TextColor="{StaticResource Gray500}" />
+                            <Border Grid.Column="1" BackgroundColor="{StaticResource SuccessLight}"
+                                    StrokeShape="RoundRectangle 10" Stroke="Transparent" Padding="10,4">
+                                <Label Text="Enrolled" FontSize="12" FontFamily="OpenSansSemibold"
+                                       TextColor="{StaticResource Success}" />
+                            </Border>
+                        </Grid>
+                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                            <Label Text="Enrolled On" FontSize="14" TextColor="{StaticResource Gray500}" />
+                            <Label Grid.Column="1" Text="{Binding FaceEnrolledDate}"
+                                   FontSize="14" TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+                        </Grid>
+                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                            <Label Text="Quality Score" FontSize="14" TextColor="{StaticResource Gray500}" />
+                            <Label Grid.Column="1" Text="{Binding FaceQualityScore, StringFormat='{0:F1}%'}"
+                                   FontSize="14" TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+                        </Grid>
+
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="10" Margin="0,8,0,0">
+                            <Button Text="Re-enroll" Style="{StaticResource SecondaryButton}"
+                                    Command="{Binding ReEnrollFaceCommand}" />
+                            <Button Grid.Column="1" Text="Remove"
+                                    Style="{StaticResource DangerButton}"
+                                    Command="{Binding RemoveFaceCommand}" />
+                        </Grid>
+                    </VerticalStackLayout>
+
+                    <!-- Not enrolled state -->
+                    <VerticalStackLayout Spacing="12"
+                                         IsVisible="{Binding FaceEnrolled, Converter={StaticResource InvertedBoolConverter}}">
+                        <Label Text="Face recognition is not set up yet."
+                               Style="{StaticResource CardSubtext}" />
+                        <Button Text="&#xF0A71;  Set Up Face Recognition"
+                                Style="{StaticResource PrimaryButton}"
+                                Command="{Binding ReEnrollFaceCommand}" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Loading -->
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+
+            <!-- Error -->
+            <Border Style="{StaticResource BadgeDanger}" Padding="14,10"
+                    IsVisible="{Binding ErrorMessage, Converter={StaticResource IsNotNullConverter}}">
+                <HorizontalStackLayout Spacing="8" HorizontalOptions="Center">
+                    <Label Text="&#xF05D6;" FontFamily="MaterialDesignIcons"
+                           FontSize="18" TextColor="{StaticResource Danger}" VerticalOptions="Center" />
+                    <Label Text="{Binding ErrorMessage}" TextColor="{StaticResource Danger}"
+                           FontSize="13" VerticalOptions="Center" />
+                </HorizontalStackLayout>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

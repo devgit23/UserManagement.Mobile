@@ -81,6 +81,58 @@
                 </Border.GestureRecognizers>
             </Border>
 
+            <!-- Biometric Settings Link Card -->
+            <Border Style="{StaticResource CardBorder}"
+                    IsVisible="{Binding ShowBiometricSettings}">
+                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                    <Border Grid.Column="0" WidthRequest="44" HeightRequest="44"
+                            StrokeShape="RoundRectangle 22"
+                            Stroke="Transparent" StrokeThickness="0"
+                            BackgroundColor="{AppThemeBinding Light=#E8DEF8, Dark=#1A6750A4}" Padding="0">
+                        <Label Text="&#xF0A71;"
+                               FontFamily="MaterialDesignIcons" FontSize="22"
+                               TextColor="#6750A4"
+                               HorizontalOptions="Center" VerticalOptions="Center" />
+                    </Border>
+                    <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                        <Label Text="Biometric Settings" Style="{StaticResource CardTitle}" />
+                        <Label Text="Manage face and fingerprint enrollment" Style="{StaticResource CardSubtext}" />
+                    </VerticalStackLayout>
+                    <Label Grid.Column="2" Text="&#xF0142;"
+                           FontFamily="MaterialDesignIcons" FontSize="20"
+                           TextColor="{StaticResource Gray300}" VerticalOptions="Center" />
+                </Grid>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnBiometricSettingsTapped" />
+                </Border.GestureRecognizers>
+            </Border>
+
+            <!-- Admin Biometric Dashboard Link Card -->
+            <Border Style="{StaticResource CardBorder}"
+                    IsVisible="{Binding ShowBiometricAdmin}">
+                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                    <Border Grid.Column="0" WidthRequest="44" HeightRequest="44"
+                            StrokeShape="RoundRectangle 22"
+                            Stroke="Transparent" StrokeThickness="0"
+                            BackgroundColor="{AppThemeBinding Light=#FFE0B2, Dark=#1AFF9800}" Padding="0">
+                        <Label Text="&#xF0C59;"
+                               FontFamily="MaterialDesignIcons" FontSize="22"
+                               TextColor="#E65100"
+                               HorizontalOptions="Center" VerticalOptions="Center" />
+                    </Border>
+                    <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                        <Label Text="Biometric Admin" Style="{StaticResource CardTitle}" />
+                        <Label Text="Manage employee enrollments and stats" Style="{StaticResource CardSubtext}" />
+                    </VerticalStackLayout>
+                    <Label Grid.Column="2" Text="&#xF0142;"
+                           FontFamily="MaterialDesignIcons" FontSize="20"
+                           TextColor="{StaticResource Gray300}" VerticalOptions="Center" />
+                </Grid>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnBiometricAdminTapped" />
+                </Border.GestureRecognizers>
+            </Border>
+
             <!-- Data & Sync Section -->
             <Border Style="{StaticResource CardBorder}">
                 <VerticalStackLayout Spacing="12">

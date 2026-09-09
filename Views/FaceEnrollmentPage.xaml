@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:UserManagement.Mobile.Core.ViewModels;assembly=UserManagement.Mobile.Core"
+             x:Class="UserManagement.Mobile.Views.FaceEnrollmentPage"
+             x:DataType="vm:FaceEnrollmentViewModel"
+             Title="{Binding Title}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <!-- Step progress -->
+            <VerticalStackLayout Spacing="8">
+                <Label Text="{Binding CurrentStep, StringFormat='Step {0} of 3'}"
+                       FontSize="14" FontFamily="OpenSansSemibold"
+                       TextColor="{StaticResource Primary}" />
+                <ProgressBar Progress="{Binding Progress}"
+                             ProgressColor="{StaticResource Primary}"
+                             HeightRequest="6" />
+            </VerticalStackLayout>
+
+            <!-- Instruction -->
+            <Label Text="{Binding StepInstruction}"
+                   FontSize="18" FontFamily="OpenSansSemibold"
+                   HorizontalTextAlignment="Center"
+                   TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+
+            <!-- Camera preview / captured photo area -->
+            <Border StrokeShape="RoundRectangle 20"
+                    Stroke="{StaticResource Gray200}"
+                    StrokeThickness="2"
+                    HeightRequest="380"
+                    BackgroundColor="#F0F0F0"
+                    HorizontalOptions="Fill"
+                    IsVisible="{Binding EnrollmentComplete, Converter={StaticResource InvertedBoolConverter}}">
+                <Grid>
+                    <BoxView Color="{AppThemeBinding Light=#F5F5F5, Dark=#2D2D2D}" />
+
+                    <!-- Captured photo preview -->
+                    <Image x:Name="CapturedPreview"
+                           Aspect="AspectFill"
+                           IsVisible="False" />
+
+                    <!-- Face oval guide (hidden after capture) -->
+                    <Border WidthRequest="200" HeightRequest="260"
+                            StrokeShape="RoundRectangle 100"
+                            Stroke="{StaticResource Primary}"
+                            StrokeThickness="2"
+                            BackgroundColor="Transparent"
+                            HorizontalOptions="Center" VerticalOptions="Center"
+                            Opacity="0.6"
+                            x:Name="FaceGuide">
+                        <Label Text="&#xF0A71;"
+                               FontFamily="MaterialDesignIcons" FontSize="60"
+                               TextColor="{StaticResource Gray400}"
+                               HorizontalOptions="Center" VerticalOptions="Center"
+                               Opacity="0.4"
+                               x:Name="FaceIcon" />
+                    </Border>
+
+                    <!-- Step indicator badges -->
+                    <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Start"
+                                           Margin="0,12,0,0" Spacing="8">
+                        <Border BackgroundColor="{Binding CurrentStep, Converter={StaticResource IsNotNullConverter}, ConverterParameter=1}"
+                                WidthRequest="10" HeightRequest="10"
+                                StrokeShape="RoundRectangle 5" Stroke="Transparent"
+                                x:Name="Dot1" />
+                        <Border WidthRequest="10" HeightRequest="10"
+                                StrokeShape="RoundRectangle 5" Stroke="Transparent"
+                                x:Name="Dot2" />
+                        <Border WidthRequest="10" HeightRequest="10"
+                                StrokeShape="RoundRectangle 5" Stroke="Transparent"
+                                x:Name="Dot3" />
+                    </HorizontalStackLayout>
+                </Grid>
+            </Border>
+
+            <!-- Tips (visible during capture) -->
+            <VerticalStackLayout Spacing="6"
+                                 IsVisible="{Binding EnrollmentComplete, Converter={StaticResource InvertedBoolConverter}}">
+                <HorizontalStackLayout Spacing="8">
+                    <Label Text="&#xF012C;" FontFamily="MaterialDesignIcons" FontSize="14"
+                           TextColor="{StaticResource Success}" VerticalOptions="Center" />
+                    <Label Text="Ensure good lighting" FontSize="13" TextColor="{StaticResource Gray500}" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Spacing="8">
+                    <Label Text="&#xF012C;" FontFamily="MaterialDesignIcons" FontSize="14"
+                           TextColor="{StaticResource Success}" VerticalOptions="Center" />
+                    <Label Text="Remove glasses or mask" FontSize="13" TextColor="{StaticResource Gray500}" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Spacing="8">
+                    <Label Text="&#xF012C;" FontFamily="MaterialDesignIcons" FontSize="14"
+                           TextColor="{StaticResource Success}" VerticalOptions="Center" />
+                    <Label Text="Keep your face centered in the oval" FontSize="13" TextColor="{StaticResource Gray500}" />
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+
+            <!-- Capture button — opens device camera -->
+            <Button Text="&#xF0A71;  Capture"
+                    FontFamily="OpenSansSemibold"
+                    BackgroundColor="{StaticResource Primary}"
+                    TextColor="White" FontSize="16"
+                    HeightRequest="52" CornerRadius="26"
+                    Clicked="OnCaptureClicked"
+                    IsEnabled="{Binding IsCapturing, Converter={StaticResource InvertedBoolConverter}}"
+                    IsVisible="{Binding EnrollmentComplete, Converter={StaticResource InvertedBoolConverter}}">
+                <Button.Shadow>
+                    <Shadow Brush="{StaticResource Primary}" Offset="0,3" Radius="8" Opacity="0.3" />
+                </Button.Shadow>
+            </Button>
+
+            <!-- Retake button -->
+            <Button Text="Retake Previous"
+                    Style="{StaticResource SecondaryButton}"
+                    Command="{Binding RetakeStepCommand}"
+                    IsVisible="{Binding EnrollmentComplete, Converter={StaticResource InvertedBoolConverter}}" />
+
+            <!-- Enrolling spinner -->
+            <VerticalStackLayout Spacing="12" IsVisible="{Binding IsEnrolling}"
+                                 HorizontalOptions="Center">
+                <ActivityIndicator IsRunning="True" Color="{StaticResource Primary}" />
+                <Label Text="Processing enrollment..." FontSize="14"
+                       TextColor="{StaticResource Gray500}" HorizontalOptions="Center" />
+            </VerticalStackLayout>
+
+            <!-- Enrollment complete -->
+            <VerticalStackLayout Spacing="20" IsVisible="{Binding EnrollmentComplete}"
+                                 HorizontalOptions="Center" Margin="0,20">
+                <Border WidthRequest="100" HeightRequest="100"
+                        StrokeShape="RoundRectangle 50"
+                        Stroke="Transparent" StrokeThickness="0"
+                        BackgroundColor="{StaticResource SuccessLight}"
+                        HorizontalOptions="Center" Padding="0">
+                    <Label Text="&#xF012C;"
+                           FontFamily="MaterialDesignIcons" FontSize="48"
+                           TextColor="{StaticResource Success}"
+                           HorizontalOptions="Center" VerticalOptions="Center" />
+                </Border>
+
+                <Label Text="Face Enrolled Successfully!"
+                       FontSize="20" FontFamily="OpenSansSemibold"
+                       HorizontalOptions="Center"
+                       TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+
+                <Label Text="You can now use face recognition for attendance"
+                       Style="{StaticResource CardSubtext}" HorizontalTextAlignment="Center" />
+
+                <Button Text="Done"
+                        Style="{StaticResource PrimaryButton}"
+                        Command="{Binding FinishCommand}"
+                        WidthRequest="200" HorizontalOptions="Center" />
+            </VerticalStackLayout>
+
+            <!-- Error -->
+            <Border Style="{StaticResource BadgeDanger}" Padding="14,10"
+                    IsVisible="{Binding ErrorMessage, Converter={StaticResource IsNotNullConverter}}">
+                <HorizontalStackLayout Spacing="8" HorizontalOptions="Center">
+                    <Label Text="&#xF05D6;" FontFamily="MaterialDesignIcons"
+                           FontSize="18" TextColor="{StaticResource Danger}" VerticalOptions="Center" />
+                    <Label Text="{Binding ErrorMessage}" TextColor="{StaticResource Danger}"
+                           FontSize="13" VerticalOptions="Center" />
+                </HorizontalStackLayout>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -40,6 +40,9 @@ public partial class DashboardViewModel(
     [ObservableProperty]
     private bool _showNotifications;
 
+    [ObservableProperty]
+    private bool _showBiometric;
+
     // Upcoming holidays
     [ObservableProperty]
     private bool _hasUpcomingHolidays;
@@ -110,6 +113,7 @@ public partial class DashboardViewModel(
         ShowAttendance = PermissionHelper.CanViewAttendance(sessionService);
         ShowLeave = PermissionHelper.CanViewLeave(sessionService);
         ShowNotifications = PermissionHelper.CanViewNotifications(sessionService);
+        ShowBiometric = PermissionHelper.IsBiometricAttendanceEnabled(sessionService);
 
         var user = sessionService.CurrentUser;
         if (user is not null)
@@ -211,6 +215,12 @@ public partial class DashboardViewModel(
         {
             IsBusy = false;
         }
+    }
+
+    [RelayCommand]
+    private async Task GoToBiometricAsync()
+    {
+        await NavigateAsync("BiometricChoicePage");
     }
 
     private static async Task<T?> SafeAsync<T>(Func<Task<T>> call) where T : class

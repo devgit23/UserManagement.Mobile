@@ -38,16 +38,18 @@ public sealed class MauiGeofenceMonitoringService : GeofenceMonitoringService, I
 
         _ = Task.Run(async () =>
         {
-            _timer = new PeriodicTimer(TimeSpan.FromSeconds(30));
+            var timer = new PeriodicTimer(TimeSpan.FromSeconds(30));
+            _timer = timer;
             try
             {
                 await CheckLocationAsync();
-                while (await _timer.WaitForNextTickAsync(token))
+                while (IsMonitoring && await timer.WaitForNextTickAsync(token))
                 {
                     await CheckLocationAsync();
                 }
             }
             catch (OperationCanceledException) { }
+            catch (ObjectDisposedException) { }
             catch (Exception ex)
             {
                 MainThread.BeginInvokeOnMainThread(() =>

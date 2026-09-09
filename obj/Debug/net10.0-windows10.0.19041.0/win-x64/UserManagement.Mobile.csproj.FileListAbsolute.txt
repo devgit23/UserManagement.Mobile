@@ -543,3 +543,10 @@ D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-windows10.0
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-windows10.0.19041.0\win-x64\qualifiers.txt
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-windows10.0.19041.0\win-x64\qualifiers.txt.intermediate
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-windows10.0.19041.0\win-x64\MultipleQualifiersPerDimensionFound.txt
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\Microsoft.ML.OnnxRuntime.dll
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\SkiaSharp.dll
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\onnxruntime.dll
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\onnxruntime.lib
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\onnxruntime_providers_shared.dll
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\onnxruntime_providers_shared.lib
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-windows10.0.19041.0\win-x64\libSkiaSharp.dll

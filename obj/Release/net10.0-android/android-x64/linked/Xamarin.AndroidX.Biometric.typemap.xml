@@ -1,0 +1,16 @@
+<api type="release" assembly-name="Xamarin.AndroidX.Biometric" mvid="05901e9eaca64586a708a6b591c25aa5">
+  <module assembly-name="Xamarin.AndroidX.Biometric" mvid="05901e9eaca64586a708a6b591c25aa5" mvid-bytes="nh6QBaashkWnCKa1kcJapQ==">
+    <duplicates>
+      <entry java-name="androidx/biometric/BiometricPrompt$AuthenticationCallback" managed-type-name="AndroidX.Biometric.BiometricPrompt/AuthenticationCallbackInvoker" token="33554448" />
+    </duplicates>
+    <types-scratch>
+      <entry key="androidx/biometric/BiometricManager" java-name="androidx/biometric/BiometricManager" managed-type-name="AndroidX.Biometric.BiometricManager" token="33554445" />
+      <entry key="androidx/biometric/BiometricPrompt" java-name="androidx/biometric/BiometricPrompt" managed-type-name="AndroidX.Biometric.BiometricPrompt" token="33554446" />
+      <entry key="androidx/biometric/BiometricPrompt$AuthenticationCallback" java-name="androidx/biometric/BiometricPrompt$AuthenticationCallback" managed-type-name="AndroidX.Biometric.BiometricPrompt/AuthenticationCallback" token="33554447" />
+      <entry key="androidx/biometric/BiometricPrompt$AuthenticationResult" java-name="androidx/biometric/BiometricPrompt$AuthenticationResult" managed-type-name="AndroidX.Biometric.BiometricPrompt/AuthenticationResult" token="33554449" />
+      <entry key="androidx/biometric/BiometricPrompt$CryptoObject" java-name="androidx/biometric/BiometricPrompt$CryptoObject" managed-type-name="AndroidX.Biometric.BiometricPrompt/CryptoObject" token="33554450" />
+      <entry key="androidx/biometric/BiometricPrompt$PromptInfo" java-name="androidx/biometric/BiometricPrompt$PromptInfo" managed-type-name="AndroidX.Biometric.BiometricPrompt/PromptInfo" token="33554451" />
+      <entry key="androidx/biometric/BiometricPrompt$PromptInfo$Builder" java-name="androidx/biometric/BiometricPrompt$PromptInfo$Builder" managed-type-name="AndroidX.Biometric.BiometricPrompt/PromptInfo/Builder" token="33554452" />
+    </types-scratch>
+  </module>
+</api>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:UserManagement.Mobile.Core.ViewModels;assembly=UserManagement.Mobile.Core"
+             xmlns:biometric="clr-namespace:UserManagement.Common.Biometric;assembly=UserManagement.Common"
+             x:Class="UserManagement.Mobile.Views.AdminBiometricPage"
+             x:DataType="vm:AdminBiometricViewModel"
+             Title="{Binding Title}">
+
+    <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}">
+        <ScrollView>
+            <VerticalStackLayout Padding="16" Spacing="16">
+
+                <!-- Today's Biometric Attendance Stats -->
+                <Label Text="Today's Biometric Attendance" Style="{StaticResource SectionHeader}" />
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                    <!-- Face -->
+                    <Border Grid.Column="0" Style="{StaticResource CardBorderCompact}" Padding="14">
+                        <VerticalStackLayout Spacing="4" HorizontalOptions="Center">
+                            <Label Text="&#xF0A71;" FontFamily="MaterialDesignIcons" FontSize="20"
+                                   TextColor="{StaticResource Primary}" HorizontalOptions="Center" />
+                            <Label Text="{Binding TodayFaceClockIns}" Style="{StaticResource StatNumber}" />
+                            <Label Text="Face" Style="{StaticResource StatLabel}" />
+                        </VerticalStackLayout>
+                    </Border>
+                    <!-- Manual -->
+                    <Border Grid.Column="1" Style="{StaticResource CardBorderCompact}" Padding="14">
+                        <VerticalStackLayout Spacing="4" HorizontalOptions="Center">
+                            <Label Text="&#xF0A05;" FontFamily="MaterialDesignIcons" FontSize="20"
+                                   TextColor="{StaticResource Warning}" HorizontalOptions="Center" />
+                            <Label Text="{Binding TodayManualClockIns}" Style="{StaticResource StatNumber}" />
+                            <Label Text="Manual" Style="{StaticResource StatLabel}" />
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+
+                <!-- Enrollment Progress -->
+                <Border Style="{StaticResource CardBorder}">
+                    <VerticalStackLayout Spacing="10">
+                        <HorizontalStackLayout Spacing="8">
+                            <Label Text="&#xF0862;" FontFamily="MaterialDesignIcons" FontSize="18"
+                                   TextColor="{StaticResource Primary}" VerticalOptions="Center" />
+                            <Label Text="Enrollment Status" Style="{StaticResource SectionHeader}" Margin="0" />
+                        </HorizontalStackLayout>
+
+                        <ProgressBar Progress="{Binding EnrollmentPercent}"
+                                     ProgressColor="{StaticResource Primary}"
+                                     HeightRequest="8" />
+
+                        <Label TextColor="{StaticResource Gray500}" FontSize="13">
+                            <Label.Text>
+                                <MultiBinding StringFormat="{}{0} of {1} employees enrolled ({2:P0})">
+                                    <Binding Path="FaceEnrolled" />
+                                    <Binding Path="TotalEmployees" />
+                                    <Binding Path="EnrollmentPercent" />
+                                </MultiBinding>
+                            </Label.Text>
+                        </Label>
+
+                        <!-- Breakdown -->
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                            <VerticalStackLayout HorizontalOptions="Center" Spacing="2">
+                                <Label Text="{Binding FaceEnrolled}" Style="{StaticResource StatNumber}"
+                                       FontSize="18" />
+                                <Label Text="Face" Style="{StaticResource StatLabel}" />
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center" Spacing="2">
+                                <Label Text="{Binding NotEnrolled}" Style="{StaticResource StatNumber}"
+                                       FontSize="18" TextColor="{StaticResource Danger}" />
+                                <Label Text="Not Enrolled" Style="{StaticResource StatLabel}" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Search -->
+                <Border Style="{StaticResource InputBorder}">
+                    <Entry Placeholder="Search employees..."
+                           Text="{Binding SearchText}"
+                           FontSize="14" />
+                </Border>
+
+                <!-- Employee List -->
+                <CollectionView ItemsSource="{Binding FilteredUsers}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="biometric:UserBiometricSummary">
+                            <Border Style="{StaticResource CardBorderCompact}" Margin="0,4">
+                                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                                    <VerticalStackLayout Spacing="4">
+                                        <Label Text="{Binding UserDisplayName}"
+                                               Style="{StaticResource CardTitle}" />
+                                        <Label Text="{Binding Department}"
+                                               Style="{StaticResource CardSubtext}" FontSize="12" />
+                                        <!-- Face badge -->
+                                        <Border BackgroundColor="{Binding FaceEnrolled, Converter={StaticResource BoolToColorConverter}}"
+                                                StrokeShape="RoundRectangle 8"
+                                                Stroke="Transparent" Padding="6,2">
+                                            <Label FontSize="10" FontFamily="OpenSansSemibold">
+                                                <Label.Text>
+                                                    <Binding Path="FaceEnrolled"
+                                                             Converter="{StaticResource BoolToStringConverter}" />
+                                                </Label.Text>
+                                                <Label.TextColor>
+                                                    <Binding Path="FaceEnrolled"
+                                                             Converter="{StaticResource BoolToColorConverter}"
+                                                             ConverterParameter="fg" />
+                                                </Label.TextColor>
+                                            </Label>
+                                        </Border>
+                                    </VerticalStackLayout>
+
+                                    <!-- Reset button -->
+                                    <Button Grid.Column="1" Text="Reset"
+                                            FontSize="12" Padding="12,6"
+                                            CornerRadius="8"
+                                            BackgroundColor="{StaticResource DangerLight}"
+                                            TextColor="{StaticResource Danger}"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:AdminBiometricViewModel}}, Path=ResetUserEnrollmentCommand}"
+                                            CommandParameter="{Binding UserId}"
+                                            VerticalOptions="Center"
+                                            IsVisible="{Binding FaceEnrolled}" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <Label Text="No employees found" Style="{StaticResource EmptyStateLabel}" />
+                    </CollectionView.EmptyView>
+                </CollectionView>
+
+                <!-- Loading -->
+                <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+
+                <!-- Error -->
+                <Border Style="{StaticResource BadgeDanger}" Padding="14,10"
+                        IsVisible="{Binding ErrorMessage, Converter={StaticResource IsNotNullConverter}}">
+                    <HorizontalStackLayout Spacing="8" HorizontalOptions="Center">
+                        <Label Text="&#xF05D6;" FontFamily="MaterialDesignIcons"
+                               FontSize="18" TextColor="{StaticResource Danger}" VerticalOptions="Center" />
+                        <Label Text="{Binding ErrorMessage}" TextColor="{StaticResource Danger}"
+                               FontSize="13" VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </RefreshView>
+</ContentPage>

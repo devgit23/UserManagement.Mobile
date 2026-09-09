@@ -13,5 +13,13 @@ public partial class AppShell : Shell
         Routing.RegisterRoute("ProfilePage", typeof(ProfilePage));
         Routing.RegisterRoute("EmployeeDirectoryPage", typeof(EmployeeDirectoryPage));
         Routing.RegisterRoute("TimesheetPage", typeof(TimesheetPage));
+
+        // Biometric routes
+        Routing.RegisterRoute("BiometricChoicePage", typeof(BiometricChoicePage));
+        Routing.RegisterRoute("FaceCapturePage", typeof(FaceCapturePage));
+        Routing.RegisterRoute("FaceEnrollmentPage", typeof(FaceEnrollmentPage));
+        Routing.RegisterRoute("ClockResultPage", typeof(ClockResultPage));
+        Routing.RegisterRoute("BiometricSettingsPage", typeof(BiometricSettingsPage));
+        Routing.RegisterRoute("AdminBiometricPage", typeof(AdminBiometricPage));
     }
 }

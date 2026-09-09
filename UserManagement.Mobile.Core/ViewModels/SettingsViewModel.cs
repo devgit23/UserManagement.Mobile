@@ -1,5 +1,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using UserManagement.Mobile.Core.Helpers;
 using UserManagement.Mobile.Core.Services.Interfaces;
 using UserManagement.Mobile.Core.ViewModels.Base;
 
@@ -8,7 +9,8 @@ namespace UserManagement.Mobile.Core.ViewModels;
 public partial class SettingsViewModel(
     IAuthenticationService authService,
     ISyncService syncService,
-    IConnectivityService connectivity) : ViewModelBase
+    IConnectivityService connectivity,
+    ISessionService sessionService) : ViewModelBase
 {
     [ObservableProperty]
     private bool _isOnline;
@@ -17,17 +19,23 @@ public partial class SettingsViewModel(
     private bool _isSyncing;
 
     [ObservableProperty]
+    private bool _showBiometricSettings;
+
+    [ObservableProperty]
+    private bool _showBiometricAdmin;
+
+    [ObservableProperty]
     private string? _lastSynced;
 
     [ObservableProperty]
     private int _pendingUploads;
 
-    public Func<string, Task>? NavigateAsync { get; set; }
-
     public override Task InitializeAsync()
     {
         Title = "Settings";
         IsOnline = connectivity.IsConnected;
+        ShowBiometricSettings = PermissionHelper.CanEnrollBiometric(sessionService);
+        ShowBiometricAdmin = PermissionHelper.CanManageBiometric(sessionService);
         UpdateSyncStatus();
         return Task.CompletedTask;
     }
@@ -73,8 +81,7 @@ public partial class SettingsViewModel(
         try
         {
             await authService.LogoutAsync();
-            if (NavigateAsync is not null)
-                await NavigateAsync("//Login");
+            await NavigateAsync("//Login");
         }
         finally
         {

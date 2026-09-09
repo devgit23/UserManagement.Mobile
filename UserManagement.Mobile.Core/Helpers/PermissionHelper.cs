@@ -36,4 +36,20 @@ public static class PermissionHelper
     public static bool CanViewAnnouncements(ISessionService session) =>
         session.IsModuleEnabled(AppModules.Announcements) &&
         session.HasAnyPermission(AppPermissions.WorkforceAdmin, AppPermissions.AnnouncementsView, AppPermissions.AnnouncementsManage);
+
+    /// <summary>Can the user enroll their own biometric data (face/fingerprint).</summary>
+    public static bool CanEnrollBiometric(ISessionService session) =>
+        session.IsModuleEnabled(AppModules.Biometric) &&
+        session.HasAnyPermission(AppPermissions.WorkforceAdmin, AppPermissions.BiometricEnroll, AppPermissions.BiometricManage);
+
+    /// <summary>Can the user manage biometric enrollments for other users (admin).</summary>
+    public static bool CanManageBiometric(ISessionService session) =>
+        session.IsModuleEnabled(AppModules.Biometric) &&
+        session.HasAnyPermission(AppPermissions.WorkforceAdmin, AppPermissions.BiometricManage);
+
+    /// <summary>Is biometric attendance available for this user (module enabled + has attendance + enrollment permission).</summary>
+    public static bool IsBiometricAttendanceEnabled(ISessionService session) =>
+        session.IsModuleEnabled(AppModules.Biometric) &&
+        CanViewAttendance(session) &&
+        session.HasAnyPermission(AppPermissions.WorkforceAdmin, AppPermissions.BiometricEnroll, AppPermissions.BiometricManage);
 }

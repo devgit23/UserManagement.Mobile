@@ -1,4 +1,6 @@
 using Refit;
+using UserManagement.Mobile.Core.Offline.Database;
+using UserManagement.Mobile.Core.Offline.Database.Entities;
 using UserManagement.Mobile.Core.Services.Interfaces;
 using UserManagement.Shared.ApiContracts;
 using UserManagement.Shared.Models;
@@ -8,7 +10,9 @@ namespace UserManagement.Mobile.Core.Services.Implementations;
 public sealed class AuthenticationService(
     IAuthApi authApi,
     ISecureStorageService secureStorage,
-    ISessionService sessionService) : IAuthenticationService
+    ISessionService sessionService,
+    IBiometricApi biometricApi,
+    LocalDatabase localDatabase) : IAuthenticationService
 {
     public async Task<ApiResult<LoginResponse>> LoginAsync(string userNameOrEmail, string password, CancellationToken ct = default)
     {
@@ -40,6 +44,9 @@ public sealed class AuthenticationService(
                     {
                         // Non-fatal: profile load can be retried later
                     }
+
+                    // Pre-cache face embedding for offline biometric verification (fire-and-forget)
+                    _ = CacheFaceEmbeddingAsync();
                 }
             }
 
@@ -82,6 +89,9 @@ public sealed class AuthenticationService(
                     {
                         // Non-fatal
                     }
+
+                    // Pre-cache face embedding for offline biometric verification (fire-and-forget)
+                    _ = CacheFaceEmbeddingAsync();
                 }
             }
 
@@ -169,5 +179,36 @@ public sealed class AuthenticationService(
             System.Net.HttpStatusCode.BadRequest => "Invalid request.",
             _ => ex.Message
         };
+    }
+
+    /// <summary>
+    /// Downloads the user's face embedding from the server and caches it locally
+    /// for offline face verification. Non-blocking, non-critical.
+    /// </summary>
+    private async Task CacheFaceEmbeddingAsync()
+    {
+        try
+        {
+            var status = await biometricApi.GetEnrollmentStatusAsync();
+            if (!status.FaceEnrolled)
+                return;
+
+            var response = await biometricApi.GetFaceEmbeddingAsync();
+            if (string.IsNullOrEmpty(response.EmbeddingBase64))
+                return;
+
+            var embeddingBytes = Convert.FromBase64String(response.EmbeddingBase64);
+            var conn = localDatabase.GetConnection();
+            await conn.InsertOrReplaceAsync(new LocalFaceEmbedding
+            {
+                UserId = "current",
+                Embedding = embeddingBytes,
+                EnrolledAt = DateTimeOffset.UtcNow
+            });
+        }
+        catch
+        {
+            // Non-critical — embedding will be cached during next sync
+        }
     }
 }

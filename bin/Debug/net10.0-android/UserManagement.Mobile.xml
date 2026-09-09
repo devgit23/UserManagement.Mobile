@@ -35,6 +35,12 @@
             Parameter: "bg" (default) returns background color, "fg" returns text color.
             </summary>
         </member>
+        <member name="T:UserManagement.Mobile.Converters.VerificationMethodToIconConverter">
+            <summary>
+            Converts a biometric verification method string to its Material Design Icon glyph.
+            "face" → face-recognition icon, "fingerprint" → fingerprint icon, "manual" → tap icon.
+            </summary>
+        </member>
         <member name="T:UserManagement.Mobile.Helpers.IconFont">
             <summary>
             Material Design Icons glyph constants for use in XAML and code.

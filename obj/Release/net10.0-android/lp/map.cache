@@ -5,6 +5,8 @@ Microsoft.Maui.Controls.Xaml.dll
 Microsoft.Maui.dll
 Microsoft.Maui.Essentials.dll
 Microsoft.Maui.Graphics.dll
+Microsoft.ML.OnnxRuntime.dll
+SkiaSharp.dll
 SQLitePCLRaw.batteries_v2.dll
 SQLitePCLRaw.lib.e_sqlite3.android.dll
 Xamarin.Android.Glide.Annotations.dll
@@ -161,6 +163,7 @@ androidx.navigation.navigation-fragment.aar
 androidx.lifecycle.lifecycle-livedata.aar
 androidx.exifinterface.exifinterface.aar
 androidx.browser.browser.aar
+onnxruntime.aar
 GoogleGson.aar
 Jsr305Binding.aar
 Microsoft.Maui.Controls.aar

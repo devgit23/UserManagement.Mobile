@@ -1,0 +1,7 @@
+<api type="release" assembly-name="Plugin.Fingerprint" mvid="6b1538e155fd4c3d872fea59b8450c18">
+  <module assembly-name="Plugin.Fingerprint" mvid="6b1538e155fd4c3d872fea59b8450c18" mvid-bytes="4TgVa/1VPUyHL+pZuEUMGA==">
+    <types-scratch>
+      <entry key="crc64e6d0b84c6264ccdd/AuthenticationHandler" java-name="crc64e6d0b84c6264ccdd/AuthenticationHandler" managed-type-name="Plugin.Fingerprint.AuthenticationHandler" token="33554436" />
+    </types-scratch>
+  </module>
+</api>

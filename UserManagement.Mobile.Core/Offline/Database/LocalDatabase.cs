@@ -28,6 +28,7 @@ public sealed class LocalDatabase
         await _connection.CreateTableAsync<LocalNotification>();
         await _connection.CreateTableAsync<LocalTimesheetEntry>();
         await _connection.CreateTableAsync<SyncQueueItem>();
+        await _connection.CreateTableAsync<LocalFaceEmbedding>();
     }
 
     public SQLiteAsyncConnection GetConnection() => Connection;

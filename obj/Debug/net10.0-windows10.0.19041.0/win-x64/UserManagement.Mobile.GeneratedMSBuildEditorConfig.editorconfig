@@ -85,11 +85,51 @@ build_metadata.AdditionalFiles.NoWarn =
 build_metadata.AdditionalFiles.EnableDiagnostics = 
 build_metadata.AdditionalFiles.LineInfo = 
 
+[D:/SourceCode/UserManagement/UserManagement.Mobile/Views/AdminBiometricPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = UserManagement.Mobile.Views.AdminBiometricPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\AdminBiometricPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\AdminBiometricPage.xaml
+build_metadata.AdditionalFiles.Inflator = SourceGen
+build_metadata.AdditionalFiles.NoWarn = 
+build_metadata.AdditionalFiles.EnableDiagnostics = 
+build_metadata.AdditionalFiles.LineInfo = 
+
 [D:/SourceCode/UserManagement/UserManagement.Mobile/Views/AttendancePage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = UserManagement.Mobile.Views.AttendancePage.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\AttendancePage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\AttendancePage.xaml
+build_metadata.AdditionalFiles.Inflator = SourceGen
+build_metadata.AdditionalFiles.NoWarn = 
+build_metadata.AdditionalFiles.EnableDiagnostics = 
+build_metadata.AdditionalFiles.LineInfo = 
+
+[D:/SourceCode/UserManagement/UserManagement.Mobile/Views/BiometricChoicePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = UserManagement.Mobile.Views.BiometricChoicePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\BiometricChoicePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\BiometricChoicePage.xaml
+build_metadata.AdditionalFiles.Inflator = SourceGen
+build_metadata.AdditionalFiles.NoWarn = 
+build_metadata.AdditionalFiles.EnableDiagnostics = 
+build_metadata.AdditionalFiles.LineInfo = 
+
+[D:/SourceCode/UserManagement/UserManagement.Mobile/Views/BiometricSettingsPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = UserManagement.Mobile.Views.BiometricSettingsPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\BiometricSettingsPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\BiometricSettingsPage.xaml
+build_metadata.AdditionalFiles.Inflator = SourceGen
+build_metadata.AdditionalFiles.NoWarn = 
+build_metadata.AdditionalFiles.EnableDiagnostics = 
+build_metadata.AdditionalFiles.LineInfo = 
+
+[D:/SourceCode/UserManagement/UserManagement.Mobile/Views/ClockResultPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = UserManagement.Mobile.Views.ClockResultPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\ClockResultPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\ClockResultPage.xaml
 build_metadata.AdditionalFiles.Inflator = SourceGen
 build_metadata.AdditionalFiles.NoWarn = 
 build_metadata.AdditionalFiles.EnableDiagnostics = 
@@ -110,6 +150,26 @@ build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = UserManagement.Mobile.Views.EmployeeDirectoryPage.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\EmployeeDirectoryPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\EmployeeDirectoryPage.xaml
+build_metadata.AdditionalFiles.Inflator = SourceGen
+build_metadata.AdditionalFiles.NoWarn = 
+build_metadata.AdditionalFiles.EnableDiagnostics = 
+build_metadata.AdditionalFiles.LineInfo = 
+
+[D:/SourceCode/UserManagement/UserManagement.Mobile/Views/FaceCapturePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = UserManagement.Mobile.Views.FaceCapturePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\FaceCapturePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\FaceCapturePage.xaml
+build_metadata.AdditionalFiles.Inflator = SourceGen
+build_metadata.AdditionalFiles.NoWarn = 
+build_metadata.AdditionalFiles.EnableDiagnostics = 
+build_metadata.AdditionalFiles.LineInfo = 
+
+[D:/SourceCode/UserManagement/UserManagement.Mobile/Views/FaceEnrollmentPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = UserManagement.Mobile.Views.FaceEnrollmentPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\FaceEnrollmentPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\FaceEnrollmentPage.xaml
 build_metadata.AdditionalFiles.Inflator = SourceGen
 build_metadata.AdditionalFiles.NoWarn = 
 build_metadata.AdditionalFiles.EnableDiagnostics = 

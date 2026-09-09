@@ -17,6 +17,11 @@ public abstract partial class ViewModelBase : ObservableObject
     [ObservableProperty]
     private bool _isRefreshing;
 
+    /// <summary>
+    /// Navigation delegate — wired up from page code-behind to Shell.Current.GoToAsync.
+    /// </summary>
+    public Func<string, Task> NavigateAsync { get; set; } = _ => Task.CompletedTask;
+
     public virtual Task InitializeAsync() => Task.CompletedTask;
 
     public virtual Task OnAppearingAsync() => Task.CompletedTask;

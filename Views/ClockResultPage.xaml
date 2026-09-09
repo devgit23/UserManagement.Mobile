@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:UserManagement.Mobile.Core.ViewModels;assembly=UserManagement.Mobile.Core"
+             x:Class="UserManagement.Mobile.Views.ClockResultPage"
+             x:DataType="vm:ClockResultViewModel"
+             Title="{Binding Title}"
+             Shell.NavBarIsVisible="False">
+
+    <Grid BackgroundColor="{AppThemeBinding Light={StaticResource Surface}, Dark=#121212}">
+        <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center"
+                             Spacing="24" Padding="32">
+
+            <!-- Processing spinner -->
+            <VerticalStackLayout Spacing="16" IsVisible="{Binding IsClocking}"
+                                 HorizontalOptions="Center">
+                <ActivityIndicator IsRunning="True" Color="{StaticResource Primary}"
+                                   WidthRequest="60" HeightRequest="60" />
+                <Label Text="Processing attendance..."
+                       FontSize="16" TextColor="{StaticResource Gray500}"
+                       HorizontalOptions="Center" />
+            </VerticalStackLayout>
+
+            <!-- Success state -->
+            <VerticalStackLayout Spacing="24" IsVisible="{Binding Success}"
+                                 HorizontalOptions="Center">
+                <!-- Success circle with checkmark -->
+                <Border WidthRequest="120" HeightRequest="120"
+                        StrokeShape="RoundRectangle 60"
+                        Stroke="Transparent" StrokeThickness="0"
+                        BackgroundColor="{StaticResource SuccessLight}"
+                        HorizontalOptions="Center" Padding="0">
+                    <Label Text="&#xF012C;"
+                           FontFamily="MaterialDesignIcons" FontSize="56"
+                           TextColor="{StaticResource Success}"
+                           HorizontalOptions="Center" VerticalOptions="Center" />
+                </Border>
+
+                <Label Text="{Binding ResultMessage}"
+                       FontSize="22" FontFamily="OpenSansSemibold"
+                       HorizontalOptions="Center"
+                       TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+
+                <!-- Details card -->
+                <Border Style="{StaticResource CardBorder}" Padding="20" WidthRequest="300">
+                    <VerticalStackLayout Spacing="12">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Text="Time" FontSize="14" TextColor="{StaticResource Gray500}" />
+                            <Label Grid.Column="1" Text="{Binding ClockTime}"
+                                   FontSize="14" FontFamily="OpenSansSemibold"
+                                   TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+                        </Grid>
+                        <BoxView Style="{StaticResource Divider}" Margin="0" />
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Text="Method" FontSize="14" TextColor="{StaticResource Gray500}" />
+                            <Label Grid.Column="1" Text="{Binding MethodDisplay}"
+                                   FontSize="14" FontFamily="OpenSansSemibold"
+                                   TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+                        </Grid>
+                        <BoxView Style="{StaticResource Divider}" Margin="0" />
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Text="Confidence" FontSize="14" TextColor="{StaticResource Gray500}" />
+                            <Label Grid.Column="1" Text="{Binding Confidence, StringFormat='{0:P1}'}"
+                                   FontSize="14" FontFamily="OpenSansSemibold"
+                                   TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+                        </Grid>
+                        <BoxView Style="{StaticResource Divider}" Margin="0" />
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Text="Status" FontSize="14" TextColor="{StaticResource Gray500}" />
+                            <Border Grid.Column="1"
+                                    BackgroundColor="{StaticResource SuccessLight}"
+                                    StrokeShape="RoundRectangle 10"
+                                    Stroke="Transparent" StrokeThickness="0"
+                                    Padding="10,4">
+                                <Label Text="{Binding StatusLabel}" FontSize="12"
+                                       FontFamily="OpenSansSemibold"
+                                       TextColor="{StaticResource Success}" />
+                            </Border>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Button Text="Go to Dashboard"
+                        Style="{StaticResource PrimaryButton}"
+                        Command="{Binding GoToDashboardCommand}"
+                        WidthRequest="240" HorizontalOptions="Center" />
+            </VerticalStackLayout>
+
+            <!-- Failure state -->
+            <VerticalStackLayout Spacing="24"
+                                 IsVisible="{Binding Success, Converter={StaticResource InvertedBoolConverter}}"
+                                 HorizontalOptions="Center">
+                <VerticalStackLayout Spacing="24"
+                                     IsVisible="{Binding IsClocking, Converter={StaticResource InvertedBoolConverter}}">
+                    <!-- Failure circle -->
+                    <Border WidthRequest="120" HeightRequest="120"
+                            StrokeShape="RoundRectangle 60"
+                            Stroke="Transparent" StrokeThickness="0"
+                            BackgroundColor="{StaticResource DangerLight}"
+                            HorizontalOptions="Center" Padding="0">
+                        <Label Text="&#xF0156;"
+                               FontFamily="MaterialDesignIcons" FontSize="56"
+                               TextColor="{StaticResource Danger}"
+                               HorizontalOptions="Center" VerticalOptions="Center" />
+                    </Border>
+
+                    <Label Text="{Binding ResultMessage}"
+                           FontSize="22" FontFamily="OpenSansSemibold"
+                           HorizontalOptions="Center"
+                           TextColor="{StaticResource Danger}" />
+
+                    <Label Text="{Binding StatusLabel}"
+                           FontSize="14" TextColor="{StaticResource Gray500}"
+                           HorizontalTextAlignment="Center" />
+
+                    <Button Text="Go to Dashboard"
+                            Style="{StaticResource SecondaryButton}"
+                            Command="{Binding GoToDashboardCommand}"
+                            WidthRequest="240" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

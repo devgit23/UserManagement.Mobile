@@ -632,6 +632,44 @@
         <Setter Property="Padding" Value="0" />
     </Style>
 
+    <!-- ==================== BIOMETRIC STYLES ==================== -->
+
+    <!-- Large card for face/fingerprint method selection on BiometricChoicePage -->
+    <Style TargetType="Border" x:Key="BiometricMethodCard">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource CardSurface}, Dark={StaticResource CardSurfaceDark}}" />
+        <Setter Property="Stroke" Value="{AppThemeBinding Light=#E8E8E8, Dark=#3A3A3A}" />
+        <Setter Property="StrokeThickness" Value="1" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 16" />
+        <Setter Property="Padding" Value="20" />
+        <Setter Property="Shadow">
+            <Shadow Brush="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Black}}"
+                    Offset="0,2" Radius="8" Opacity="0.1" />
+        </Setter>
+    </Style>
+
+    <!-- Transparent frame for camera preview overlay (FaceCapturePage, FaceEnrollmentPage) -->
+    <Style TargetType="Border" x:Key="CameraOverlayFrame">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+        <Setter Property="StrokeThickness" Value="3" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 80" />
+        <Setter Property="WidthRequest" Value="240" />
+        <Setter Property="HeightRequest" Value="300" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
+
+    <!-- Circular icon container for verification result (ClockResultPage) -->
+    <Style TargetType="Border" x:Key="ResultCircle">
+        <Setter Property="StrokeShape" Value="RoundRectangle 60" />
+        <Setter Property="WidthRequest" Value="120" />
+        <Setter Property="HeightRequest" Value="120" />
+        <Setter Property="StrokeThickness" Value="0" />
+        <Setter Property="Stroke" Value="Transparent" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="Padding" Value="0" />
+    </Style>
+
     <!-- ==================== DIVIDER ==================== -->
 
     <Style TargetType="BoxView" x:Key="Divider">

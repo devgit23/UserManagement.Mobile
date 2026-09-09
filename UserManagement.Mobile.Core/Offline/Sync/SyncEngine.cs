@@ -18,8 +18,10 @@ public sealed class SyncEngine(
     ILocalTimesheetRepository timesheetRepo,
     ILeaveApi leaveApi,
     IAttendanceApi attendanceApi,
-    ITimesheetApi timesheetApi) : ISyncEngine
+    ITimesheetApi timesheetApi,
+    IBiometricApi biometricApi) : ISyncEngine
 {
+    private static readonly TimeSpan EmbeddingRefreshThreshold = TimeSpan.FromDays(30);
     private const int MaxRetries = 5;
     private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web);
 
@@ -144,6 +146,47 @@ public sealed class SyncEngine(
             }
         }
         catch { /* Non-critical */ }
+
+        // Pull face embedding for offline biometric verification
+        await PullFaceEmbeddingAsync(ct);
+    }
+
+    private async Task PullFaceEmbeddingAsync(CancellationToken ct)
+    {
+        try
+        {
+            var conn = db.GetConnection();
+
+            // Check if local cache exists and is fresh enough
+            var existing = await conn.Table<LocalFaceEmbedding>()
+                .Where(e => e.UserId == "current")
+                .FirstOrDefaultAsync();
+
+            if (existing is not null
+                && (DateTimeOffset.UtcNow - existing.EnrolledAt) < EmbeddingRefreshThreshold)
+            {
+                return; // Cache is fresh, skip download
+            }
+
+            // Check enrollment status first (avoids 404 for users who haven't enrolled)
+            var status = await biometricApi.GetEnrollmentStatusAsync(ct);
+            if (!status.FaceEnrolled)
+                return;
+
+            // Download the embedding
+            var response = await biometricApi.GetFaceEmbeddingAsync(ct);
+            if (string.IsNullOrEmpty(response.EmbeddingBase64))
+                return;
+
+            var embeddingBytes = Convert.FromBase64String(response.EmbeddingBase64);
+            await conn.InsertOrReplaceAsync(new LocalFaceEmbedding
+            {
+                UserId = "current",
+                Embedding = embeddingBytes,
+                EnrolledAt = DateTimeOffset.UtcNow
+            });
+        }
+        catch { /* Non-critical — face verification can still work if previously cached */ }
     }
 
     public async Task<int> GetPendingCountAsync()

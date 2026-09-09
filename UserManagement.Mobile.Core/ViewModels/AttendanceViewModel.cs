@@ -9,6 +9,7 @@ using UserManagement.Mobile.Core.Offline.Database.Entities;
 using UserManagement.Mobile.Core.Offline.Repositories;
 using UserManagement.Mobile.Core.Offline.Sync;
 using UserManagement.Mobile.Core.Services.Interfaces;
+using UserManagement.Mobile.Core.Helpers;
 using UserManagement.Mobile.Core.ViewModels.Base;
 using UserManagement.Shared.ApiContracts;
 
@@ -41,6 +42,9 @@ public partial class AttendanceViewModel(
 
     [ObservableProperty]
     private string? _geofenceWarning;
+
+    [ObservableProperty]
+    private bool _showBiometric;
 
     private GeofenceConfig? _geofenceConfig;
     private CancellationTokenSource? _timerCts;
@@ -109,6 +113,7 @@ public partial class AttendanceViewModel(
     public override async Task InitializeAsync()
     {
         Title = "Attendance";
+        ShowBiometric = PermissionHelper.IsBiometricAttendanceEnabled(sessionService);
 
         // Subscribe to geofence events
         geofenceService.GeofenceExited += OnGeofenceExited;
@@ -385,6 +390,12 @@ public partial class AttendanceViewModel(
             cancel: "Cancel",
             placeholder: "e.g., Working from home today",
             maxLength: 500);
+    }
+
+    [RelayCommand]
+    private async Task GoToBiometricAsync()
+    {
+        await NavigateAsync("BiometricChoicePage");
     }
 
     // --- Geofence ---

@@ -10,6 +10,7 @@ public partial class DashboardPage : ContentPage
     {
         InitializeComponent();
         BindingContext = _viewModel = viewModel;
+        viewModel.NavigateAsync = route => Shell.Current.GoToAsync(route);
     }
 
     protected override async void OnAppearing()

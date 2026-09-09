@@ -23,8 +23,10 @@ obj\Release\net10.0-android\android-x64\aot\Microsoft.Maui.Controls.Xaml.dll.so
 obj\Release\net10.0-android\android-x64\aot\Microsoft.Maui.dll.so
 obj\Release\net10.0-android\android-x64\aot\Microsoft.Maui.Essentials.dll.so
 obj\Release\net10.0-android\android-x64\aot\Microsoft.Maui.Graphics.dll.so
+obj\Release\net10.0-android\android-x64\aot\Microsoft.ML.OnnxRuntime.dll.so
 obj\Release\net10.0-android\android-x64\aot\Refit.dll.so
 obj\Release\net10.0-android\android-x64\aot\Refit.HttpClientFactory.dll.so
+obj\Release\net10.0-android\android-x64\aot\SkiaSharp.dll.so
 obj\Release\net10.0-android\android-x64\aot\SQLite-net.dll.so
 obj\Release\net10.0-android\android-x64\aot\SQLitePCLRaw.batteries_v2.dll.so
 obj\Release\net10.0-android\android-x64\aot\SQLitePCLRaw.core.dll.so

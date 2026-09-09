@@ -24,6 +24,7 @@
             <converters:NotificationTypeToColorConverter x:Key="NotificationTypeToColorConverter" />
             <converters:AttendanceStatusToColorConverter x:Key="AttendanceStatusToColorConverter" />
             <converters:TimesheetStatusToColorConverter x:Key="TimesheetStatusToColorConverter" />
+            <converters:VerificationMethodToIconConverter x:Key="VerificationMethodToIconConverter" />
             <local:FirstCharConverter x:Key="FirstCharConverter" />
 
             <!-- Leave session types -->

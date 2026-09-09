@@ -329,3 +329,16 @@ D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-maccatalyst
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\UserManagement.Mobile.pdb
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\UserManagement.Mobile.genruntimeconfig.cache
 D:\SourceCode\UserManagement\UserManagement.Mobile\obj\Debug\net10.0-maccatalyst\maccatalyst-x64\ref\UserManagement.Mobile.dll
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Microsoft.ML.OnnxRuntime.dll
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\SkiaSharp.dll
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\Info.plist
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\coreml_provider_factory.h
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\cpu_provider_factory.h
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\onnxruntime_c_api.h
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\onnxruntime_cxx_api.h
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\onnxruntime_cxx_inline.h
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\onnxruntime_float16.h
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\onnxruntime_run_options_config_keys.h
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\onnxruntime_session_options_config_keys.h
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\onnxruntime
+D:\SourceCode\UserManagement\UserManagement.Mobile\bin\Debug\net10.0-maccatalyst\maccatalyst-x64\libSkiaSharp.framework.zip

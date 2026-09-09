@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:UserManagement.Mobile.Core.ViewModels;assembly=UserManagement.Mobile.Core"
+             x:Class="UserManagement.Mobile.Views.FaceCapturePage"
+             x:DataType="vm:FaceCaptureViewModel"
+             Title="{Binding Title}"
+             Shell.NavBarIsVisible="True">
+
+    <Grid RowDefinitions="*,Auto" BackgroundColor="Black">
+
+        <!-- Camera Preview / Captured Image Area -->
+        <Grid Grid.Row="0">
+            <!-- Dark background -->
+            <BoxView Color="#1A1A1A" />
+
+            <!-- Captured photo preview (shown after capture) -->
+            <Image x:Name="CapturedPreview"
+                   Aspect="AspectFill"
+                   IsVisible="False" />
+
+            <!-- Face oval guide overlay -->
+            <Border WidthRequest="240" HeightRequest="320"
+                    StrokeShape="RoundRectangle 120"
+                    Stroke="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
+                    StrokeThickness="3"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="Center" VerticalOptions="Center"
+                    StrokeDashArray="8,4"
+                    Opacity="0.7"
+                    x:Name="FaceGuide">
+                <Label Text="&#xF0A71;"
+                       FontFamily="MaterialDesignIcons" FontSize="80"
+                       TextColor="{StaticResource Gray500}"
+                       HorizontalOptions="Center" VerticalOptions="Center"
+                       Opacity="0.3"
+                       x:Name="FaceIcon" />
+            </Border>
+
+            <!-- Guidance text overlay -->
+            <VerticalStackLayout VerticalOptions="End" HorizontalOptions="Center"
+                                 Margin="0,0,0,24" Spacing="12">
+                <Border BackgroundColor="#CC000000" StrokeShape="RoundRectangle 16"
+                        Stroke="Transparent" Padding="20,10">
+                    <Label Text="{Binding GuidanceText}"
+                           TextColor="White" FontSize="15" FontFamily="OpenSansSemibold"
+                           HorizontalTextAlignment="Center" />
+                </Border>
+
+                <!-- Retry counter -->
+                <Label Text="{Binding RetryCount, StringFormat='Attempt {0}/3'}"
+                       TextColor="#CCCCCC" FontSize="12"
+                       HorizontalOptions="Center"
+                       IsVisible="{Binding RetryCount, Converter={StaticResource IsNotNullConverter}}" />
+            </VerticalStackLayout>
+
+            <!-- Processing overlay -->
+            <Grid IsVisible="{Binding IsProcessing}"
+                  BackgroundColor="#88000000">
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="12">
+                    <ActivityIndicator IsRunning="True" Color="White" />
+                    <Label Text="Verifying face..." TextColor="White" FontSize="16"
+                           HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Grid>
+        </Grid>
+
+        <!-- Bottom controls -->
+        <Border Grid.Row="1" BackgroundColor="{AppThemeBinding Light={StaticResource Surface}, Dark=#1A1A1A}"
+                StrokeShape="RoundRectangle 20,20,0,0" Stroke="Transparent" Padding="20">
+            <VerticalStackLayout Spacing="12">
+
+                <!-- Capture button — opens device camera -->
+                <Button Text="&#xF0A71;  Capture Face"
+                        FontFamily="OpenSansSemibold"
+                        BackgroundColor="{StaticResource Primary}"
+                        TextColor="White" FontSize="16"
+                        HeightRequest="52" CornerRadius="26"
+                        Clicked="OnCaptureClicked"
+                        IsEnabled="{Binding IsProcessing, Converter={StaticResource InvertedBoolConverter}}" />
+
+                <!-- Retry session button (visible after session expires) -->
+                <Button Text="Retry Session"
+                        Style="{StaticResource SecondaryButton}"
+                        Command="{Binding RetrySessionCommand}"
+                        IsVisible="{Binding ErrorMessage, Converter={StaticResource IsNotNullConverter}}" />
+
+                <!-- Error -->
+                <Border Style="{StaticResource BadgeDanger}" Padding="14,10"
+                        IsVisible="{Binding ErrorMessage, Converter={StaticResource IsNotNullConverter}}">
+                    <Label Text="{Binding ErrorMessage}" TextColor="{StaticResource Danger}"
+                           FontSize="13" HorizontalTextAlignment="Center" />
+                </Border>
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
+</ContentPage>

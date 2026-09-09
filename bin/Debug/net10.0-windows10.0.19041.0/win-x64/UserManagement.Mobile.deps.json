@@ -503,6 +503,33 @@
           }
         }
       },
+      "Microsoft.ML.OnnxRuntime/1.17.3": {
+        "dependencies": {
+          "Microsoft.ML.OnnxRuntime.Managed": "1.17.3"
+        },
+        "native": {
+          "runtimes/win-x64/native/onnxruntime.dll": {
+            "fileVersion": "1.17.24.405"
+          },
+          "runtimes/win-x64/native/onnxruntime.lib": {
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/onnxruntime_providers_shared.dll": {
+            "fileVersion": "1.17.24.405"
+          },
+          "runtimes/win-x64/native/onnxruntime_providers_shared.lib": {
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Microsoft.ML.OnnxRuntime.Managed/1.17.3": {
+        "runtime": {
+          "lib/net6.0/Microsoft.ML.OnnxRuntime.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
       "Microsoft.Web.WebView2/1.0.3179.45": {
         "native": {
           "runtimes/win-x64/native/WebView2Loader.dll": {
@@ -645,6 +672,24 @@
           }
         }
       },
+      "SkiaSharp/2.88.9": {
+        "dependencies": {
+          "SkiaSharp.NativeAssets.Win32": "2.88.9"
+        },
+        "runtime": {
+          "lib/net6.0/SkiaSharp.dll": {
+            "assemblyVersion": "2.88.0.0",
+            "fileVersion": "2.88.9.0"
+          }
+        }
+      },
+      "SkiaSharp.NativeAssets.Win32/2.88.9": {
+        "native": {
+          "runtimes/win-x64/native/libSkiaSharp.dll": {
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
       "sqlite-net-pcl/1.9.172": {
         "dependencies": {
           "SQLitePCLRaw.bundle_green": "2.1.11"
@@ -705,8 +750,10 @@
       "UserManagement.Mobile.Core/1.0.0": {
         "dependencies": {
           "CommunityToolkit.Mvvm": "8.4.0",
+          "Microsoft.ML.OnnxRuntime": "1.17.3",
           "Refit": "8.0.0",
           "SQLitePCLRaw.bundle_green": "2.1.11",
+          "SkiaSharp": "2.88.9",
           "UserManagement.Shared": "1.0.0",
           "sqlite-net-pcl": "1.9.172"
         },
@@ -960,6 +1007,20 @@
       "path": "microsoft.maui.graphics.win2d.winui.desktop/10.0.20",
       "hashPath": "microsoft.maui.graphics.win2d.winui.desktop.10.0.20.nupkg.sha512"
     },
+    "Microsoft.ML.OnnxRuntime/1.17.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-v5a4t3IeEDeiEEaPxyg0N79XRhQzKmsG0OSOHl/s8d4mbYGzF93bQESF8KAquCHWMMo2AQF7oHUc0+gJ6o4LmA==",
+      "path": "microsoft.ml.onnxruntime/1.17.3",
+      "hashPath": "microsoft.ml.onnxruntime.1.17.3.nupkg.sha512"
+    },
+    "Microsoft.ML.OnnxRuntime.Managed/1.17.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-GOqpsKEJ29b2Y9dVmK1bZ2L4iynMmop4sdgImK4AwXuZ1LgEPTjYpoe7e7tr1DVC8w3XZvR0BQxf2m37cN+BtA==",
+      "path": "microsoft.ml.onnxruntime.managed/1.17.3",
+      "hashPath": "microsoft.ml.onnxruntime.managed.1.17.3.nupkg.sha512"
+    },
     "Microsoft.Web.WebView2/1.0.3179.45": {
       "type": "package",
       "serviceable": true,
@@ -987,6 +1048,20 @@
       "sha512": "sha512-dwtmrqHkhuwDmG9qE8+rNnv6YFo132G1Ma+GCXupZQsdQcMN4U1uYaxoJVanRIPdieQGkQRcdxjkFhwO1LuRoA==",
       "path": "refit.httpclientfactory/8.0.0",
       "hashPath": "refit.httpclientfactory.8.0.0.nupkg.sha512"
+    },
+    "SkiaSharp/2.88.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3MD5VHjXXieSHCleRLuaTXmL2pD0mB7CcOB1x2kA1I4bhptf4e3R27iM93264ZYuAq6mkUyX5XbcxnZvMJYc1Q==",
+      "path": "skiasharp/2.88.9",
+      "hashPath": "skiasharp.2.88.9.nupkg.sha512"
+    },
+    "SkiaSharp.NativeAssets.Win32/2.88.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wb2kYgU7iy84nQLYZwMeJXixvK++GoIuECjU4ECaUKNuflyRlJKyiRhN1MAHswvlvzuvkrjRWlK0Za6+kYQK7w==",
+      "path": "skiasharp.nativeassets.win32/2.88.9",
+      "hashPath": "skiasharp.nativeassets.win32.2.88.9.nupkg.sha512"
     },
     "sqlite-net-pcl/1.9.172": {
       "type": "package",

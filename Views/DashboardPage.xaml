@@ -88,6 +88,27 @@
                                TextColor="{StaticResource Gray500}"
                                HorizontalOptions="Center" />
                     </VerticalStackLayout>
+
+                    <!-- Biometric shortcut -->
+                    <VerticalStackLayout Spacing="6" HorizontalOptions="Center"
+                                         IsVisible="{Binding ShowBiometric}">
+                        <Border WidthRequest="56" HeightRequest="56"
+                                StrokeShape="RoundRectangle 28"
+                                Stroke="Transparent" StrokeThickness="0"
+                                BackgroundColor="{AppThemeBinding Light=#E8DEF8, Dark=#1A6750A4}"
+                                HorizontalOptions="Center" Padding="0">
+                            <Label Text="&#xF0A71;"
+                                   FontFamily="MaterialDesignIcons" FontSize="24"
+                                   TextColor="#6750A4"
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <Label Text="Biometric" FontSize="11"
+                               TextColor="{StaticResource Gray500}"
+                               HorizontalOptions="Center" />
+                        <VerticalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding GoToBiometricCommand}" />
+                        </VerticalStackLayout.GestureRecognizers>
+                    </VerticalStackLayout>
                 </HorizontalStackLayout>
 
                 <!-- Stats Grid -->
